@@ -1,10 +1,31 @@
 PODS:
+  - AWSCognito (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSCore (2.3.4)
+  - Crashlytics (3.6.0):
+    - Fabric (~> 1.6.3)
+  - Digits (1.15.1):
+    - TwitterCore (= 1.15.1)
+  - Fabric (1.6.5)
   - Reveal-iOS-SDK (1.6.2)
+  - TwitterCore (1.15.1):
+    - Fabric
 
 DEPENDENCIES:
+  - AWSCognito
+  - Crashlytics
+  - Digits
+  - Fabric
   - Reveal-iOS-SDK
+  - TwitterCore
 
 SPEC CHECKSUMS:
+  AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
+  AWSCore: 926eb781459b58d4319b0fa4f5f3bffb6b28b112
+  Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
+  Digits: 369c517143ab4f9f35d77628540493a2042f8cc2
+  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  TwitterCore: 12983a7464e34afbbf18881347898a9db526ac71
 
 COCOAPODS: 0.39.0
