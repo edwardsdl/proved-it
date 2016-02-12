@@ -6,8 +6,13 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
-import UIKit
+import AWSCognito
 import CoreData
+import Crashlytics
+import DigitsKit
+import Fabric
+import UIKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        initializeFabric()
+
         return true
+    }
+
+    private func initializeFabric() {
+        Fabric.with([AWSCognito.self, Crashlytics.self, Digits.self])
     }
 
     func applicationWillResignActive(application: UIApplication) {
