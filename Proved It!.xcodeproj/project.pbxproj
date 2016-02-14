@@ -18,6 +18,7 @@
 		BC7856131C6E346A00E4F569 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7856121C6E346A00E4F569 /* CoreDataHelper.swift */; };
 		BCF9F9281C7054DE008B9698 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9271C7054DE008B9698 /* CoreDataError.swift */; };
 		BCF9F93B1C707FF2008B9698 /* ProvedIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9391C707FF2008B9698 /* ProvedIt.xcdatamodeld */; };
+		BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F93D1C7083D7008B9698 /* NSLocalizedString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		BC7856121C6E346A00E4F569 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		BCF9F9271C7054DE008B9698 /* CoreDataError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		BCF9F93A1C707FF2008B9698 /* ProvedIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProvedIt.xcdatamodel; sourceTree = "<group>"; };
+		BCF9F93D1C7083D7008B9698 /* NSLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLocalizedString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		BC7855DC1C6C532F00E4F569 /* Proved It! */ = {
 			isa = PBXGroup;
 			children = (
+				BCF9F93C1C7083C5008B9698 /* Localization */,
 				BC7856111C6E335C00E4F569 /* Core Data */,
 				BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */,
 				BC7855DF1C6C532F00E4F569 /* ViewController.swift */,
@@ -164,6 +167,14 @@
 				BCF9F9391C707FF2008B9698 /* ProvedIt.xcdatamodeld */,
 			);
 			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		BCF9F93C1C7083C5008B9698 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				BCF9F93D1C7083D7008B9698 /* NSLocalizedString.swift */,
+			);
+			name = Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC7856131C6E346A00E4F569 /* CoreDataHelper.swift in Sources */,
+				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
 				BC7855E01C6C532F00E4F569 /* ViewController.swift in Sources */,
 				BCF9F93B1C707FF2008B9698 /* ProvedIt.xcdatamodeld in Sources */,
 				BCF9F9281C7054DE008B9698 /* CoreDataError.swift in Sources */,
