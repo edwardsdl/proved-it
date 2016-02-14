@@ -16,19 +16,40 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
+    private var appCoordinator: AppCoordinator?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         do {
-            let _ = try CoreDataHelper.initializeManagedObjectContext()
+            let navigationController = UINavigationController()
+
+            appCoordinator = initializeAppCoordinator(withNavigationController: navigationController)
+            window = initializeWindow(withNavigationController: navigationController)
+
+            try CoreDataHelper.initializeManagedObjectContext()
+
             initializeFabric()
         } catch {
 
         }
 
         return true
+    }
+
+    private func initializeAppCoordinator(withNavigationController navigationController: UINavigationController) -> AppCoordinator {
+        let appCoordinator = AppCoordinator(withNavigationController: navigationController)
+        appCoordinator.start()
+
+        return appCoordinator
+    }
+
+    private func initializeWindow(withNavigationController navigationController: UINavigationController) -> UIWindow {
+        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+
+        return window
     }
 
     private func initializeFabric() {

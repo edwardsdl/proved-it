@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		6626A9D201E8D3691B67F45C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74484CB100F668B7A1F11F14 /* Pods.framework */; };
 		BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */; };
-		BC7855E01C6C532F00E4F569 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855DF1C6C532F00E4F569 /* ViewController.swift */; };
-		BC7855E31C6C532F00E4F569 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E11C6C532F00E4F569 /* Main.storyboard */; };
 		BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E71C6C532F00E4F569 /* Assets.xcassets */; };
 		BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */; };
 		BC7855F61C6C532F00E4F569 /* Proved_It_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855F51C6C532F00E4F569 /* Proved_It_Tests.swift */; };
@@ -20,6 +18,7 @@
 		BCF9F93B1C707FF2008B9698 /* ProvedIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9391C707FF2008B9698 /* ProvedIt.xcdatamodeld */; };
 		BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F93D1C7083D7008B9698 /* NSLocalizedString.swift */; };
 		BCF9F9471C70871F008B9698 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCF9F9491C70871F008B9698 /* Localizable.strings */; };
+		BCF9F9551C711A5B008B9698 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +44,6 @@
 		A04D8DA2FD78B0EAB02199B6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BC7855DA1C6C532F00E4F569 /* Proved It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proved It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BC7855DF1C6C532F00E4F569 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BC7855E21C6C532F00E4F569 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC7855E71C6C532F00E4F569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC7855EA1C6C532F00E4F569 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC7855EC1C6C532F00E4F569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +69,7 @@
 		BCF9F94D1C708726008B9698 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		BCF9F94E1C708727008B9698 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BCF9F94F1C708728008B9698 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,14 +140,13 @@
 		BC7855DC1C6C532F00E4F569 /* Proved It! */ = {
 			isa = PBXGroup;
 			children = (
-				BCF9F93C1C7083C5008B9698 /* Localization */,
-				BC7856111C6E335C00E4F569 /* Core Data */,
+				BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */,
 				BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */,
-				BC7855DF1C6C532F00E4F569 /* ViewController.swift */,
-				BC7855E11C6C532F00E4F569 /* Main.storyboard */,
-				BC7855E71C6C532F00E4F569 /* Assets.xcassets */,
-				BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */,
-				BC7855EC1C6C532F00E4F569 /* Info.plist */,
+				BCF9F9511C7119B1008B9698 /* Configuration Files */,
+				BC7856111C6E335C00E4F569 /* Core Data */,
+				BCF9F9531C7119F3008B9698 /* Launch Screen */,
+				BCF9F93C1C7083C5008B9698 /* Localization */,
+				BCF9F9521C7119DB008B9698 /* Resources */,
 			);
 			path = "Proved It!";
 			sourceTree = "<group>";
@@ -189,6 +186,30 @@
 				BCF9F9491C70871F008B9698 /* Localizable.strings */,
 			);
 			name = Localization;
+			sourceTree = "<group>";
+		};
+		BCF9F9511C7119B1008B9698 /* Configuration Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC7855EC1C6C532F00E4F569 /* Info.plist */,
+			);
+			name = "Configuration Files";
+			sourceTree = "<group>";
+		};
+		BCF9F9521C7119DB008B9698 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC7855E71C6C532F00E4F569 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		BCF9F9531C7119F3008B9698 /* Launch Screen */ = {
+			isa = PBXGroup;
+			children = (
+				BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */,
+			);
+			name = "Launch Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,7 +329,6 @@
 				BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */,
 				BCF9F9471C70871F008B9698 /* Localizable.strings in Resources */,
 				BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */,
-				BC7855E31C6C532F00E4F569 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,10 +416,10 @@
 			files = (
 				BC7856131C6E346A00E4F569 /* CoreDataHelper.swift in Sources */,
 				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
-				BC7855E01C6C532F00E4F569 /* ViewController.swift in Sources */,
 				BCF9F93B1C707FF2008B9698 /* ProvedIt.xcdatamodeld in Sources */,
 				BCF9F9281C7054DE008B9698 /* CoreDataError.swift in Sources */,
 				BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */,
+				BCF9F9551C711A5B008B9698 /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,14 +455,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BC7855E11C6C532F00E4F569 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BC7855E21C6C532F00E4F569 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -561,6 +573,7 @@
 			baseConfigurationReference = A04D8DA2FD78B0EAB02199B6 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Proved It!/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.angrysquirrelsoftware.ProvedIt;
@@ -573,6 +586,7 @@
 			baseConfigurationReference = 0DFBED78EDBEAF65AC6337F1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Proved It!/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.angrysquirrelsoftware.ProvedIt;
