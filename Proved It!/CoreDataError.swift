@@ -22,6 +22,6 @@ enum CoreDataError: ErrorType {
     }
 
     var localizedRecoverySuggestion: String {
-        return NSLocalizedString("CoreDataError", comment: "")
+        return NSLocalizedString("CoreDataError")
     }
 }
