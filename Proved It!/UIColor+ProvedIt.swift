@@ -16,4 +16,8 @@ extension UIColor {
     static func provedItGreenColor() -> UIColor {
         return UIColor.colorWithHexString("#7ED321")
     }
+
+    static func provedItOrangeColor() -> UIColor {
+        return UIColor.colorWithHexString("#F5A623")
+    }
 }
