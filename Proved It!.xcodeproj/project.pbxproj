@@ -14,6 +14,9 @@
 		BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */; };
 		BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94381C71AC9C00E498BF /* FabricHelper.swift */; };
 		BC5F943C1C71C38500E498BF /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F943B1C71C38500E498BF /* AuthenticationCoordinator.swift */; };
+		BC5F94411C72839800E498BF /* EnterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94401C72839800E498BF /* EnterNameViewController.swift */; };
+		BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94421C7283A700E498BF /* EnterNameView.swift */; };
+		BC5F94451C7283B400E498BF /* EnterNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5F94441C7283B400E498BF /* EnterNameView.xib */; };
 		BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */; };
 		BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E71C6C532F00E4F569 /* Assets.xcassets */; };
 		BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */; };
@@ -60,6 +63,9 @@
 		BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ProvedIt.swift"; sourceTree = "<group>"; };
 		BC5F94381C71AC9C00E498BF /* FabricHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FabricHelper.swift; sourceTree = "<group>"; };
 		BC5F943B1C71C38500E498BF /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
+		BC5F94401C72839800E498BF /* EnterNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNameViewController.swift; sourceTree = "<group>"; };
+		BC5F94421C7283A700E498BF /* EnterNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNameView.swift; sourceTree = "<group>"; };
+		BC5F94441C7283B400E498BF /* EnterNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterNameView.xib; sourceTree = "<group>"; };
 		BC7855DA1C6C532F00E4F569 /* Proved It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proved It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7855E71C6C532F00E4F569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -173,6 +179,16 @@
 			name = Authentication;
 			sourceTree = "<group>";
 		};
+		BC5F943F1C727FFB00E498BF /* Enter Name */ = {
+			isa = PBXGroup;
+			children = (
+				BC5F94421C7283A700E498BF /* EnterNameView.swift */,
+				BC5F94401C72839800E498BF /* EnterNameViewController.swift */,
+				BC5F94441C7283B400E498BF /* EnterNameView.xib */,
+			);
+			name = "Enter Name";
+			sourceTree = "<group>";
+		};
 		BC7855D11C6C532F00E4F569 = {
 			isa = PBXGroup;
 			children = (
@@ -202,7 +218,6 @@
 				BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */,
 				BC5F942D1C7189F300E498BF /* BaseView.swift */,
 				BCF9F9601C7167CC008B9698 /* BaseViewController.swift */,
-				BC5F943A1C71C26400E498BF /* Authentication */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
 				BC7856111C6E335C00E4F569 /* Core Data */,
 				BC5F94351C719E2700E498BF /* Custom Views */,
@@ -280,8 +295,10 @@
 		BCF9F9571C714FA4008B9698 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				BC5F94361C71A53F00E498BF /* Introduction */,
 				BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */,
+				BC5F943A1C71C26400E498BF /* Authentication */,
+				BC5F943F1C727FFB00E498BF /* Enter Name */,
+				BC5F94361C71A53F00E498BF /* Introduction */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -413,6 +430,7 @@
 				BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */,
 				BCF9F9471C70871F008B9698 /* Localizable.strings in Resources */,
 				BCF9F95D1C715041008B9698 /* IntroductionView.xib in Resources */,
+				BC5F94451C7283B400E498BF /* EnterNameView.xib in Resources */,
 				BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,10 +517,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC5F94411C72839800E498BF /* EnterNameViewController.swift in Sources */,
 				BCF9F95F1C716372008B9698 /* NSBundle+LoadView.swift in Sources */,
 				BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */,
 				BC5F94301C718CC200E498BF /* UIColor+HexString.swift in Sources */,
 				BC7856131C6E346A00E4F569 /* CoreDataHelper.swift in Sources */,
+				BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */,
 				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
 				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
 				BC5F942E1C7189F300E498BF /* BaseView.swift in Sources */,

@@ -46,7 +46,6 @@ final class AuthenticationCoordinator: CoordinatorType {
 
     private func startDigitsAuthentication(withAuthenticationConfiguration authenticationConfiguration: DGTAuthenticationConfiguration) {
         let digits = Digits.sharedInstance()
-        digits.logOut()
         digits.authenticateWithViewController(nil, configuration: authenticationConfiguration, completion: digitsAuthenticationCompleted)
     }
 

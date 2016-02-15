@@ -33,10 +33,9 @@ final class OnboardingCoordinator: CoordinatorType, IntroductionViewControllerDe
     }
 
     func authenticationCoordinatorDidPassAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = UIColor.blueColor()
+        let enterNameViewController = EnterNameViewController()
 
-        navigationController.viewControllers.append(viewController)
+        navigationController.viewControllers.append(enterNameViewController)
     }
 
     func authenticationCoordinatorDidFailAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
