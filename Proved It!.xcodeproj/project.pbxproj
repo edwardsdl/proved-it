@@ -13,6 +13,7 @@
 		BC5F94321C718F1B00E498BF /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94311C718F1B00E498BF /* RadialGradientView.swift */; };
 		BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */; };
 		BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94381C71AC9C00E498BF /* FabricHelper.swift */; };
+		BC5F943C1C71C38500E498BF /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F943B1C71C38500E498BF /* AuthenticationCoordinator.swift */; };
 		BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */; };
 		BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E71C6C532F00E4F569 /* Assets.xcassets */; };
 		BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */; };
@@ -58,6 +59,7 @@
 		BC5F94311C718F1B00E498BF /* RadialGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ProvedIt.swift"; sourceTree = "<group>"; };
 		BC5F94381C71AC9C00E498BF /* FabricHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FabricHelper.swift; sourceTree = "<group>"; };
+		BC5F943B1C71C38500E498BF /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		BC7855DA1C6C532F00E4F569 /* Proved It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proved It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7855E71C6C532F00E4F569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +165,14 @@
 			name = Fabric;
 			sourceTree = "<group>";
 		};
+		BC5F943A1C71C26400E498BF /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				BC5F943B1C71C38500E498BF /* AuthenticationCoordinator.swift */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
 		BC7855D11C6C532F00E4F569 = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +202,7 @@
 				BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */,
 				BC5F942D1C7189F300E498BF /* BaseView.swift */,
 				BCF9F9601C7167CC008B9698 /* BaseViewController.swift */,
+				BC5F943A1C71C26400E498BF /* Authentication */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
 				BC7856111C6E335C00E4F569 /* Core Data */,
 				BC5F94351C719E2700E498BF /* Custom Views */,
@@ -504,6 +515,7 @@
 				BCF9F95B1C715005008B9698 /* IntroductionView.swift in Sources */,
 				BC5F94321C718F1B00E498BF /* RadialGradientView.swift in Sources */,
 				BCF9F9591C714FFB008B9698 /* IntroductionViewController.swift in Sources */,
+				BC5F943C1C71C38500E498BF /* AuthenticationCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
