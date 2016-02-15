@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class OnboardingCoordinator: CoordinatorType, IntroductionViewControllerDelegate {
+final class OnboardingCoordinator: CoordinatorType, IntroductionViewControllerDelegate, AuthenticationCoordinatorDelegate {
     private var childCoordinators: [CoordinatorType] = []
     private let navigationController: UINavigationController
 
@@ -25,6 +25,21 @@ final class OnboardingCoordinator: CoordinatorType, IntroductionViewControllerDe
     }
 
     func introductionViewControllerDidTapProveItButton(introductionViewController: IntroductionViewController) {
+        let authenticationCoordinator = AuthenticationCoordinator(withNavigationController: navigationController)
+        authenticationCoordinator.delegate = self
+        authenticationCoordinator.start()
+
+        childCoordinators.append(authenticationCoordinator)
+    }
+
+    func authenticationCoordinatorDidPassAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = UIColor.blueColor()
+
+        navigationController.viewControllers.append(viewController)
+    }
+
+    func authenticationCoordinatorDidFailAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
         
     }
 }

@@ -6,13 +6,8 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
-import AWSCognito
 import CoreData
-import Crashlytics
-import DigitsKit
-import Fabric
 import UIKit
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,8 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window = initializeWindow(withNavigationController: navigationController)
 
             try CoreDataHelper.initializeManagedObjectContext()
-
-            initializeFabric()
+            FabricHelper.initializeFabric()
         } catch {
 
         }
@@ -50,10 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
 
         return window
-    }
-
-    private func initializeFabric() {
-        Fabric.with([AWSCognito.self, Crashlytics.self, Digits.self])
     }
 
     func applicationWillResignActive(application: UIApplication) {
