@@ -9,7 +9,6 @@
 import UIKit
 
 protocol CoordinatorType {
-    init(withNavigationController navigationController: UINavigationController)
     func start()
 }
 
