@@ -22,6 +22,19 @@ final class AppCoordinator: CoordinatorType {
     }
 
     func start() {
+        if shouldStartOnboardingCoordinator() {
+            startOnboardingCoordinator()
+        }
+    }
 
+    private func shouldStartOnboardingCoordinator() -> Bool {
+        return true
+    }
+
+    private func startOnboardingCoordinator() {
+        let onboardingCoordinator = OnboardingCoordinator(withNavigationController: navigationController)
+        onboardingCoordinator.start()
+
+        childCoordinators.append(onboardingCoordinator)
     }
 }

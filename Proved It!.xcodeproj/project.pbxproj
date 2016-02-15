@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6626A9D201E8D3691B67F45C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74484CB100F668B7A1F11F14 /* Pods.framework */; };
+		BC5F942E1C7189F300E498BF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F942D1C7189F300E498BF /* BaseView.swift */; };
+		BC5F94301C718CC200E498BF /* UIColor+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */; };
+		BC5F94321C718F1B00E498BF /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94311C718F1B00E498BF /* RadialGradientView.swift */; };
+		BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */; };
 		BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */; };
 		BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E71C6C532F00E4F569 /* Assets.xcassets */; };
 		BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */; };
@@ -19,6 +23,12 @@
 		BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F93D1C7083D7008B9698 /* NSLocalizedString.swift */; };
 		BCF9F9471C70871F008B9698 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCF9F9491C70871F008B9698 /* Localizable.strings */; };
 		BCF9F9551C711A5B008B9698 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */; };
+		BCF9F9591C714FFB008B9698 /* IntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9581C714FFB008B9698 /* IntroductionViewController.swift */; };
+		BCF9F95B1C715005008B9698 /* IntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F95A1C715005008B9698 /* IntroductionView.swift */; };
+		BCF9F95D1C715041008B9698 /* IntroductionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCF9F95C1C715041008B9698 /* IntroductionView.xib */; };
+		BCF9F95F1C716372008B9698 /* NSBundle+LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F95E1C716372008B9698 /* NSBundle+LoadView.swift */; };
+		BCF9F9611C7167CC008B9698 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9601C7167CC008B9698 /* BaseViewController.swift */; };
+		BCF9F9641C71709B008B9698 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +52,10 @@
 		0DFBED78EDBEAF65AC6337F1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		74484CB100F668B7A1F11F14 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A04D8DA2FD78B0EAB02199B6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BC5F942D1C7189F300E498BF /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexString.swift"; sourceTree = "<group>"; };
+		BC5F94311C718F1B00E498BF /* RadialGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
+		BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ProvedIt.swift"; sourceTree = "<group>"; };
 		BC7855DA1C6C532F00E4F569 /* Proved It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proved It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7855E71C6C532F00E4F569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,6 +84,12 @@
 		BCF9F94E1C708727008B9698 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BCF9F94F1C708728008B9698 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		BCF9F9581C714FFB008B9698 /* IntroductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionViewController.swift; sourceTree = "<group>"; };
+		BCF9F95A1C715005008B9698 /* IntroductionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroductionView.swift; sourceTree = "<group>"; };
+		BCF9F95C1C715041008B9698 /* IntroductionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntroductionView.xib; sourceTree = "<group>"; };
+		BCF9F95E1C716372008B9698 /* NSBundle+LoadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+LoadView.swift"; sourceTree = "<group>"; };
+		BCF9F9601C7167CC008B9698 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +135,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BC5F94351C719E2700E498BF /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC5F94311C718F1B00E498BF /* RadialGradientView.swift */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		BC5F94361C71A53F00E498BF /* Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				BCF9F95A1C715005008B9698 /* IntroductionView.swift */,
+				BCF9F9581C714FFB008B9698 /* IntroductionViewController.swift */,
+				BCF9F95C1C715041008B9698 /* IntroductionView.xib */,
+			);
+			name = Introduction;
+			sourceTree = "<group>";
+		};
 		BC7855D11C6C532F00E4F569 = {
 			isa = PBXGroup;
 			children = (
@@ -142,10 +180,15 @@
 			children = (
 				BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */,
 				BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */,
+				BC5F942D1C7189F300E498BF /* BaseView.swift */,
+				BCF9F9601C7167CC008B9698 /* BaseViewController.swift */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
 				BC7856111C6E335C00E4F569 /* Core Data */,
+				BC5F94351C719E2700E498BF /* Custom Views */,
+				BCF9F9621C716CB9008B9698 /* Extensions */,
 				BCF9F9531C7119F3008B9698 /* Launch Screen */,
 				BCF9F93C1C7083C5008B9698 /* Localization */,
+				BCF9F9571C714FA4008B9698 /* Onboarding */,
 				BCF9F9521C7119DB008B9698 /* Resources */,
 			);
 			path = "Proved It!";
@@ -210,6 +253,25 @@
 				BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */,
 			);
 			name = "Launch Screen";
+			sourceTree = "<group>";
+		};
+		BCF9F9571C714FA4008B9698 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				BC5F94361C71A53F00E498BF /* Introduction */,
+				BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		BCF9F9621C716CB9008B9698 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BCF9F95E1C716372008B9698 /* NSBundle+LoadView.swift */,
+				BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */,
+				BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +390,7 @@
 			files = (
 				BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */,
 				BCF9F9471C70871F008B9698 /* Localizable.strings in Resources */,
+				BCF9F95D1C715041008B9698 /* IntroductionView.xib in Resources */,
 				BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,12 +477,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCF9F95F1C716372008B9698 /* NSBundle+LoadView.swift in Sources */,
+				BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */,
+				BC5F94301C718CC200E498BF /* UIColor+HexString.swift in Sources */,
 				BC7856131C6E346A00E4F569 /* CoreDataHelper.swift in Sources */,
 				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
+				BC5F942E1C7189F300E498BF /* BaseView.swift in Sources */,
 				BCF9F93B1C707FF2008B9698 /* ProvedIt.xcdatamodeld in Sources */,
 				BCF9F9281C7054DE008B9698 /* CoreDataError.swift in Sources */,
+				BCF9F9611C7167CC008B9698 /* BaseViewController.swift in Sources */,
 				BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */,
 				BCF9F9551C711A5B008B9698 /* AppCoordinator.swift in Sources */,
+				BCF9F9641C71709B008B9698 /* OnboardingCoordinator.swift in Sources */,
+				BCF9F95B1C715005008B9698 /* IntroductionView.swift in Sources */,
+				BC5F94321C718F1B00E498BF /* RadialGradientView.swift in Sources */,
+				BCF9F9591C714FFB008B9698 /* IntroductionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +649,7 @@
 				INFOPLIST_FILE = "Proved It!/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.angrysquirrelsoftware.ProvedIt;
+				PRODUCT_MODULE_NAME = ProvedIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -590,6 +663,7 @@
 				INFOPLIST_FILE = "Proved It!/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.angrysquirrelsoftware.ProvedIt;
+				PRODUCT_MODULE_NAME = ProvedIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
