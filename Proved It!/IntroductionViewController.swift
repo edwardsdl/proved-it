@@ -15,10 +15,6 @@ protocol IntroductionViewControllerDelegate: class {
 final class IntroductionViewController: BaseViewController<IntroductionView> {
     weak var delegate: IntroductionViewControllerDelegate?
 
-    override init() {
-        super.init()
-    }
-
     override func viewDidLoad() {
         customView.proveItButton.addTarget(self, action: "proveItButtonTapped:", forControlEvents: .TouchUpInside)
     }
