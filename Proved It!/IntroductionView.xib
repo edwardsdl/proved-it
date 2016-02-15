@@ -24,7 +24,7 @@
                     </state>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="UW2-ZO-n68" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tYe-Nn-cz8"/>
                 <constraint firstItem="UW2-ZO-n68" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wlg-uF-Yuw"/>
