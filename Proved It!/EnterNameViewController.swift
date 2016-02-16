@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol EnterNameViewControllerDelegate:class {
+protocol EnterNameViewControllerDelegate: class {
     func enterNameViewControllerDidEnterName(enterNameViewController: EnterNameViewController)
 }
 
@@ -21,7 +21,7 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
         customView.nameTextField.delegate = self
     }
 
-    dynamic private func nameTextFieldEditingChanged(sender: UITextField) {
+    func nameTextFieldEditingChanged(sender: UITextField) {
 
     }
 
