@@ -8,13 +8,28 @@
 
 import UIKit
 
-final class EnterNameViewController: BaseViewController<EnterNameView> {
+protocol EnterNameViewControllerDelegate:class {
+    func enterNameViewControllerDidEnterName(enterNameViewController: EnterNameViewController)
+}
+
+final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFieldDelegate {
+    weak var delegate: EnterNameViewControllerDelegate?
+
     override func viewDidLoad() {
+        customView.nameTextField.addTarget(self, action: "nameTextFieldEditingChanged:", forControlEvents: .EditingChanged)
         customView.nameTextField.becomeFirstResponder()
-        customView.nameTextField.addTarget(self, action: "nameTextFieldEdited:", forControlEvents: .EditingChanged)
+        customView.nameTextField.delegate = self
     }
 
-    dynamic private func nameTextFieldEdited(sender: UITextField) {
-        print(sender.text)
+    dynamic private func nameTextFieldEditingChanged(sender: UITextField) {
+
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        delegate?.enterNameViewControllerDidEnterName(self)
+
+        textField.resignFirstResponder()
+
+        return true
     }
 }
