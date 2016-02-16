@@ -12,14 +12,8 @@ final class IntroductionView: BaseView {
     @IBOutlet weak var proveItButton: UIButton!
 
     override func awakeFromNib() {
-        proveItButton.layer.cornerRadius = proveItButton.bounds.width / 2
-        proveItButton.layer.borderWidth = 2
         proveItButton.layer.borderColor = UIColor.provedItGreenColor().CGColor
+        proveItButton.layer.borderWidth = 2
+        proveItButton.layer.cornerRadius = proveItButton.bounds.width / 2
     }
-
-//    override func setupConstraints() {
-//        super.setupConstraints()
-//
-//        addConstraint(NSLayoutConstraint(item: proveItButton, attribute: ., relatedBy: <#T##NSLayoutRelation#>, toItem: <#T##AnyObject?#>, attribute: <#T##NSLayoutAttribute#>, multiplier: <#T##CGFloat#>, constant: <#T##CGFloat#>)
-//    }
 }
