@@ -238,6 +238,7 @@
 				BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */,
 				BC5F942D1C7189F300E498BF /* BaseView.swift */,
 				BCF9F9601C7167CC008B9698 /* BaseViewController.swift */,
+				BC11A1B11C73DE8D00F21D74 /* Constants.swift */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
 				BC7856111C6E335C00E4F569 /* Core Data */,
 				BC5F94351C719E2700E498BF /* Custom Views */,
@@ -247,7 +248,6 @@
 				BCF9F93C1C7083C5008B9698 /* Localization */,
 				BCF9F9571C714FA4008B9698 /* Onboarding */,
 				BCF9F9521C7119DB008B9698 /* Resources */,
-				BC11A1B11C73DE8D00F21D74 /* Constants.swift */,
 			);
 			path = "Proved It!";
 			sourceTree = "<group>";
