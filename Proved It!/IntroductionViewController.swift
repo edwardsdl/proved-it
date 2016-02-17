@@ -19,7 +19,7 @@ final class IntroductionViewController: BaseViewController<IntroductionView> {
         customView.proveItButton.addTarget(self, action: "proveItButtonTapped:", forControlEvents: .TouchUpInside)
     }
 
-    dynamic private func proveItButtonTapped(sender: UIButton) {
+    func proveItButtonTapped(sender: UIButton) {
         delegate?.introductionViewControllerDidTapProveItButton(self)
     }
 }

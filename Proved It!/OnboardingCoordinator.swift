@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class OnboardingCoordinator: CoordinatorType, IntroductionViewControllerDelegate, AuthenticationCoordinatorDelegate {
+final class OnboardingCoordinator: CoordinatorType {
     private var childCoordinators: [CoordinatorType] = []
     private let navigationController: UINavigationController
 
@@ -23,7 +23,9 @@ final class OnboardingCoordinator: CoordinatorType, IntroductionViewControllerDe
         navigationController.navigationBarHidden = true
         navigationController.viewControllers = [introductionViewController]
     }
+}
 
+extension OnboardingCoordinator: IntroductionViewControllerDelegate {
     func introductionViewControllerDidTapProveItButton(introductionViewController: IntroductionViewController) {
         let authenticationCoordinator = AuthenticationCoordinator(withNavigationController: navigationController)
         authenticationCoordinator.delegate = self
@@ -31,14 +33,25 @@ final class OnboardingCoordinator: CoordinatorType, IntroductionViewControllerDe
 
         childCoordinators.append(authenticationCoordinator)
     }
+}
 
+extension OnboardingCoordinator: AuthenticationCoordinatorDelegate {
     func authenticationCoordinatorDidPassAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
         let enterNameViewController = EnterNameViewController()
+        enterNameViewController.delegate = self
 
-        navigationController.viewControllers.append(enterNameViewController)
+        navigationController.pushViewController(enterNameViewController, animated: true)
     }
 
     func authenticationCoordinatorDidFailAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
-        
+
+    }
+}
+
+extension OnboardingCoordinator: EnterNameViewControllerDelegate {
+    func enterNameViewControllerDidEnterName(enterNameViewController: EnterNameViewController) {
+        let chooseTimeViewController = ChooseTimeViewController()
+
+        navigationController.pushViewController(chooseTimeViewController, animated: true)
     }
 }
