@@ -28,6 +28,13 @@
 		BC7855F61C6C532F00E4F569 /* Proved_It_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855F51C6C532F00E4F569 /* Proved_It_Tests.swift */; };
 		BC7856011C6C532F00E4F569 /* Proved_It_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7856001C6C532F00E4F569 /* Proved_It_UITests.swift */; };
 		BC7856131C6E346A00E4F569 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7856121C6E346A00E4F569 /* CoreDataHelper.swift */; };
+		BC79A3E71C757BD3005C78EC /* ChooseSignificantOtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC79A3E61C757BD3005C78EC /* ChooseSignificantOtherViewController.swift */; };
+		BC79A3E91C757C04005C78EC /* ChooseSignificantOtherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC79A3E81C757C04005C78EC /* ChooseSignificantOtherDataSource.swift */; };
+		BC79A3EB1C757C1C005C78EC /* ChooseSignificantOtherDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC79A3EA1C757C1C005C78EC /* ChooseSignificantOtherDelegate.swift */; };
+		BC79A3EF1C75817D005C78EC /* ChooseSignificantOtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC79A3EE1C75817D005C78EC /* ChooseSignificantOtherView.swift */; };
+		BC79A3F11C75997F005C78EC /* ChooseSignificantOtherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC79A3F01C75997F005C78EC /* ChooseSignificantOtherCell.swift */; };
+		BC79A3F31C75A29D005C78EC /* ChooseSignificantOtherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC79A3F21C75A29D005C78EC /* ChooseSignificantOtherView.xib */; };
+		BC79A3F51C75A733005C78EC /* ChooseSignificantOtherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC79A3F41C75A733005C78EC /* ChooseSignificantOtherCell.xib */; };
 		BCF9F9281C7054DE008B9698 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9271C7054DE008B9698 /* CoreDataError.swift */; };
 		BCF9F93B1C707FF2008B9698 /* ProvedIt.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9391C707FF2008B9698 /* ProvedIt.xcdatamodeld */; };
 		BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F93D1C7083D7008B9698 /* NSLocalizedString.swift */; };
@@ -88,6 +95,13 @@
 		BC7856001C6C532F00E4F569 /* Proved_It_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proved_It_UITests.swift; sourceTree = "<group>"; };
 		BC7856021C6C532F00E4F569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC7856121C6E346A00E4F569 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		BC79A3E61C757BD3005C78EC /* ChooseSignificantOtherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignificantOtherViewController.swift; sourceTree = "<group>"; };
+		BC79A3E81C757C04005C78EC /* ChooseSignificantOtherDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignificantOtherDataSource.swift; sourceTree = "<group>"; };
+		BC79A3EA1C757C1C005C78EC /* ChooseSignificantOtherDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignificantOtherDelegate.swift; sourceTree = "<group>"; };
+		BC79A3EE1C75817D005C78EC /* ChooseSignificantOtherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignificantOtherView.swift; sourceTree = "<group>"; };
+		BC79A3F01C75997F005C78EC /* ChooseSignificantOtherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignificantOtherCell.swift; sourceTree = "<group>"; };
+		BC79A3F21C75A29D005C78EC /* ChooseSignificantOtherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSignificantOtherView.xib; sourceTree = "<group>"; };
+		BC79A3F41C75A733005C78EC /* ChooseSignificantOtherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSignificantOtherCell.xib; sourceTree = "<group>"; };
 		BCF9F9271C7054DE008B9698 /* CoreDataError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		BCF9F93A1C707FF2008B9698 /* ProvedIt.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProvedIt.xcdatamodel; sourceTree = "<group>"; };
 		BCF9F93D1C7083D7008B9698 /* NSLocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSLocalizedString.swift; sourceTree = "<group>"; };
@@ -280,6 +294,20 @@
 			name = "Core Data";
 			sourceTree = "<group>";
 		};
+		BC79A3E51C75789F005C78EC /* Choose Significant Other */ = {
+			isa = PBXGroup;
+			children = (
+				BC79A3F01C75997F005C78EC /* ChooseSignificantOtherCell.swift */,
+				BC79A3F41C75A733005C78EC /* ChooseSignificantOtherCell.xib */,
+				BC79A3E81C757C04005C78EC /* ChooseSignificantOtherDataSource.swift */,
+				BC79A3EA1C757C1C005C78EC /* ChooseSignificantOtherDelegate.swift */,
+				BC79A3EE1C75817D005C78EC /* ChooseSignificantOtherView.swift */,
+				BC79A3F21C75A29D005C78EC /* ChooseSignificantOtherView.xib */,
+				BC79A3E61C757BD3005C78EC /* ChooseSignificantOtherViewController.swift */,
+			);
+			name = "Choose Significant Other";
+			sourceTree = "<group>";
+		};
 		BCF9F93C1C7083C5008B9698 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +346,7 @@
 			children = (
 				BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */,
 				BC5F943A1C71C26400E498BF /* Authentication */,
+				BC79A3E51C75789F005C78EC /* Choose Significant Other */,
 				BC11A1A81C72973C00F21D74 /* Choose Time */,
 				BC5F943F1C727FFB00E498BF /* Enter Name */,
 				BC5F94361C71A53F00E498BF /* Introduction */,
@@ -451,7 +480,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC11A1AA1C72978400F21D74 /* ChooseTimeView.xib in Resources */,
+				BC79A3F51C75A733005C78EC /* ChooseSignificantOtherCell.xib in Resources */,
 				BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */,
+				BC79A3F31C75A29D005C78EC /* ChooseSignificantOtherView.xib in Resources */,
 				BCF9F9471C70871F008B9698 /* Localizable.strings in Resources */,
 				BCF9F95D1C715041008B9698 /* IntroductionView.xib in Resources */,
 				BC5F94451C7283B400E498BF /* EnterNameView.xib in Resources */,
@@ -543,15 +574,19 @@
 			files = (
 				BC5F94411C72839800E498BF /* EnterNameViewController.swift in Sources */,
 				BCF9F95F1C716372008B9698 /* NSBundle+LoadView.swift in Sources */,
+				BC79A3EF1C75817D005C78EC /* ChooseSignificantOtherView.swift in Sources */,
 				BC11A1AC1C72979C00F21D74 /* ChooseTimeView.swift in Sources */,
 				BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */,
 				BC5F94301C718CC200E498BF /* UIColor+HexString.swift in Sources */,
+				BC79A3F11C75997F005C78EC /* ChooseSignificantOtherCell.swift in Sources */,
 				BC11A1AE1C7297D500F21D74 /* ChooseTimeViewController.swift in Sources */,
 				BC11A1B21C73DE8D00F21D74 /* Constants.swift in Sources */,
 				BC7856131C6E346A00E4F569 /* CoreDataHelper.swift in Sources */,
 				BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */,
 				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
+				BC79A3EB1C757C1C005C78EC /* ChooseSignificantOtherDelegate.swift in Sources */,
 				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
+				BC79A3E91C757C04005C78EC /* ChooseSignificantOtherDataSource.swift in Sources */,
 				BC5F942E1C7189F300E498BF /* BaseView.swift in Sources */,
 				BC11A1B01C73D2DE00F21D74 /* UIControl+AddAction.swift in Sources */,
 				BCF9F93B1C707FF2008B9698 /* ProvedIt.xcdatamodeld in Sources */,
@@ -563,6 +598,7 @@
 				BCF9F95B1C715005008B9698 /* IntroductionView.swift in Sources */,
 				BC5F94321C718F1B00E498BF /* RadialGradientView.swift in Sources */,
 				BCF9F9591C714FFB008B9698 /* IntroductionViewController.swift in Sources */,
+				BC79A3E71C757BD3005C78EC /* ChooseSignificantOtherViewController.swift in Sources */,
 				BC5F943C1C71C38500E498BF /* AuthenticationCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
