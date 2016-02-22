@@ -6,8 +6,6 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
-import Foundation
-
 enum CoreDataError: ErrorType {
     case ManagedObjectContext(description: String)
     case PersistentStore(description: String)
