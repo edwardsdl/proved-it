@@ -10,5 +10,5 @@ import SwiftyJSON
 
 protocol JSONConvertible {
     init(withJSON json: JSON)
-    func toDictionary() -> Dictionary<String, AnyObject>
+    func toDictionary() -> [String: AnyObject]
 }
