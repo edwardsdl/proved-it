@@ -67,17 +67,9 @@ final class CoreDataStoreFactory {
             let persistentStore = try initializePersistentStore(withCoreDataStoreConfiguration: coreDataStoreConfiguration, persistentStoreCoordinator: persistentStoreCoordinator)
             let privateManagedObjectContext = initializePrivateManagedObjectContext(withPersistentStoreCoordinator: persistentStoreCoordinator)
             let mainManagedObjectContext = initializeMainManagedObjectContext(withPrivateManagedObjectContext: privateManagedObjectContext)
+            let coreDataStore = CoreDataStore(withManagedObjectModel: managedObjectModel, persistentStoreCoordinator: persistentStoreCoordinator, persistentStore: persistentStore, privateManagedObjectContext: privateManagedObjectContext, mainManagedObjectContext: mainManagedObjectContext)
 
-            switch coreDataStoreConfiguration {
-            case .Default:
-                let coreDataStore = CoreDataStore(withManagedObjectModel: managedObjectModel, persistentStoreCoordinator: persistentStoreCoordinator, persistentStore: persistentStore, privateManagedObjectContext: privateManagedObjectContext, mainManagedObjectContext: mainManagedObjectContext)
-
-                return coreDataStore
-            case .UnitTest:
-                let unitTestCoreDataStore = UnitTestCoreDataStore(withManagedObjectModel: managedObjectModel, persistentStoreCoordinator: persistentStoreCoordinator, persistentStore: persistentStore, privateManagedObjectContext: privateManagedObjectContext, mainManagedObjectContext: mainManagedObjectContext)
-
-                return unitTestCoreDataStore
-            }
+            return coreDataStore
         } catch {
             return nil
         }

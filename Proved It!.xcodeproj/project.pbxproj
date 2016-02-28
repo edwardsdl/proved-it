@@ -34,7 +34,6 @@
 		BC3E8D461C7AD72E00603814 /* RelationshipEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D401C7AD72E00603814 /* RelationshipEntity.swift */; };
 		BC3E8D471C7AD72E00603814 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D411C7AD72E00603814 /* UserEntity+CoreDataProperties.swift */; };
 		BC3E8D481C7AD72E00603814 /* UserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D421C7AD72E00603814 /* UserEntity.swift */; };
-		BC3E8D4A1C7AE4E900603814 /* UnitTestCoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D491C7AE4E900603814 /* UnitTestCoreDataStore.swift */; };
 		BC3E8D4D1C7BB0B100603814 /* NSManagedObject+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D4C1C7BB0B100603814 /* NSManagedObject+Init.swift */; };
 		BC5F942E1C7189F300E498BF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F942D1C7189F300E498BF /* BaseView.swift */; };
 		BC5F94301C718CC200E498BF /* UIColor+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */; };
@@ -113,7 +112,6 @@
 		BC3E8D401C7AD72E00603814 /* RelationshipEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipEntity.swift; sourceTree = "<group>"; };
 		BC3E8D411C7AD72E00603814 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BC3E8D421C7AD72E00603814 /* UserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
-		BC3E8D491C7AE4E900603814 /* UnitTestCoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitTestCoreDataStore.swift; sourceTree = "<group>"; };
 		BC3E8D4C1C7BB0B100603814 /* NSManagedObject+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Init.swift"; sourceTree = "<group>"; };
 		BC5F942D1C7189F300E498BF /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexString.swift"; sourceTree = "<group>"; };
@@ -413,7 +411,6 @@
 				BCA58C141C82B2820080CDD6 /* CoreDataStore.swift */,
 				BCA58C101C82AD820080CDD6 /* CoreDataStoreFactory.swift */,
 				BC7856121C6E346A00E4F569 /* CoreDataStoreType.swift */,
-				BC3E8D491C7AE4E900603814 /* UnitTestCoreDataStore.swift */,
 			);
 			name = "Core Data Stores";
 			sourceTree = "<group>";
@@ -724,7 +721,6 @@
 				BCF9F95B1C715005008B9698 /* IntroductionView.swift in Sources */,
 				BC3E8CEF1C7A449B00603814 /* UserService.swift in Sources */,
 				BC5F94321C718F1B00E498BF /* RadialGradientView.swift in Sources */,
-				BC3E8D4A1C7AE4E900603814 /* UnitTestCoreDataStore.swift in Sources */,
 				BCF9F9591C714FFB008B9698 /* IntroductionViewController.swift in Sources */,
 				BC3E8D461C7AD72E00603814 /* RelationshipEntity.swift in Sources */,
 				BC5F943C1C71C38500E498BF /* AuthenticationCoordinator.swift in Sources */,
