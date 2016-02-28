@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
-    <entity name="ProofEntity" representedClassName=".ProofEntity" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="losingUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" syncable="YES"/>
-        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RelationshipEntity" inverseName="proofs" inverseEntity="RelationshipEntity" syncable="YES"/>
-        <relationship name="winningUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="wonProofs" inverseEntity="UserEntity" syncable="YES"/>
-    </entity>
     <entity name="RelationshipEntity" representedClassName=".RelationshipEntity" syncable="YES">
-        <attribute name="time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="firstUser" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" syncable="YES"/>
-        <relationship name="proofs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProofEntity" inverseName="relationship" inverseEntity="ProofEntity" syncable="YES"/>
-        <relationship name="secondUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" syncable="YES"/>
+        <attribute name="time" attributeType="Integer 32" minValueString="0" maxValueString="86400" syncable="YES"/>
+        <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ResultEntity" inverseName="relationship" inverseEntity="ResultEntity" syncable="YES"/>
+        <relationship name="users" toMany="YES" minCount="2" maxCount="2" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="relationship" inverseEntity="UserEntity" syncable="YES"/>
+    </entity>
+    <entity name="ResultEntity" representedClassName=".ResultEntity" syncable="YES">
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="losingUser" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="losses" inverseEntity="UserEntity" syncable="YES"/>
+        <relationship name="relationship" maxCount="1" deletionRule="Nullify" destinationEntity="RelationshipEntity" inverseName="results" inverseEntity="RelationshipEntity" syncable="YES"/>
+        <relationship name="winningUser" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="wins" inverseEntity="UserEntity" syncable="YES"/>
     </entity>
     <entity name="UserEntity" representedClassName=".UserEntity" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="wonProofs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProofEntity" inverseName="winningUser" inverseEntity="ProofEntity" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" attributeType="String" syncable="YES"/>
+        <relationship name="losses" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ResultEntity" inverseName="losingUser" inverseEntity="ResultEntity" syncable="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="RelationshipEntity" inverseName="users" inverseEntity="RelationshipEntity" syncable="YES"/>
+        <relationship name="wins" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ResultEntity" inverseName="winningUser" inverseEntity="ResultEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ProofEntity" positionX="-270" positionY="162" width="128" height="120"/>
-        <element name="RelationshipEntity" positionX="-173" positionY="18" width="128" height="105"/>
-        <element name="UserEntity" positionX="-459" positionY="54" width="128" height="90"/>
+        <element name="ResultEntity" positionX="-270" positionY="162" width="128" height="120"/>
+        <element name="RelationshipEntity" positionX="-173" positionY="18" width="128" height="90"/>
+        <element name="UserEntity" positionX="-459" positionY="54" width="128" height="120"/>
     </elements>
 </model>
