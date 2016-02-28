@@ -13,20 +13,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
+    private var coreDataStore: CoreDataStoreType?
     private var appCoordinator: AppCoordinator?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        do {
-            let navigationController = UINavigationController()
+        let navigationController = UINavigationController()
 
-            appCoordinator = initializeAppCoordinator(withNavigationController: navigationController)
-            window = initializeWindow(withNavigationController: navigationController)
+        appCoordinator = initializeAppCoordinator(withNavigationController: navigationController)
+        window = initializeWindow(withNavigationController: navigationController)
 
-            try CoreDataHelper.initializeManagedObjectContext()
-            FabricHelper.initializeFabric()
-        } catch {
-
-        }
+        FabricHelper.initializeFabric()
 
         return true
     }
