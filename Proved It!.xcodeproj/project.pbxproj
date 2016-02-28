@@ -290,7 +290,6 @@
 				BC3E8D3F1C7AD72E00603814 /* RelationshipEntity+CoreDataProperties.swift */,
 				BC3E8D421C7AD72E00603814 /* UserEntity.swift */,
 				BC3E8D411C7AD72E00603814 /* UserEntity+CoreDataProperties.swift */,
-				BCF9F9391C707FF2008B9698 /* ProvedIt.xcdatamodeld */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -371,9 +370,8 @@
 				BC11A1B11C73DE8D00F21D74 /* Constants.swift */,
 				BC3E8D221C7AA45A00603814 /* API Clients */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
-				BC7856111C6E335C00E4F569 /* Core Data Stores */,
+				BCA58C161C82D4700080CDD6 /* Core Data */,
 				BC5F94351C719E2700E498BF /* Custom Views */,
-				BC3E8D3C1C7AD69400603814 /* Entities */,
 				BCF9F9621C716CB9008B9698 /* Extensions */,
 				BC5F94371C71AC7F00E498BF /* Fabric */,
 				BCF9F9531C7119F3008B9698 /* Launch Screen */,
@@ -404,15 +402,25 @@
 			path = "Proved It!UITests";
 			sourceTree = "<group>";
 		};
-		BC7856111C6E335C00E4F569 /* Core Data Stores */ = {
+		BC7856111C6E335C00E4F569 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
-				BCF9F9271C7054DE008B9698 /* CoreDataError.swift */,
 				BCA58C141C82B2820080CDD6 /* CoreDataStore.swift */,
 				BCA58C101C82AD820080CDD6 /* CoreDataStoreFactory.swift */,
 				BC7856121C6E346A00E4F569 /* CoreDataStoreType.swift */,
 			);
-			name = "Core Data Stores";
+			name = Stores;
+			sourceTree = "<group>";
+		};
+		BCA58C161C82D4700080CDD6 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				BCF9F9271C7054DE008B9698 /* CoreDataError.swift */,
+				BCF9F9391C707FF2008B9698 /* ProvedIt.xcdatamodeld */,
+				BC3E8D3C1C7AD69400603814 /* Entities */,
+				BC7856111C6E335C00E4F569 /* Stores */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		BCF9F93C1C7083C5008B9698 /* Localization */ = {
