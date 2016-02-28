@@ -22,8 +22,8 @@ extension UserModel: JSONConvertible {
         phoneNumber = json["phoneNumber"].string
     }
 
-    func toDictionary() -> Dictionary<String, AnyObject> {
-        var dictionary = Dictionary<String, AnyObject>()
+    func toDictionary() -> [String: AnyObject] {
+        var dictionary = [String: AnyObject]()
         dictionary["name"] = name
         dictionary["phoneNumber"] = phoneNumber
 
