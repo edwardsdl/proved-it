@@ -10,10 +10,8 @@ import Foundation
 import CoreData
 
 
-final class UserEntity: NSManagedObject {
-    convenience init(insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext) {
-        let entityDescription = NSEntityDescription.entityForName(String(self.dynamicType), inManagedObjectContext: managedObjectContext)
+class UserEntity: NSManagedObject {
 
-        self.init(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
-    }
+// Insert code here to add functionality to your managed object subclass
+
 }
