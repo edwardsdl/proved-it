@@ -15,7 +15,7 @@ protocol CoordinatorType {
 final class AppCoordinator: CoordinatorType {
     private let navigationController: UINavigationController
     private var coreDataStore: CoreDataStoreType?
-    private var proofService: ProofService?
+    private var resultService: ResultService?
     private var relationshipService: RelationshipService?
     private var userService: UserService?
     private var childCoordinators: [CoordinatorType] = []
@@ -25,7 +25,7 @@ final class AppCoordinator: CoordinatorType {
 
         if let coreDataStore = initializeCoreDataStore() {
             self.coreDataStore = coreDataStore
-            self.proofService = initializeProofService(withCoreDataStore: coreDataStore)
+            self.resultService = initializeResultService(withCoreDataStore: coreDataStore)
             self.relationshipService = initializeRelationshipService(withCoreDataStore: coreDataStore)
             self.userService = initializeUserService(withCoreDataStore: coreDataStore)
         }
@@ -35,11 +35,11 @@ final class AppCoordinator: CoordinatorType {
         return CoreDataStoreFactory.createCoreDataStore(withCoreDataStoreConfiguration: .Default)
     }
 
-    private func initializeProofService(withCoreDataStore coreDataStore: CoreDataStoreType) -> ProofService {
-        let proofApiClient = ProofApiClient()
-        let proofService = ProofService(withProofApiClient: proofApiClient, coreDataStore: coreDataStore)
+    private func initializeResultService(withCoreDataStore coreDataStore: CoreDataStoreType) -> ResultService {
+        let resultApiClient = ResultApiClient()
+        let resultService = ResultService(withResultApiClient: resultApiClient, coreDataStore: coreDataStore)
 
-        return proofService
+        return resultService
     }
 
     private func initializeRelationshipService(withCoreDataStore coreDataStore: CoreDataStoreType) -> RelationshipService {

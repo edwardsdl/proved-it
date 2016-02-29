@@ -1,5 +1,5 @@
 //
-//  ProofApiClient.swift
+//  ResultApiClient.swift
 //  Proved It!
 //
 //  Created by Dallas Edwards on 2/21/16.
@@ -8,8 +8,8 @@
 
 import Alamofire
 
-final class ProofApiClient: ProofApiClientType {
-    func delete(proofModel: ProofModel) {
+final class ResultApiClient: ResultApiClientType {
+    func delete(result: Result) {
 
     }
 
@@ -21,16 +21,16 @@ final class ProofApiClient: ProofApiClientType {
 
     }
 
-    func post(proofModel: ProofModel) {
+    func post(result: Result) {
 
     }
 
-    func put(proofModel: ProofModel) {
+    func put(result: Result) {
 
     }
 }
 
-private enum ProofRouter: URLRequestConvertible {
+private enum ResultRouter: URLRequestConvertible {
     var URLRequest: NSMutableURLRequest {
         return NSMutableURLRequest()
     }

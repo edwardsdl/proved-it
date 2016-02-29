@@ -9,7 +9,7 @@
 import Alamofire
 
 final class RelationshipApiClient: RelationshipApiClientType {
-    func delete(relationshipModel: RelationshipModel) {
+    func delete(relationship: Relationship) {
 
     }
 
@@ -21,11 +21,11 @@ final class RelationshipApiClient: RelationshipApiClientType {
 
     }
 
-    func post(relationshipModel: RelationshipModel) {
+    func post(relationshipModel: Relationship) {
 
     }
 
-    func put(relationshipModel: RelationshipModel) {
+    func put(relationshipModel: Relationship) {
 
     }
 }

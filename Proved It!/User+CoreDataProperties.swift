@@ -1,5 +1,5 @@
 //
-//  RelationshipEntity+CoreDataProperties.swift
+//  User+CoreDataProperties.swift
 //  Proved It!
 //
 //  Created by Dallas Edwards on 2/28/16.
@@ -12,10 +12,12 @@
 import Foundation
 import CoreData
 
-extension RelationshipEntity {
+extension User {
 
-    @NSManaged var time: Int32
-    @NSManaged var users: NSSet?
-    @NSManaged var results: NSSet?
+    @NSManaged var name: String?
+    @NSManaged var phoneNumber: String?
+    @NSManaged var wins: NSSet?
+    @NSManaged var losses: NSSet?
+    @NSManaged var relationship: Relationship?
 
 }

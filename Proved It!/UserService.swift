@@ -15,9 +15,7 @@ final class UserService {
         self.coreDataStore = coreDataStore
     }
 
-    func createUser(userModel: UserModel) {
-        let managedObject = userModel.toManagedObject(insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+    func createUser(user: User) {
 
-        coreDataStore.managedObjectContext.insertObject(managedObject)
     }
 }

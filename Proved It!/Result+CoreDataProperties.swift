@@ -1,5 +1,5 @@
 //
-//  ResultEntity+CoreDataProperties.swift
+//  Result+CoreDataProperties.swift
 //  Proved It!
 //
 //  Created by Dallas Edwards on 2/28/16.
@@ -12,12 +12,12 @@
 import Foundation
 import CoreData
 
-extension ResultEntity {
+extension Result {
 
-    @NSManaged var date: NSTimeInterval
+    @NSManaged var date: NSDate?
     @NSManaged var message: String?
-    @NSManaged var losingUser: UserEntity?
-    @NSManaged var relationship: RelationshipEntity?
-    @NSManaged var winningUser: UserEntity?
+    @NSManaged var losingUser: User?
+    @NSManaged var relationship: Relationship?
+    @NSManaged var winningUser: User?
 
 }

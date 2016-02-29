@@ -6,10 +6,10 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
-protocol ProofApiClientType {
-    func delete(userModel: ProofModel)
+protocol ResultApiClientType {
+    func delete(result: Result)
     func get()
     func patch()
-    func post(model: ProofModel)
-    func put(model: ProofModel)
+    func post(result: Result)
+    func put(result: Result)
 }

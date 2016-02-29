@@ -7,9 +7,9 @@
 //
 
 protocol RelationshipApiClientType {
-    func delete(userModel: RelationshipModel)
+    func delete(userModel: Relationship)
     func get()
     func patch()
-    func post(model: RelationshipModel)
-    func put(model: RelationshipModel)
+    func post(model: Relationship)
+    func put(model: Relationship)
 }
