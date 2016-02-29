@@ -22,4 +22,13 @@ final class CoreDataStore: CoreDataStoreType {
         self.privateManagedObjectContext = privateManagedObjectContext
         self.managedObjectContext = mainManagedObjectContext
     }
+
+    func save() {
+        managedObjectContext.performBlockAndWait({
+            let _ = try? self.managedObjectContext.save()
+            self.privateManagedObjectContext.performBlock({
+                let _ = try? self.privateManagedObjectContext.save()
+            })
+        })
+    }
 }

@@ -17,14 +17,3 @@ protocol CoreDataStoreType {
 
     func save()
 }
-
-extension CoreDataStoreType {
-    func save() {
-        managedObjectContext.performBlockAndWait({
-            let _ = try? self.managedObjectContext.save()
-            self.privateManagedObjectContext.performBlock({
-                let _ = try? self.privateManagedObjectContext.save()
-            })
-        })
-    }
-}
