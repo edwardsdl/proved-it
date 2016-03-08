@@ -64,3 +64,9 @@ extension OnboardingCoordinator: ChooseTimeViewControllerDelegate {
 
     }
 }
+
+extension OnboardingCoordinator: ChooseSignificantOtherViewControllerDelegate {
+    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWithUser user: User) {
+        
+    }
+}
