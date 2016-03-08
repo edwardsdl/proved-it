@@ -9,11 +9,13 @@
 import UIKit
 
 final class OnboardingCoordinator: CoordinatorType {
-    private var childCoordinators: [CoordinatorType] = []
     private let navigationController: UINavigationController
+    private let coreDataStore: CoreDataStoreType
+    private var childCoordinators: [CoordinatorType] = []
 
-    init(withNavigationController navigationController: UINavigationController) {
+    init(withNavigationController navigationController: UINavigationController, coreDataStore: CoreDataStoreType) {
         self.navigationController = navigationController
+        self.coreDataStore = coreDataStore
     }
 
     func start() {
@@ -37,7 +39,7 @@ extension OnboardingCoordinator: IntroductionViewControllerDelegate {
 
 extension OnboardingCoordinator: AuthenticationCoordinatorDelegate {
     func authenticationCoordinatorDidPassAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
-        let enterNameViewController = EnterNameViewController()
+        let enterNameViewController = EnterNameViewController(withCoreDataStore: coreDataStore)
         enterNameViewController.delegate = self
 
         navigationController.pushViewController(enterNameViewController, animated: true)
@@ -49,9 +51,16 @@ extension OnboardingCoordinator: AuthenticationCoordinatorDelegate {
 }
 
 extension OnboardingCoordinator: EnterNameViewControllerDelegate {
-    func enterNameViewControllerDidEnterName(enterNameViewController: EnterNameViewController) {
-        let chooseTimeViewController = ChooseTimeViewController()
+    func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWithUser user: User) {
+        let chooseTimeViewController = ChooseTimeViewController(withCoreDataStore: coreDataStore, user: user)
+        chooseTimeViewController.delegate = self
 
         navigationController.pushViewController(chooseTimeViewController, animated: true)
+    }
+}
+
+extension OnboardingCoordinator: ChooseTimeViewControllerDelegate {
+    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWithUser user: User) {
+
     }
 }

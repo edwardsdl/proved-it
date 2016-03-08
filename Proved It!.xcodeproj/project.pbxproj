@@ -445,10 +445,10 @@
 			isa = PBXGroup;
 			children = (
 				BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */,
-				BC5F943A1C71C26400E498BF /* Authentication */,
-				BC11A1A81C72973C00F21D74 /* Choose Time */,
-				BC5F943F1C727FFB00E498BF /* Enter Name */,
 				BC5F94361C71A53F00E498BF /* Introduction */,
+				BC5F943A1C71C26400E498BF /* Authentication */,
+				BC5F943F1C727FFB00E498BF /* Enter Name */,
+				BC11A1A81C72973C00F21D74 /* Choose Time */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";

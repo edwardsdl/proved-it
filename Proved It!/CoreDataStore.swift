@@ -25,9 +25,9 @@ final class CoreDataStore: CoreDataStoreType {
 
     func save() {
         managedObjectContext.performBlockAndWait({
-            let _ = try? self.managedObjectContext.save()
+            try! self.managedObjectContext.save()
             self.privateManagedObjectContext.performBlock({
-                let _ = try? self.privateManagedObjectContext.save()
+                try! self.privateManagedObjectContext.save()
             })
         })
     }
