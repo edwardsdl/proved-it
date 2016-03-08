@@ -29,8 +29,10 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
         let contactFetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
 
         let contactStore = CNContactStore()
+
         var contacts = [CNContact]()
-        try! contactStore.enumerateContactsWithFetchRequest(contactFetchRequest, usingBlock: { (contact, stop) -> Void in
+
+        _ = try? contactStore.enumerateContactsWithFetchRequest(contactFetchRequest, usingBlock: { (contact, stop) in
             contacts.append(contact)
         })
 
