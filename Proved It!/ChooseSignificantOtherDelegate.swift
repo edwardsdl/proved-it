@@ -11,9 +11,11 @@ import UIKit
 
 final class ChooseSignificantOtherDelegate: NSObject, UITableViewDelegate {
     private let contacts: [CNContact]
+    private let selectionHandler: CNContact -> Void
 
-    init(withContacts contacts: [CNContact]) {
+    init(withContacts contacts: [CNContact], selectionHandler: CNContact -> Void) {
         self.contacts = contacts
+        self.selectionHandler = selectionHandler
     }
 
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -23,6 +25,10 @@ final class ChooseSignificantOtherDelegate: NSObject, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        guard indexPath.row < contacts.count else {
+            return
+        }
+
+        selectionHandler(contacts[indexPath.row])
     }
 }

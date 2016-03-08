@@ -9,7 +9,14 @@
 import Contacts
 import UIKit
 
+protocol ChooseSignificantOtherViewControllerDelegate: class {
+    //func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWithUser user: User)
+}
+
 final class ChooseSignificantOtherViewController: BaseViewController<ChooseSignificantOtherView> {
+
+    weak var delegate: ChooseSignificantOtherViewControllerDelegate?
+
     private var chooseSignificantOtherDataSource: ChooseSignificantOtherDataSource?
     private var chooseSignificantOtherDelegate: ChooseSignificantOtherDelegate?
 
@@ -18,7 +25,7 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
 
         let contacts = loadContacts()
         chooseSignificantOtherDataSource = ChooseSignificantOtherDataSource(withContacts: contacts)
-        chooseSignificantOtherDelegate = ChooseSignificantOtherDelegate(withContacts: contacts)
+        chooseSignificantOtherDelegate = ChooseSignificantOtherDelegate(withContacts: contacts, selectionHandler: selectionHandler)
 
         customView.tableView.dataSource = chooseSignificantOtherDataSource
         customView.tableView.delegate = chooseSignificantOtherDelegate
@@ -37,5 +44,9 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
         })
 
         return contacts
+    }
+
+    private func selectionHandler(contact: CNContact) {
+        
     }
 }

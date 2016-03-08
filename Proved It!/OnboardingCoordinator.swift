@@ -55,3 +55,7 @@ extension OnboardingCoordinator: EnterNameViewControllerDelegate {
         navigationController.pushViewController(chooseTimeViewController, animated: true)
     }
 }
+
+extension OnboardingCoordinator: ChooseSignificantOtherViewControllerDelegate {
+
+}
