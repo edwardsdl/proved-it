@@ -9,11 +9,19 @@
 import UIKit
 
 protocol EnterNameViewControllerDelegate: class {
-    func enterNameViewControllerDidEnterName(enterNameViewController: EnterNameViewController)
+    func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWithUser user: User)
 }
 
 final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFieldDelegate {
     weak var delegate: EnterNameViewControllerDelegate?
+
+    private let coreDataStore: CoreDataStoreType
+    private let user: User
+
+    init(withCoreDataStore coreDataStore: CoreDataStoreType) {
+        self.coreDataStore = coreDataStore
+        self.user = User(insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+    }
 
     override func viewDidLoad() {
         customView.nameTextField.addTarget(self, action: "nameTextFieldEditingChanged:", forControlEvents: .EditingChanged)
@@ -22,11 +30,11 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
     }
 
     func nameTextFieldEditingChanged(sender: UITextField) {
-
+        user.name = sender.text
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        delegate?.enterNameViewControllerDidEnterName(self)
+        delegate?.enterNameViewController(self, didFinishWithUser: user)
 
         textField.resignFirstResponder()
 

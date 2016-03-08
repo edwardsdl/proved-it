@@ -13,26 +13,27 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    private var appCoordinator: AppCoordinator?
+    private var navigationController: UINavigationController!
+    private var coreDataStore: CoreDataStoreType!
+    private var appCoordinator: AppCoordinator!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        do {
-            let navigationController = UINavigationController()
+        navigationController = UINavigationController()
+        coreDataStore = initializeCoreDataStore()
+        appCoordinator = initializeAppCoordinator(withNavigationController: navigationController, coreDataStore: coreDataStore)
+        window = initializeWindow(withNavigationController: navigationController)
 
-            appCoordinator = initializeAppCoordinator(withNavigationController: navigationController)
-            window = initializeWindow(withNavigationController: navigationController)
-
-            try CoreDataHelper.initializeManagedObjectContext()
-            FabricHelper.initializeFabric()
-        } catch {
-
-        }
+        FabricHelper.initializeFabric()
 
         return true
     }
 
-    private func initializeAppCoordinator(withNavigationController navigationController: UINavigationController) -> AppCoordinator {
-        let appCoordinator = AppCoordinator(withNavigationController: navigationController)
+    private func initializeCoreDataStore() -> CoreDataStoreType! {
+        return CoreDataStoreFactory.createCoreDataStore(withCoreDataStoreConfiguration: .Default)
+    }
+
+    private func initializeAppCoordinator(withNavigationController navigationController: UINavigationController, coreDataStore: CoreDataStoreType) -> AppCoordinator {
+        let appCoordinator = AppCoordinator(withNavigationController: navigationController, coreDataStore: coreDataStore)
         appCoordinator.start()
 
         return appCoordinator

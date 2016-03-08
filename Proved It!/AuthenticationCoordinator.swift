@@ -32,9 +32,7 @@ final class AuthenticationCoordinator: CoordinatorType {
     }
 
     private func initializeAppearance() -> DGTAppearance {
-        let appearance = DGTAppearance()
-
-        return appearance
+        return DGTAppearance()
     }
 
     private func initializeAuthenticationConfiguration(withAppearance appearance: DGTAppearance) -> DGTAuthenticationConfiguration {

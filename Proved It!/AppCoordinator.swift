@@ -13,11 +13,13 @@ protocol CoordinatorType {
 }
 
 final class AppCoordinator: CoordinatorType {
-    private var childCoordinators: [CoordinatorType] = []
     private let navigationController: UINavigationController
+    private let coreDataStore: CoreDataStoreType
+    private var childCoordinators: [CoordinatorType] = []
 
-    init(withNavigationController navigationController: UINavigationController) {
+    init(withNavigationController navigationController: UINavigationController, coreDataStore: CoreDataStoreType) {
         self.navigationController = navigationController
+        self.coreDataStore = coreDataStore
     }
 
     func start() {
@@ -31,7 +33,7 @@ final class AppCoordinator: CoordinatorType {
     }
 
     private func startOnboardingCoordinator() {
-        let onboardingCoordinator = OnboardingCoordinator(withNavigationController: navigationController)
+        let onboardingCoordinator = OnboardingCoordinator(withNavigationController: navigationController, coreDataStore: coreDataStore)
         onboardingCoordinator.start()
 
         childCoordinators.append(onboardingCoordinator)

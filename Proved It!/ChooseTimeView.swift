@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol ChooseTimeViewDelegate: class {
+    func chooseTimeView(chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: NSTimeInterval)
+}
+
 final class ChooseTimeView: BaseView {
     @IBOutlet weak var chooseTimeButton: UIButton!
+
+    weak var delegate: ChooseTimeViewDelegate?
 
     private var date: NSDate = NSDate()
 
@@ -69,5 +75,13 @@ final class ChooseTimeView: BaseView {
         date = newDate ?? NSDate()
 
         return date
+    }
+
+    @IBAction func chooseTimeButtonTouchUpInside(sender: UIButton) {
+        let calendar = NSCalendar.currentCalendar()
+        let startOfDay = calendar.startOfDayForDate(date)
+        let timeInterval = date.timeIntervalSinceDate(startOfDay)
+
+        delegate?.chooseTimeView(self, didChooseTimeIntervalSinceStartOfDay: timeInterval)
     }
 }

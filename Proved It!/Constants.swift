@@ -10,6 +10,6 @@ import Foundation
 
 struct Constants {
     struct AssociatedObjectKeys {
-        static var ControlAction = "ControlAction"
+        static let ControlAction = "ControlAction"
     }
 }

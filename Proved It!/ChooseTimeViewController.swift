@@ -9,23 +9,31 @@
 import UIKit
 
 protocol ChooseTimeViewControllerDelegate: class {
-    func chooseTimeViewControllerDidChooseTime(chooseTimeViewController: ChooseTimeViewController)
+    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWithUser user: User)
 }
 
 final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
+    private let coreDataStore: CoreDataStoreType
+    private let user: User
+
     weak var delegate: ChooseTimeViewControllerDelegate?
 
+    init(withCoreDataStore coreDataStore: CoreDataStoreType, user: User) {
+        self.coreDataStore = coreDataStore
+
+        self.user = user
+        self.user.relationship = Relationship(insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+    }
+
     override func viewDidLoad() {
-        configureChooseTimeButton()
+        customView.delegate = self
     }
+}
 
-    private func configureChooseTimeButton() {
-        customView.chooseTimeButton.addTarget(self, action: "chooseTimeButtonTouchUpInside:", forControlEvents: .TouchUpInside)
-    }
+extension ChooseTimeViewController: ChooseTimeViewDelegate {
+    func chooseTimeView(chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: NSTimeInterval) {
+        user.relationship?.time = timeInterval
 
-    func chooseTimeButtonTouchUpInside(sender: UIButton) {
-        delegate?.chooseTimeViewControllerDidChooseTime(self)
-
-        print("Done!")
+        delegate?.chooseTimeViewController(self, didFinishWithUser: user)
     }
 }
