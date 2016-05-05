@@ -18,13 +18,11 @@ extension User: JSONConvertible {
         self.init(insertIntoManagedObjectContext: managedObjectContext)
 
         name = json["name"].string
-        phoneNumber = json["phoneNumber"].string
     }
 
     func toDictionary() -> [String: AnyObject] {
         var dictionary = [String: AnyObject]()
         dictionary["name"] = name
-        dictionary["phoneNumber"] = phoneNumber
 
         return dictionary
     }

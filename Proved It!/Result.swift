@@ -17,7 +17,7 @@ extension Result: JSONConvertible {
     convenience init(withJSON json: JSON, insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext) {
         self.init(insertIntoManagedObjectContext: managedObjectContext)
 
-        // date = json["date"].string
+        date = NSDateFormatter.dateFromUtcString(json["date"].string ?? "")
         message = json["message"].string
     }
 
