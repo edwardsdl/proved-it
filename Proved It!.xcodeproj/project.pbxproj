@@ -11,7 +11,6 @@
 		BC11A1AA1C72978400F21D74 /* ChooseTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC11A1A91C72978400F21D74 /* ChooseTimeView.xib */; };
 		BC11A1AC1C72979C00F21D74 /* ChooseTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11A1AB1C72979C00F21D74 /* ChooseTimeView.swift */; };
 		BC11A1AE1C7297D500F21D74 /* ChooseTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11A1AD1C7297D500F21D74 /* ChooseTimeViewController.swift */; };
-		BC11A1B01C73D2DE00F21D74 /* UIControl+AddAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11A1AF1C73D2DE00F21D74 /* UIControl+AddAction.swift */; };
 		BC11A1B21C73DE8D00F21D74 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11A1B11C73DE8D00F21D74 /* Constants.swift */; };
 		BC3E8CEF1C7A449B00603814 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CEE1C7A449B00603814 /* UserService.swift */; };
 		BC3E8CFB1C7A707A00603814 /* RelationshipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CFA1C7A707A00603814 /* RelationshipService.swift */; };
@@ -91,7 +90,6 @@
 		BC11A1A91C72978400F21D74 /* ChooseTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseTimeView.xib; sourceTree = "<group>"; };
 		BC11A1AB1C72979C00F21D74 /* ChooseTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTimeView.swift; sourceTree = "<group>"; };
 		BC11A1AD1C7297D500F21D74 /* ChooseTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTimeViewController.swift; sourceTree = "<group>"; };
-		BC11A1AF1C73D2DE00F21D74 /* UIControl+AddAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIControl+AddAction.swift"; sourceTree = "<group>"; };
 		BC11A1B11C73DE8D00F21D74 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC3E8CEE1C7A449B00603814 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BC3E8CFA1C7A707A00603814 /* RelationshipService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipService.swift; sourceTree = "<group>"; };
@@ -489,7 +487,6 @@
 				BC3E8D4C1C7BB0B100603814 /* NSManagedObject+Init.swift */,
 				BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */,
 				BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */,
-				BC11A1AF1C73D2DE00F21D74 /* UIControl+AddAction.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -725,7 +722,6 @@
 				BC8C4F881C8F2115002A18FD /* ChooseSignificantOtherCell.swift in Sources */,
 				BC5F942E1C7189F300E498BF /* BaseView.swift in Sources */,
 				BC3E8D331C7ABF7E00603814 /* UserApiClientType.swift in Sources */,
-				BC11A1B01C73D2DE00F21D74 /* UIControl+AddAction.swift in Sources */,
 				BCF9F93B1C707FF2008B9698 /* ProvedIt.xcdatamodeld in Sources */,
 				BCF9F9281C7054DE008B9698 /* CoreDataError.swift in Sources */,
 				BC8C4F8B1C8F2115002A18FD /* ChooseSignificantOtherDelegate.swift in Sources */,
