@@ -24,7 +24,7 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
     }
 
     override func viewDidLoad() {
-        customView.nameTextField.addTarget(self, action: "nameTextFieldEditingChanged:", forControlEvents: .EditingChanged)
+        customView.nameTextField.addTarget(self, action: #selector(EnterNameViewController.nameTextFieldEditingChanged(_:)), forControlEvents: .EditingChanged)
         customView.nameTextField.becomeFirstResponder()
         customView.nameTextField.delegate = self
     }

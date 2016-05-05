@@ -42,7 +42,7 @@ final class ChooseTimeView: BaseView {
     }
 
     private func configurePanGestureRecognizer() {
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "panGestureRecognizerValueChanged:")
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ChooseTimeView.panGestureRecognizerValueChanged(_:)))
 
         addGestureRecognizer(panGestureRecognizer)
     }

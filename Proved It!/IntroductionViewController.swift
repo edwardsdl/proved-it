@@ -16,7 +16,7 @@ final class IntroductionViewController: BaseViewController<IntroductionView> {
     weak var delegate: IntroductionViewControllerDelegate?
 
     override func viewDidLoad() {
-        customView.proveItButton.addTarget(self, action: "proveItButtonTapped:", forControlEvents: .TouchUpInside)
+        customView.proveItButton.addTarget(self, action: #selector(IntroductionViewController.proveItButtonTapped(_:)), forControlEvents: .TouchUpInside)
     }
 
     func proveItButtonTapped(sender: UIButton) {
