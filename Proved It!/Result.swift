@@ -22,8 +22,12 @@ extension Result: JSONConvertible {
     }
 
     func toDictionary() -> [String: AnyObject] {
+        guard let date = date else {
+            preconditionFailure("Failed to unwrap date")
+        }
+        
         var dictionary = [String: AnyObject]()
-        // dictionary["date"] = date
+        dictionary["date"] = NSDateFormatter.utcStringFromDate(date)
         dictionary["message"] = message
 
         return dictionary
