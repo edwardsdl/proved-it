@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
     <entity name="Configuration" representedClassName=".Configuration" syncable="YES">
-        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="created" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" minValueString="1" syncable="YES"/>
+        <attribute name="modified" attributeType="Date" syncable="YES"/>
         <attribute name="time" attributeType="Double" minValueString="0" maxValueString="86400" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" minCount="1" maxCount="2" deletionRule="Nullify" destinationEntity="User" inverseName="configuration" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Result" representedClassName=".Result" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="date" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" minValueString="1" syncable="YES"/>
         <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="losingUser" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="losses" inverseEntity="User" syncable="YES"/>
         <relationship name="winningUser" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="wins" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
-        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="modified" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="created" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" minValueString="1" syncable="YES"/>
+        <attribute name="modified" attributeType="Date" syncable="YES"/>
+        <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="configuration" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Configuration" inverseName="users" inverseEntity="Configuration" syncable="YES"/>
         <relationship name="losses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Result" inverseName="losingUser" inverseEntity="Result" syncable="YES"/>
         <relationship name="wins" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Result" inverseName="winningUser" inverseEntity="Result" syncable="YES"/>
