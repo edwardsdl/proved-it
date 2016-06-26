@@ -38,6 +38,7 @@
 		BC7855F61C6C532F00E4F569 /* CoreDataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855F51C6C532F00E4F569 /* CoreDataStoreTests.swift */; };
 		BC7856011C6C532F00E4F569 /* Proved_It_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7856001C6C532F00E4F569 /* Proved_It_UITests.swift */; };
 		BC7856131C6E346A00E4F569 /* CoreDataStoreType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7856121C6E346A00E4F569 /* CoreDataStoreType.swift */; };
+		BC8696E31D1FA5D20025D022 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8696E21D1FA5D20025D022 /* Either.swift */; };
 		BC8C4F881C8F2115002A18FD /* ChooseSignificantOtherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C4F811C8F2115002A18FD /* ChooseSignificantOtherCell.swift */; };
 		BC8C4F891C8F2115002A18FD /* ChooseSignificantOtherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC8C4F821C8F2115002A18FD /* ChooseSignificantOtherCell.xib */; };
 		BC8C4F8A1C8F2115002A18FD /* ChooseSignificantOtherDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C4F831C8F2115002A18FD /* ChooseSignificantOtherDataSource.swift */; };
@@ -123,6 +124,7 @@
 		BC7856001C6C532F00E4F569 /* Proved_It_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proved_It_UITests.swift; sourceTree = "<group>"; };
 		BC7856021C6C532F00E4F569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC7856121C6E346A00E4F569 /* CoreDataStoreType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStoreType.swift; sourceTree = "<group>"; };
+		BC8696E21D1FA5D20025D022 /* Either.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		BC8C4F811C8F2115002A18FD /* ChooseSignificantOtherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignificantOtherCell.swift; sourceTree = "<group>"; };
 		BC8C4F821C8F2115002A18FD /* ChooseSignificantOtherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSignificantOtherCell.xib; sourceTree = "<group>"; };
 		BC8C4F831C8F2115002A18FD /* ChooseSignificantOtherDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignificantOtherDataSource.swift; sourceTree = "<group>"; };
@@ -349,11 +351,12 @@
 				BC5F942D1C7189F300E498BF /* BaseView.swift */,
 				BCF9F9601C7167CC008B9698 /* BaseViewController.swift */,
 				BC11A1B11C73DE8D00F21D74 /* Constants.swift */,
+				BC8696E21D1FA5D20025D022 /* Either.swift */,
 				BC3E8D221C7AA45A00603814 /* API Clients */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
-				BC3E8D3C1C7AD69400603814 /* Entities */,
 				BCA58C161C82D4700080CDD6 /* Core Data Stores */,
 				BC5F94351C719E2700E498BF /* Custom Views */,
+				BC3E8D3C1C7AD69400603814 /* Entities */,
 				BCF9F9621C716CB9008B9698 /* Extensions */,
 				BC5F94371C71AC7F00E498BF /* Fabric */,
 				BCF9F9531C7119F3008B9698 /* Launch Screen */,
@@ -704,6 +707,7 @@
 				BC3E8D4D1C7BB0B100603814 /* NSManagedObject+Init.swift in Sources */,
 				BC11A1AC1C72979C00F21D74 /* ChooseTimeView.swift in Sources */,
 				BC3E8D281C7AB58C00603814 /* RelationshipApiClient.swift in Sources */,
+				BC8696E31D1FA5D20025D022 /* Either.swift in Sources */,
 				BC3E8CFD1C7A70E500603814 /* ProofService.swift in Sources */,
 				BC3E8D1B1C7A9B0E00603814 /* JSONConvertible.swift in Sources */,
 				BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */,
