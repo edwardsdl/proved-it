@@ -6,7 +6,6 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
-import AWSCognito
 import Crashlytics
 import DigitsKit
 import Fabric
@@ -23,6 +22,6 @@ final class FabricHelper {
     }
 
     private static func setIncludedKits() {
-        Fabric.with([AWSCognito.self, Crashlytics.self, Digits.self])
+        Fabric.with([Crashlytics.self, Digits.self])
     }
 }
