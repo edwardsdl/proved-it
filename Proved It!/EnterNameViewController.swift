@@ -6,6 +6,7 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 protocol EnterNameViewControllerDelegate: class {
@@ -15,12 +16,12 @@ protocol EnterNameViewControllerDelegate: class {
 final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFieldDelegate {
     weak var delegate: EnterNameViewControllerDelegate?
 
-    private let coreDataStore: CoreDataStoreType
+    private let managedObjectContext: NSManagedObjectContext
     private let user: User
 
-    init(withCoreDataStore coreDataStore: CoreDataStoreType) {
-        self.coreDataStore = coreDataStore
-        self.user = User(insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+    init(withManagedObjectContext managedObjectContext: NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
+        self.user = User(insertIntoManagedObjectContext: managedObjectContext)
     }
 
     override func viewDidLoad() {
@@ -34,6 +35,10 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        managedObjectContext.performBlockAndWait({
+            _ = try? self.managedObjectContext.save()
+        })
+        
         delegate?.enterNameViewController(self, didFinishWithUser: user)
 
         textField.resignFirstResponder()

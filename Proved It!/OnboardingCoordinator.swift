@@ -10,7 +10,7 @@ import UIKit
 
 final class OnboardingCoordinator: CoordinatorType {
     private let navigationController: UINavigationController
-    private let coreDataStore: CoreDataStoreType
+    private let coreDataStore: CoreDataStack
     private var childCoordinators: [CoordinatorType] = []
 
     init(withNavigationController navigationController: UINavigationController, coreDataStore: CoreDataStoreType) {

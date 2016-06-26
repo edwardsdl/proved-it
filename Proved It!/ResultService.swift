@@ -8,7 +8,7 @@
 
 final class ResultService {
     let resultApiClient: ResultApiClientType
-    let coreDataStore: CoreDataStoreType
+    let coreDataStore: CoreDataStack
 
     init(withResultApiClient resultApiClient: ResultApiClientType, coreDataStore: CoreDataStoreType) {
         self.resultApiClient = resultApiClient
