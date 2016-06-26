@@ -9,7 +9,5 @@
 import Foundation
 
 struct Constants {
-    struct AssociatedObjectKeys {
-        static let ControlAction = "ControlAction"
-    }
+
 }

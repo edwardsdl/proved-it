@@ -13,14 +13,14 @@
 		BC11A1AE1C7297D500F21D74 /* ChooseTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11A1AD1C7297D500F21D74 /* ChooseTimeViewController.swift */; };
 		BC11A1B21C73DE8D00F21D74 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11A1B11C73DE8D00F21D74 /* Constants.swift */; };
 		BC3E8CEF1C7A449B00603814 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CEE1C7A449B00603814 /* UserService.swift */; };
-		BC3E8CFB1C7A707A00603814 /* RelationshipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CFA1C7A707A00603814 /* RelationshipService.swift */; };
-		BC3E8CFD1C7A70E500603814 /* ProofService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CFC1C7A70E500603814 /* ProofService.swift */; };
+		BC3E8CFB1C7A707A00603814 /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CFA1C7A707A00603814 /* ConfigurationService.swift */; };
+		BC3E8CFD1C7A70E500603814 /* ResultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CFC1C7A70E500603814 /* ResultService.swift */; };
 		BC3E8D1B1C7A9B0E00603814 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D1A1C7A9B0E00603814 /* JSONConvertible.swift */; };
 		BC3E8D241C7AA47B00603814 /* UserApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D231C7AA47B00603814 /* UserApiClient.swift */; };
-		BC3E8D281C7AB58C00603814 /* RelationshipApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D271C7AB58C00603814 /* RelationshipApiClient.swift */; };
-		BC3E8D2E1C7AB97400603814 /* ProofApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D2D1C7AB97400603814 /* ProofApiClient.swift */; };
+		BC3E8D281C7AB58C00603814 /* ConfigurationApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D271C7AB58C00603814 /* ConfigurationApiClient.swift */; };
+		BC3E8D2E1C7AB97400603814 /* ResultApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D2D1C7AB97400603814 /* ResultApiClient.swift */; };
 		BC3E8D331C7ABF7E00603814 /* UserApiClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D321C7ABF7E00603814 /* UserApiClientType.swift */; };
-		BC3E8D351C7AC04600603814 /* RelationshipApiClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D341C7AC04600603814 /* RelationshipApiClientType.swift */; };
+		BC3E8D351C7AC04600603814 /* ConfigurationApiClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D341C7AC04600603814 /* ConfigurationApiClientType.swift */; };
 		BC3E8D371C7AC0EE00603814 /* ProofApiClientType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D361C7AC0EE00603814 /* ProofApiClientType.swift */; };
 		BC3E8D4D1C7BB0B100603814 /* NSManagedObject+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8D4C1C7BB0B100603814 /* NSManagedObject+Init.swift */; };
 		BC5F942E1C7189F300E498BF /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F942D1C7189F300E498BF /* BaseView.swift */; };
@@ -94,14 +94,14 @@
 		BC11A1AD1C7297D500F21D74 /* ChooseTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTimeViewController.swift; sourceTree = "<group>"; };
 		BC11A1B11C73DE8D00F21D74 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC3E8CEE1C7A449B00603814 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		BC3E8CFA1C7A707A00603814 /* RelationshipService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipService.swift; sourceTree = "<group>"; };
-		BC3E8CFC1C7A70E500603814 /* ProofService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofService.swift; sourceTree = "<group>"; };
+		BC3E8CFA1C7A707A00603814 /* ConfigurationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
+		BC3E8CFC1C7A70E500603814 /* ResultService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultService.swift; sourceTree = "<group>"; };
 		BC3E8D1A1C7A9B0E00603814 /* JSONConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
 		BC3E8D231C7AA47B00603814 /* UserApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApiClient.swift; sourceTree = "<group>"; };
-		BC3E8D271C7AB58C00603814 /* RelationshipApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipApiClient.swift; sourceTree = "<group>"; };
-		BC3E8D2D1C7AB97400603814 /* ProofApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofApiClient.swift; sourceTree = "<group>"; };
+		BC3E8D271C7AB58C00603814 /* ConfigurationApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationApiClient.swift; sourceTree = "<group>"; };
+		BC3E8D2D1C7AB97400603814 /* ResultApiClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultApiClient.swift; sourceTree = "<group>"; };
 		BC3E8D321C7ABF7E00603814 /* UserApiClientType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserApiClientType.swift; sourceTree = "<group>"; };
-		BC3E8D341C7AC04600603814 /* RelationshipApiClientType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationshipApiClientType.swift; sourceTree = "<group>"; };
+		BC3E8D341C7AC04600603814 /* ConfigurationApiClientType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationApiClientType.swift; sourceTree = "<group>"; };
 		BC3E8D361C7AC0EE00603814 /* ProofApiClientType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProofApiClientType.swift; sourceTree = "<group>"; };
 		BC3E8D4C1C7BB0B100603814 /* NSManagedObject+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Init.swift"; sourceTree = "<group>"; };
 		BC5F942D1C7189F300E498BF /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -222,8 +222,8 @@
 		BC3E8CCF1C78D78E00603814 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BC3E8CFA1C7A707A00603814 /* RelationshipService.swift */,
-				BC3E8CFC1C7A70E500603814 /* ProofService.swift */,
+				BC3E8CFA1C7A707A00603814 /* ConfigurationService.swift */,
+				BC3E8CFC1C7A70E500603814 /* ResultService.swift */,
 				BC3E8CEE1C7A449B00603814 /* UserService.swift */,
 			);
 			name = Services;
@@ -232,20 +232,20 @@
 		BC3E8D221C7AA45A00603814 /* API Clients */ = {
 			isa = PBXGroup;
 			children = (
-				BC3E8D2F1C7ABF1600603814 /* Proof */,
-				BC3E8D311C7ABF2B00603814 /* Relationship */,
+				BC3E8D311C7ABF2B00603814 /* Configuration */,
+				BC3E8D2F1C7ABF1600603814 /* Result */,
 				BC3E8D301C7ABF2600603814 /* User */,
 			);
 			name = "API Clients";
 			sourceTree = "<group>";
 		};
-		BC3E8D2F1C7ABF1600603814 /* Proof */ = {
+		BC3E8D2F1C7ABF1600603814 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				BC3E8D2D1C7AB97400603814 /* ProofApiClient.swift */,
+				BC3E8D2D1C7AB97400603814 /* ResultApiClient.swift */,
 				BC3E8D361C7AC0EE00603814 /* ProofApiClientType.swift */,
 			);
-			name = Proof;
+			name = Result;
 			sourceTree = "<group>";
 		};
 		BC3E8D301C7ABF2600603814 /* User */ = {
@@ -257,13 +257,13 @@
 			name = User;
 			sourceTree = "<group>";
 		};
-		BC3E8D311C7ABF2B00603814 /* Relationship */ = {
+		BC3E8D311C7ABF2B00603814 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				BC3E8D271C7AB58C00603814 /* RelationshipApiClient.swift */,
-				BC3E8D341C7AC04600603814 /* RelationshipApiClientType.swift */,
+				BC3E8D271C7AB58C00603814 /* ConfigurationApiClient.swift */,
+				BC3E8D341C7AC04600603814 /* ConfigurationApiClientType.swift */,
 			);
-			name = Relationship;
+			name = Configuration;
 			sourceTree = "<group>";
 		};
 		BC3E8D3C1C7AD69400603814 /* Entities */ = {
@@ -710,9 +710,9 @@
 				BC8C4F8A1C8F2115002A18FD /* ChooseSignificantOtherDataSource.swift in Sources */,
 				BC3E8D4D1C7BB0B100603814 /* NSManagedObject+Init.swift in Sources */,
 				BC11A1AC1C72979C00F21D74 /* ChooseTimeView.swift in Sources */,
-				BC3E8D281C7AB58C00603814 /* RelationshipApiClient.swift in Sources */,
+				BC3E8D281C7AB58C00603814 /* ConfigurationApiClient.swift in Sources */,
 				BC8696E31D1FA5D20025D022 /* Either.swift in Sources */,
-				BC3E8CFD1C7A70E500603814 /* ProofService.swift in Sources */,
+				BC3E8CFD1C7A70E500603814 /* ResultService.swift in Sources */,
 				BC3E8D1B1C7A9B0E00603814 /* JSONConvertible.swift in Sources */,
 				BCD0EBB21CDAE267001F2A1F /* Configuration.swift in Sources */,
 				BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */,
@@ -720,7 +720,7 @@
 				BC5F94301C718CC200E498BF /* UIColor+HexString.swift in Sources */,
 				BC11A1AE1C7297D500F21D74 /* ChooseTimeViewController.swift in Sources */,
 				BC11A1B21C73DE8D00F21D74 /* Constants.swift in Sources */,
-				BC3E8CFB1C7A707A00603814 /* RelationshipService.swift in Sources */,
+				BC3E8CFB1C7A707A00603814 /* ConfigurationService.swift in Sources */,
 				BC7856131C6E346A00E4F569 /* CoreDataStoreType.swift in Sources */,
 				BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */,
 				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
@@ -737,11 +737,11 @@
 				BCA58C151C82B2820080CDD6 /* CoreDataStore.swift in Sources */,
 				BC8C4F8C1C8F2115002A18FD /* ChooseSignificantOtherView.swift in Sources */,
 				BCF9F9611C7167CC008B9698 /* BaseViewController.swift in Sources */,
-				BC3E8D2E1C7AB97400603814 /* ProofApiClient.swift in Sources */,
+				BC3E8D2E1C7AB97400603814 /* ResultApiClient.swift in Sources */,
 				BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */,
 				BCF9F9551C711A5B008B9698 /* AppCoordinator.swift in Sources */,
 				BCA58C261C83F5080080CDD6 /* Result.swift in Sources */,
-				BC3E8D351C7AC04600603814 /* RelationshipApiClientType.swift in Sources */,
+				BC3E8D351C7AC04600603814 /* ConfigurationApiClientType.swift in Sources */,
 				BCF9F9641C71709B008B9698 /* OnboardingCoordinator.swift in Sources */,
 				BCF9F95B1C715005008B9698 /* IntroductionView.swift in Sources */,
 				BC3E8CEF1C7A449B00603814 /* UserService.swift in Sources */,

@@ -22,7 +22,7 @@ final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
         self.coreDataStore = coreDataStore
 
         self.user = user
-        self.user.relationship = Relationship(insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+        self.user.configuration = Configuration(insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
     }
 
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
 
 extension ChooseTimeViewController: ChooseTimeViewDelegate {
     func chooseTimeView(chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: NSTimeInterval) {
-        user.relationship?.time = timeInterval
+        user.configuration?.time = timeInterval
 
         delegate?.chooseTimeViewController(self, didFinishWithUser: user)
     }
