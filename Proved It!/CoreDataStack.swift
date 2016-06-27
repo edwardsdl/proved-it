@@ -56,19 +56,17 @@ enum CoreDataStackConfiguration {
 }
 
 final class CoreDataStack {
-    let managedObjectModel: NSManagedObjectModel
-    let persistentStoreCoordinator: NSPersistentStoreCoordinator
-    let persistentStore: NSPersistentStore
-    let privateManagedObjectContext: NSManagedObjectContext
-    let managedObjectContext: NSManagedObjectContext
+    var managedObjectModel: NSManagedObjectModel!
+    var persistentStoreCoordinator: NSPersistentStoreCoordinator!
+    var persistentStore: NSPersistentStore!
+    var managedObjectContext: NSManagedObjectContext!
     
     init?(withConfiguration configuration: CoreDataStackConfiguration) {
         do {
             managedObjectModel = try initializeManagedObjectModel(withConfiguration: configuration)
             persistentStoreCoordinator = initializePersistentStoreCoordinator(withConfiguration: configuration, managedObjectModel: managedObjectModel)
             persistentStore = try initializePersistentStore(withConfiguration: configuration, persistentStoreCoordinator: persistentStoreCoordinator)
-            privateManagedObjectContext = initializePrivateManagedObjectContext(withPersistentStoreCoordinator: persistentStoreCoordinator)
-            managedObjectContext = initializeMainManagedObjectContext(withPrivateManagedObjectContext: privateManagedObjectContext)
+            managedObjectContext = initializeManagedObjectContext(withPersistentStoreCoordinator: persistentStoreCoordinator)
         } catch {
             return nil
         }
@@ -96,17 +94,10 @@ final class CoreDataStack {
         return persistentStore
     }
     
-    private func initializePrivateManagedObjectContext(withPersistentStoreCoordinator persistentStoreCoordinator: NSPersistentStoreCoordinator) -> NSManagedObjectContext {
-        let privateManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        privateManagedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+    private func initializeManagedObjectContext(withPersistentStoreCoordinator persistentStoreCoordinator: NSPersistentStoreCoordinator) -> NSManagedObjectContext {
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
         
-        return privateManagedObjectContext
-    }
-    
-    private func initializeMainManagedObjectContext(withPrivateManagedObjectContext privateManagedObjectContext: NSManagedObjectContext) -> NSManagedObjectContext {
-        let mainManagedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        mainManagedObjectContext.parentContext = privateManagedObjectContext
-        
-        return mainManagedObjectContext
+        return managedObjectContext
     }
 }

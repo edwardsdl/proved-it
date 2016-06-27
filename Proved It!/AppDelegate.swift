@@ -14,13 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     private var navigationController: UINavigationController!
-    private var coreDataStore: CoreDataStoreType!
+    private var coreDataStack: CoreDataStack!
     private var appCoordinator: AppCoordinator!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         navigationController = UINavigationController()
-        coreDataStore = initializeCoreDataStore()
-        appCoordinator = initializeAppCoordinator(withNavigationController: navigationController, coreDataStore: coreDataStore)
+        coreDataStack = initializeCoreDataStore()
+        appCoordinator = initializeAppCoordinator(withNavigationController: navigationController, managedObjectContext: coreDataStack.managedObjectContext)
         window = initializeWindow(withNavigationController: navigationController)
 
         FabricHelper.initializeFabric()
@@ -28,12 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    private func initializeCoreDataStore() -> CoreDataStoreType! {
-        return CoreDataStoreFactory.createCoreDataStore(withCoreDataStoreConfiguration: .Default)
+    private func initializeCoreDataStore() -> CoreDataStack! {
+        return CoreDataStack(withConfiguration: .Default)
     }
 
-    private func initializeAppCoordinator(withNavigationController navigationController: UINavigationController, coreDataStore: CoreDataStoreType) -> AppCoordinator {
-        let appCoordinator = AppCoordinator(withNavigationController: navigationController, coreDataStore: coreDataStore)
+    private func initializeAppCoordinator(withNavigationController navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) -> AppCoordinator {
+        let appCoordinator = AppCoordinator(withNavigationController: navigationController, managedObjectContext: managedObjectContext)
         appCoordinator.start()
 
         return appCoordinator

@@ -6,12 +6,14 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import CoreData
+
 final class RelationshipService {
     let configurationApiClient: ConfigurationApiClientType
-    let coreDataStore: CoreDataStoreType
+    let managedObjectContext: NSManagedObjectContext
 
-    init(withConfigurationApiClient configurationApiClient: ConfigurationApiClientType, coreDataStore: CoreDataStoreType) {
+    init(withConfigurationApiClient configurationApiClient: ConfigurationApiClientType, managedObjectContext: NSManagedObjectContext) {
         self.configurationApiClient = configurationApiClient
-        self.coreDataStore = coreDataStore
+        self.managedObjectContext = managedObjectContext
     }
 }

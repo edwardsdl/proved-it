@@ -6,6 +6,7 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 protocol ChooseTimeViewControllerDelegate: class {
@@ -13,16 +14,16 @@ protocol ChooseTimeViewControllerDelegate: class {
 }
 
 final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
-    private let coreDataStore: CoreDataStoreType
+    private let managedObjectContext: NSManagedObjectContext
     private let user: User
 
     weak var delegate: ChooseTimeViewControllerDelegate?
 
-    init(withCoreDataStore coreDataStore: CoreDataStoreType, user: User) {
-        self.coreDataStore = coreDataStore
+    init(withManagedObjectContext managedObjectContext: NSManagedObjectContext, user: User) {
+        self.managedObjectContext = managedObjectContext
 
         self.user = user
-        self.user.configuration = Configuration(insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
+        self.user.configuration = Configuration(insertIntoManagedObjectContext: managedObjectContext)
     }
 
     override func viewDidLoad() {

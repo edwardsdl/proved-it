@@ -6,16 +6,17 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 final class OnboardingCoordinator: CoordinatorType {
     private let navigationController: UINavigationController
-    private let coreDataStore: CoreDataStack
+    private let managedObjectContext: NSManagedObjectContext
     private var childCoordinators: [CoordinatorType] = []
 
-    init(withNavigationController navigationController: UINavigationController, coreDataStore: CoreDataStoreType) {
+    init(withNavigationController navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) {
         self.navigationController = navigationController
-        self.coreDataStore = coreDataStore
+        self.managedObjectContext = managedObjectContext
     }
 
     func start() {
@@ -39,7 +40,7 @@ extension OnboardingCoordinator: IntroductionViewControllerDelegate {
 
 extension OnboardingCoordinator: AuthenticationCoordinatorDelegate {
     func authenticationCoordinatorDidPassAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
-        let enterNameViewController = EnterNameViewController(withCoreDataStore: coreDataStore)
+        let enterNameViewController = EnterNameViewController(withManagedObjectContext: managedObjectContext)
         enterNameViewController.delegate = self
 
         navigationController.pushViewController(enterNameViewController, animated: true)
@@ -52,7 +53,7 @@ extension OnboardingCoordinator: AuthenticationCoordinatorDelegate {
 
 extension OnboardingCoordinator: EnterNameViewControllerDelegate {
     func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWithUser user: User) {
-        let chooseTimeViewController = ChooseTimeViewController(withCoreDataStore: coreDataStore, user: user)
+        let chooseTimeViewController = ChooseTimeViewController(withManagedObjectContext: managedObjectContext, user: user)
         chooseTimeViewController.delegate = self
 
         navigationController.pushViewController(chooseTimeViewController, animated: true)

@@ -6,6 +6,7 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 protocol CoordinatorType {
@@ -14,12 +15,12 @@ protocol CoordinatorType {
 
 final class AppCoordinator: CoordinatorType {
     private let navigationController: UINavigationController
-    private let coreDataStore: CoreDataStoreType
+    private let managedObjectContext: NSManagedObjectContext
     private var childCoordinators: [CoordinatorType] = []
 
-    init(withNavigationController navigationController: UINavigationController, coreDataStore: CoreDataStoreType) {
+    init(withNavigationController navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) {
         self.navigationController = navigationController
-        self.coreDataStore = coreDataStore
+        self.managedObjectContext = managedObjectContext
     }
 
     func start() {
@@ -33,7 +34,7 @@ final class AppCoordinator: CoordinatorType {
     }
 
     private func startOnboardingCoordinator() {
-        let onboardingCoordinator = OnboardingCoordinator(withNavigationController: navigationController, coreDataStore: coreDataStore)
+        let onboardingCoordinator = OnboardingCoordinator(withNavigationController: navigationController, managedObjectContext: managedObjectContext)
         onboardingCoordinator.start()
 
         childCoordinators.append(onboardingCoordinator)
