@@ -1,5 +1,5 @@
 //
-//  RelationshipApiClient.swift
+//  ConfigurationApiClient.swift
 //  Proved It!
 //
 //  Created by Dallas Edwards on 2/21/16.
@@ -8,8 +8,8 @@
 
 import Alamofire
 
-final class RelationshipApiClient: RelationshipApiClientType {
-    func delete(relationship: Relationship) {
+final class ConfigurationApiClient: ConfigurationApiClientType {
+    func delete(configuration: Configuration) {
 
     }
 
@@ -21,16 +21,16 @@ final class RelationshipApiClient: RelationshipApiClientType {
 
     }
 
-    func post(relationshipModel: Relationship) {
+    func post(configuration: Configuration) {
 
     }
 
-    func put(relationshipModel: Relationship) {
+    func put(configuration: Configuration) {
 
     }
 }
 
-private enum RelationshipRouter: URLRequestConvertible {
+private enum ConfigurationRouter: URLRequestConvertible {
     var URLRequest: NSMutableURLRequest {
         return NSMutableURLRequest()
     }

@@ -13,33 +13,80 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
+    private var coreDataConfiguration: CoreDataConfiguration!
+    private var managedObjectModel: NSManagedObjectModel!
+    private var persistentStoreCoordinator: NSPersistentStoreCoordinator!
+    private var persistentStore: NSPersistentStore!
+    private var managedObjectContext: NSManagedObjectContext!
     private var navigationController: UINavigationController!
-    private var coreDataStore: CoreDataStoreType!
     private var appCoordinator: AppCoordinator!
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         navigationController = UINavigationController()
-        coreDataStore = initializeCoreDataStore()
-        appCoordinator = initializeAppCoordinator(withNavigationController: navigationController, coreDataStore: coreDataStore)
-        window = initializeWindow(withNavigationController: navigationController)
+        appCoordinator = createAppCoordinator(with: navigationController)
+        window = createWindow(with: navigationController)
 
+        do {
+            coreDataConfiguration = CoreDataConfiguration.Default
+            managedObjectModel = try createManagedObjectModel(with: coreDataConfiguration)
+            persistentStoreCoordinator = createPersistentStoreCoordinator(with: coreDataConfiguration, managedObjectModel: managedObjectModel)
+            persistentStore = try createPersistentStore(with: coreDataConfiguration, persistentStoreCoordinator: persistentStoreCoordinator)
+            managedObjectContext = createManagedObjectContext(with: persistentStoreCoordinator)
+        } catch {
+            appCoordinator.start(with: error)
+        }
+        
+        appCoordinator.start(with: managedObjectContext)
+        
         FabricHelper.initializeFabric()
-
+        
         return true
     }
 
-    private func initializeCoreDataStore() -> CoreDataStoreType! {
-        return CoreDataStoreFactory.createCoreDataStore(withCoreDataStoreConfiguration: .Default)
+    private func createManagedObjectModel(with coreDataConfiguration: CoreDataConfiguration) throws -> NSManagedObjectModel {
+        guard let managedObjectModelUrl = coreDataConfiguration.managedObjectModelUrl else {
+            throw CoreDataError.UnableToInitializeManagedObjectModel
+        }
+        
+        guard let managedObjectModel = NSManagedObjectModel(contentsOfURL: managedObjectModelUrl) else {
+            throw CoreDataError.UnableToInitializeManagedObjectModel
+        }
+        
+        return managedObjectModel
+    }
+    
+    private func createPersistentStoreCoordinator(with coreDataConfiguration: CoreDataConfiguration, managedObjectModel: NSManagedObjectModel) -> NSPersistentStoreCoordinator {
+        let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+        
+        return persistentStoreCoordinator
+    }
+    
+    private func createPersistentStore(with coreDataConfiguration: CoreDataConfiguration, persistentStoreCoordinator: NSPersistentStoreCoordinator) throws -> NSPersistentStore {
+        guard let persistentStoreUrl = coreDataConfiguration.persistentStoreUrl else {
+            throw CoreDataError.UnableToInitializePersistentStore
+        }
+        
+        guard let persistentStore = try? persistentStoreCoordinator.addPersistentStoreWithType(coreDataConfiguration.storeType, configuration: nil, URL: persistentStoreUrl, options: coreDataConfiguration.persistentStoreOptions) else {
+            throw CoreDataError.UnableToInitializePersistentStore
+        }
+        
+        return persistentStore
+    }
+    
+    private func createManagedObjectContext(with persistentStoreCoordinator: NSPersistentStoreCoordinator) -> NSManagedObjectContext {
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+        
+        return managedObjectContext
     }
 
-    private func initializeAppCoordinator(withNavigationController navigationController: UINavigationController, coreDataStore: CoreDataStoreType) -> AppCoordinator {
-        let appCoordinator = AppCoordinator(withNavigationController: navigationController, coreDataStore: coreDataStore)
-        appCoordinator.start()
+    private func createAppCoordinator(with navigationController: UINavigationController) -> AppCoordinator {
+        let appCoordinator = AppCoordinator(withNavigationController: navigationController)
 
         return appCoordinator
     }
 
-    private func initializeWindow(withNavigationController navigationController: UINavigationController) -> UIWindow {
+    private func createWindow(with navigationController: UINavigationController) -> UIWindow {
         let window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
@@ -69,4 +116,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 }
-

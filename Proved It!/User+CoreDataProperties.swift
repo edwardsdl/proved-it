@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Proved It!
 //
-//  Created by Dallas Edwards on 2/28/16.
+//  Created by Dallas Edwards on 6/26/16.
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,10 +14,12 @@ import CoreData
 
 extension User {
 
+    @NSManaged var created: NSDate?
+    @NSManaged var id: NSNumber?
+    @NSManaged var modified: NSDate?
     @NSManaged var name: String?
-    @NSManaged var phoneNumber: String?
-    @NSManaged var wins: NSSet?
+    @NSManaged var configuration: Configuration?
     @NSManaged var losses: NSSet?
-    @NSManaged var relationship: Relationship?
+    @NSManaged var wins: NSSet?
 
 }

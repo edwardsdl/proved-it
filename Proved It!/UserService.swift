@@ -6,13 +6,15 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import CoreData
+
 final class UserService {
     let userApiClient: UserApiClientType
-    let coreDataStore: CoreDataStoreType
+    let managedObjectContext: NSManagedObjectContext
 
-    init(withUserApiClient userApiClient: UserApiClientType, coreDataStore: CoreDataStoreType) {
+    init(withUserApiClient userApiClient: UserApiClientType, managedObjectContext: NSManagedObjectContext) {
         self.userApiClient = userApiClient
-        self.coreDataStore = coreDataStore
+        self.managedObjectContext = managedObjectContext
     }
 
     func createUser(user: User) {

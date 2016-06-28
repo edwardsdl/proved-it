@@ -6,36 +6,49 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import CoreData
 import UIKit
 
 protocol CoordinatorType {
-    func start()
+
 }
 
 final class AppCoordinator: CoordinatorType {
     private let navigationController: UINavigationController
-    private let coreDataStore: CoreDataStoreType
     private var childCoordinators: [CoordinatorType] = []
 
-    init(withNavigationController navigationController: UINavigationController, coreDataStore: CoreDataStoreType) {
+    init(withNavigationController navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.coreDataStore = coreDataStore
     }
 
-    func start() {
+    func start(with managedObjectContext: NSManagedObjectContext) {
         if shouldStartOnboardingCoordinator() {
-            startOnboardingCoordinator()
+            startOnboardingCoordinator(with: managedObjectContext)
+        } else {
+            startDashboardCoordinator(with: managedObjectContext)
         }
     }
-
+    
+    func start(with error: ErrorType) {
+        startApplicationErrorCoordinator(with: error)
+    }
+    
     private func shouldStartOnboardingCoordinator() -> Bool {
         return true
     }
 
-    private func startOnboardingCoordinator() {
-        let onboardingCoordinator = OnboardingCoordinator(withNavigationController: navigationController, coreDataStore: coreDataStore)
+    private func startApplicationErrorCoordinator(with error: ErrorType) {
+        // TODO: Add implementation
+    }
+    
+    private func startOnboardingCoordinator(with managedObjectContext: NSManagedObjectContext) {
+        let onboardingCoordinator = OnboardingCoordinator(withNavigationController: navigationController, managedObjectContext: managedObjectContext)
         onboardingCoordinator.start()
 
         childCoordinators.append(onboardingCoordinator)
+    }
+    
+    private func startDashboardCoordinator(with managedObjectContext: NSManagedObjectContext) {
+        // TODO: Add implementation
     }
 }

@@ -6,12 +6,14 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import CoreData
+
 final class ResultService {
     let resultApiClient: ResultApiClientType
-    let coreDataStore: CoreDataStoreType
+    let managedObjectContext: NSManagedObjectContext
 
-    init(withResultApiClient resultApiClient: ResultApiClientType, coreDataStore: CoreDataStoreType) {
+    init(withResultApiClient resultApiClient: ResultApiClientType, managedObjectContext: NSManagedObjectContext) {
         self.resultApiClient = resultApiClient
-        self.coreDataStore = coreDataStore
+        self.managedObjectContext = managedObjectContext
     }
 }
