@@ -45,11 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func createManagedObjectModel(with coreDataConfiguration: CoreDataConfiguration) throws -> NSManagedObjectModel {
         guard let managedObjectModelUrl = coreDataConfiguration.managedObjectModelUrl else {
-            throw CoreDataError.UnableToInitializeManagedObjectModel
+            throw CoreDataError.FailedToCreateManagedObjectModel
         }
         
         guard let managedObjectModel = NSManagedObjectModel(contentsOfURL: managedObjectModelUrl) else {
-            throw CoreDataError.UnableToInitializeManagedObjectModel
+            throw CoreDataError.FailedToCreateManagedObjectModel
         }
         
         return managedObjectModel
@@ -63,11 +63,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func createPersistentStore(with coreDataConfiguration: CoreDataConfiguration, persistentStoreCoordinator: NSPersistentStoreCoordinator) throws -> NSPersistentStore {
         guard let persistentStoreUrl = coreDataConfiguration.persistentStoreUrl else {
-            throw CoreDataError.UnableToInitializePersistentStore
+            throw CoreDataError.FailedToCreatePersistentStore
         }
         
         guard let persistentStore = try? persistentStoreCoordinator.addPersistentStoreWithType(coreDataConfiguration.storeType, configuration: nil, URL: persistentStoreUrl, options: coreDataConfiguration.persistentStoreOptions) else {
-            throw CoreDataError.UnableToInitializePersistentStore
+            throw CoreDataError.FailedToCreatePersistentStore
         }
         
         return persistentStore

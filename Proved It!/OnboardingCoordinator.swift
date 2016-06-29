@@ -52,6 +52,13 @@ extension OnboardingCoordinator: AuthenticationCoordinatorDelegate {
 }
 
 extension OnboardingCoordinator: EnterNameViewControllerDelegate {
+    func enterNameViewController(enterNameViewController: EnterNameViewController, didEncounter error: ErrorType) {
+        let errorCoordinator = ErrorCoordinator(with: navigationController)
+        errorCoordinator.delegate = self
+        
+        errorCoordinator.start(with: error)
+    }
+    
     func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWithUser user: User) {
         let chooseTimeViewController = ChooseTimeViewController(withManagedObjectContext: managedObjectContext, user: user)
         chooseTimeViewController.delegate = self
@@ -62,12 +69,21 @@ extension OnboardingCoordinator: EnterNameViewControllerDelegate {
 
 extension OnboardingCoordinator: ChooseTimeViewControllerDelegate {
     func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWithUser user: User) {
-
+        let chooseSignificantOtherViewController = ChooseSignificantOtherViewController()
+        chooseTimeViewController.delegate = self
+        
+        navigationController.pushViewController(chooseSignificantOtherViewController, animated: true)
     }
 }
 
 extension OnboardingCoordinator: ChooseSignificantOtherViewControllerDelegate {
     func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWithUser user: User) {
         
+    }
+}
+
+extension OnboardingCoordinator: ErrorCoordinatorDelegate {
+    func errorCoordinatorDidFinish(errorCoordinator: ErrorCoordinator) {        
+        childCoordinators.remove({ $0 === errorCoordinator })
     }
 }

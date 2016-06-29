@@ -10,6 +10,7 @@ import CoreData
 import UIKit
 
 protocol EnterNameViewControllerDelegate: class {
+    func enterNameViewController(enterNameViewController: EnterNameViewController, didEncounter error: ErrorType)
     func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWithUser user: User)
 }
 
@@ -35,9 +36,17 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        managedObjectContext.performBlockAndWait({
-            _ = try? self.managedObjectContext.save()
-        })
+        guard user.name?.characters.count > 0 else {
+            delegate?.enterNameViewController(self, didEncounter: ValidationError.Required(field: "Name"))
+            
+            return true
+        }
+        
+        guard let _ = try? managedObjectContext.save() else {
+            delegate?.enterNameViewController(self, didEncounter: CoreDataError.FailedToSave(entity: String(user.dynamicType)))
+            
+            return true
+        }
         
         delegate?.enterNameViewController(self, didFinishWithUser: user)
 

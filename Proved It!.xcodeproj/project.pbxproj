@@ -37,6 +37,9 @@
 		BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */; };
 		BC7855F61C6C532F00E4F569 /* CoreDataStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855F51C6C532F00E4F569 /* CoreDataStoreTests.swift */; };
 		BC7856011C6C532F00E4F569 /* Proved_It_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7856001C6C532F00E4F569 /* Proved_It_UITests.swift */; };
+		BC841B2F1D233589004D21AD /* ErrorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC841B2E1D233589004D21AD /* ErrorCoordinator.swift */; };
+		BC841B311D2337F7004D21AD /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC841B301D2337F7004D21AD /* ValidationError.swift */; };
+		BC841B331D237BE3004D21AD /* Array+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC841B321D237BE3004D21AD /* Array+Remove.swift */; };
 		BC8696E31D1FA5D20025D022 /* Either.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8696E21D1FA5D20025D022 /* Either.swift */; };
 		BC8C4F881C8F2115002A18FD /* ChooseSignificantOtherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C4F811C8F2115002A18FD /* ChooseSignificantOtherCell.swift */; };
 		BC8C4F891C8F2115002A18FD /* ChooseSignificantOtherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC8C4F821C8F2115002A18FD /* ChooseSignificantOtherCell.xib */; };
@@ -122,6 +125,9 @@
 		BC7855FC1C6C532F00E4F569 /* Proved It!UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Proved It!UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7856001C6C532F00E4F569 /* Proved_It_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Proved_It_UITests.swift; sourceTree = "<group>"; };
 		BC7856021C6C532F00E4F569 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC841B2E1D233589004D21AD /* ErrorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCoordinator.swift; sourceTree = "<group>"; };
+		BC841B301D2337F7004D21AD /* ValidationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
+		BC841B321D237BE3004D21AD /* Array+Remove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Remove.swift"; sourceTree = "<group>"; };
 		BC8696E21D1FA5D20025D022 /* Either.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Either.swift; sourceTree = "<group>"; };
 		BC8C4F811C8F2115002A18FD /* ChooseSignificantOtherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignificantOtherCell.swift; sourceTree = "<group>"; };
 		BC8C4F821C8F2115002A18FD /* ChooseSignificantOtherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSignificantOtherCell.xib; sourceTree = "<group>"; };
@@ -350,11 +356,12 @@
 				BCF9F9601C7167CC008B9698 /* BaseViewController.swift */,
 				BC11A1B11C73DE8D00F21D74 /* Constants.swift */,
 				BC8696E21D1FA5D20025D022 /* Either.swift */,
+				BCA58C141C82B2820080CDD6 /* CoreDataConfiguration.swift */,
 				BC3E8D221C7AA45A00603814 /* API Clients */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
-				BCA58C161C82D4700080CDD6 /* Core Data Stack */,
 				BC5F94351C719E2700E498BF /* Custom Views */,
 				BC3E8D3C1C7AD69400603814 /* Entities */,
+				BC841B2D1D233561004D21AD /* Error */,
 				BCF9F9621C716CB9008B9698 /* Extensions */,
 				BC5F94371C71AC7F00E498BF /* Fabric */,
 				BCF9F9531C7119F3008B9698 /* Launch Screen */,
@@ -384,6 +391,16 @@
 			path = "Proved It!UITests";
 			sourceTree = "<group>";
 		};
+		BC841B2D1D233561004D21AD /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				BCF9F9271C7054DE008B9698 /* CoreDataError.swift */,
+				BC841B2E1D233589004D21AD /* ErrorCoordinator.swift */,
+				BC841B301D2337F7004D21AD /* ValidationError.swift */,
+			);
+			name = Error;
+			sourceTree = "<group>";
+		};
 		BC8C4F801C8F20DF002A18FD /* Choose Significant Other */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,15 +413,6 @@
 				BC8C4F861C8F2115002A18FD /* ChooseSignificantOtherView.xib */,
 			);
 			name = "Choose Significant Other";
-			sourceTree = "<group>";
-		};
-		BCA58C161C82D4700080CDD6 /* Core Data Stack */ = {
-			isa = PBXGroup;
-			children = (
-				BCF9F9271C7054DE008B9698 /* CoreDataError.swift */,
-				BCA58C141C82B2820080CDD6 /* CoreDataConfiguration.swift */,
-			);
-			name = "Core Data Stack";
 			sourceTree = "<group>";
 		};
 		BCA58C271C840FE60080CDD6 /* Generated */ = {
@@ -474,11 +482,12 @@
 		BCF9F9621C716CB9008B9698 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BC841B321D237BE3004D21AD /* Array+Remove.swift */,
 				BCF9F95E1C716372008B9698 /* NSBundle+LoadView.swift */,
+				BCD0EBB41CDAE948001F2A1F /* NSDateFormatter+String.swift */,
 				BC3E8D4C1C7BB0B100603814 /* NSManagedObject+Init.swift */,
 				BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */,
 				BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */,
-				BCD0EBB41CDAE948001F2A1F /* NSDateFormatter+String.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -695,9 +704,11 @@
 				BCF9F95F1C716372008B9698 /* NSBundle+LoadView.swift in Sources */,
 				BC8C4F8A1C8F2115002A18FD /* ChooseSignificantOtherDataSource.swift in Sources */,
 				BC3E8D4D1C7BB0B100603814 /* NSManagedObject+Init.swift in Sources */,
+				BC841B311D2337F7004D21AD /* ValidationError.swift in Sources */,
 				BC11A1AC1C72979C00F21D74 /* ChooseTimeView.swift in Sources */,
 				BC3E8D281C7AB58C00603814 /* ConfigurationApiClient.swift in Sources */,
 				BC8696E31D1FA5D20025D022 /* Either.swift in Sources */,
+				BC841B331D237BE3004D21AD /* Array+Remove.swift in Sources */,
 				BC3E8CFD1C7A70E500603814 /* ResultService.swift in Sources */,
 				BC3E8D1B1C7A9B0E00603814 /* JSONConvertible.swift in Sources */,
 				BCD0EBB21CDAE267001F2A1F /* Configuration.swift in Sources */,
@@ -707,6 +718,7 @@
 				BC11A1AE1C7297D500F21D74 /* ChooseTimeViewController.swift in Sources */,
 				BC11A1B21C73DE8D00F21D74 /* Constants.swift in Sources */,
 				BC3E8CFB1C7A707A00603814 /* ConfigurationService.swift in Sources */,
+				BC841B2F1D233589004D21AD /* ErrorCoordinator.swift in Sources */,
 				BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */,
 				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
 				BCD0EBB11CDAE267001F2A1F /* Configuration+CoreDataProperties.swift in Sources */,

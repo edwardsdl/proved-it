@@ -9,7 +9,7 @@
 import CoreData
 import UIKit
 
-protocol CoordinatorType {
+protocol CoordinatorType: class {
 
 }
 
@@ -30,15 +30,19 @@ final class AppCoordinator: CoordinatorType {
     }
     
     func start(with error: ErrorType) {
-        startApplicationErrorCoordinator(with: error)
+        startErrorCoordinator(with: error)
     }
     
     private func shouldStartOnboardingCoordinator() -> Bool {
         return true
     }
 
-    private func startApplicationErrorCoordinator(with error: ErrorType) {
-        // TODO: Add implementation
+    private func startErrorCoordinator(with error: ErrorType) {
+        let errorCoordinator = ErrorCoordinator(with: navigationController)
+        errorCoordinator.delegate = self
+        errorCoordinator.start(with: error)
+        
+        childCoordinators.append(errorCoordinator)
     }
     
     private func startOnboardingCoordinator(with managedObjectContext: NSManagedObjectContext) {
@@ -50,5 +54,11 @@ final class AppCoordinator: CoordinatorType {
     
     private func startDashboardCoordinator(with managedObjectContext: NSManagedObjectContext) {
         // TODO: Add implementation
+    }
+}
+
+extension AppCoordinator: ErrorCoordinatorDelegate {
+    func errorCoordinatorDidFinish(errorCoordinator: ErrorCoordinator) {
+        childCoordinators.remove({ $0 === errorCoordinator })
     }
 }
