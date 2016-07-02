@@ -32,6 +32,10 @@
 		BC5F94411C72839800E498BF /* EnterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94401C72839800E498BF /* EnterNameViewController.swift */; };
 		BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94421C7283A700E498BF /* EnterNameView.swift */; };
 		BC5F94451C7283B400E498BF /* EnterNameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5F94441C7283B400E498BF /* EnterNameView.xib */; };
+		BC7730661D26C3A4008FE244 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730651D26C3A4008FE244 /* DashboardCoordinator.swift */; };
+		BC77306A1D26C6DD008FE244 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730691D26C6DD008FE244 /* CountdownView.swift */; };
+		BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77306B1D26C6FB008FE244 /* CountdownViewController.swift */; };
+		BC77306E1D26C710008FE244 /* CountdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC77306D1D26C710008FE244 /* CountdownView.xib */; };
 		BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */; };
 		BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E71C6C532F00E4F569 /* Assets.xcassets */; };
 		BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */; };
@@ -114,6 +118,10 @@
 		BC5F94401C72839800E498BF /* EnterNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNameViewController.swift; sourceTree = "<group>"; };
 		BC5F94421C7283A700E498BF /* EnterNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNameView.swift; sourceTree = "<group>"; };
 		BC5F94441C7283B400E498BF /* EnterNameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterNameView.xib; sourceTree = "<group>"; };
+		BC7730651D26C3A4008FE244 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
+		BC7730691D26C6DD008FE244 /* CountdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
+		BC77306B1D26C6FB008FE244 /* CountdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownViewController.swift; sourceTree = "<group>"; };
+		BC77306D1D26C710008FE244 /* CountdownView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountdownView.xib; sourceTree = "<group>"; };
 		BC7855DA1C6C532F00E4F569 /* Proved It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proved It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7855E71C6C532F00E4F569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -325,6 +333,25 @@
 			name = "Enter Name";
 			sourceTree = "<group>";
 		};
+		BC7730641D26C340008FE244 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				BC7730651D26C3A4008FE244 /* DashboardCoordinator.swift */,
+				BC7730671D26C643008FE244 /* Countdown */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		BC7730671D26C643008FE244 /* Countdown */ = {
+			isa = PBXGroup;
+			children = (
+				BC7730691D26C6DD008FE244 /* CountdownView.swift */,
+				BC77306B1D26C6FB008FE244 /* CountdownViewController.swift */,
+				BC77306D1D26C710008FE244 /* CountdownView.xib */,
+			);
+			name = Countdown;
+			sourceTree = "<group>";
+		};
 		BC7855D11C6C532F00E4F569 = {
 			isa = PBXGroup;
 			children = (
@@ -355,11 +382,12 @@
 				BC5F942D1C7189F300E498BF /* BaseView.swift */,
 				BCF9F9601C7167CC008B9698 /* BaseViewController.swift */,
 				BC11A1B11C73DE8D00F21D74 /* Constants.swift */,
-				BC8696E21D1FA5D20025D022 /* Either.swift */,
 				BCA58C141C82B2820080CDD6 /* CoreDataConfiguration.swift */,
+				BC8696E21D1FA5D20025D022 /* Either.swift */,
 				BC3E8D221C7AA45A00603814 /* API Clients */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
 				BC5F94351C719E2700E498BF /* Custom Views */,
+				BC7730641D26C340008FE244 /* Dashboard */,
 				BC3E8D3C1C7AD69400603814 /* Entities */,
 				BC841B2D1D233561004D21AD /* Error */,
 				BCF9F9621C716CB9008B9698 /* Extensions */,
@@ -564,6 +592,7 @@
 				TargetAttributes = {
 					BC7855D91C6C532F00E4F569 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 3AUQ3J8GCM;
 					};
 					BC7855F01C6C532F00E4F569 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -607,6 +636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC11A1AA1C72978400F21D74 /* ChooseTimeView.xib in Resources */,
+				BC77306E1D26C710008FE244 /* CountdownView.xib in Resources */,
 				BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */,
 				BC8C4F891C8F2115002A18FD /* ChooseSignificantOtherCell.xib in Resources */,
 				BCF9F9471C70871F008B9698 /* Localizable.strings in Resources */,
@@ -710,6 +740,8 @@
 				BC8696E31D1FA5D20025D022 /* Either.swift in Sources */,
 				BC841B331D237BE3004D21AD /* Array+Remove.swift in Sources */,
 				BC3E8CFD1C7A70E500603814 /* ResultService.swift in Sources */,
+				BC7730661D26C3A4008FE244 /* DashboardCoordinator.swift in Sources */,
+				BC77306A1D26C6DD008FE244 /* CountdownView.swift in Sources */,
 				BC3E8D1B1C7A9B0E00603814 /* JSONConvertible.swift in Sources */,
 				BCD0EBB21CDAE267001F2A1F /* Configuration.swift in Sources */,
 				BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */,
@@ -721,6 +753,7 @@
 				BC841B2F1D233589004D21AD /* ErrorCoordinator.swift in Sources */,
 				BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */,
 				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
+				BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */,
 				BCD0EBB11CDAE267001F2A1F /* Configuration+CoreDataProperties.swift in Sources */,
 				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
 				BC8C4F881C8F2115002A18FD /* ChooseSignificantOtherCell.swift in Sources */,
@@ -902,11 +935,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Proved It!/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.angrysquirrelsoftware.ProvedIt;
 				PRODUCT_MODULE_NAME = ProvedIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -916,11 +951,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Proved It!/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.angrysquirrelsoftware.ProvedIt;
 				PRODUCT_MODULE_NAME = ProvedIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
