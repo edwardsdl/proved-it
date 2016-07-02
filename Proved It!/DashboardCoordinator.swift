@@ -11,19 +11,17 @@ import UIKit
 
 final class DashboardCoordinator: NSObject, CoordinatorType {
     private let navigationController: UINavigationController
-    private let managedObjectContext: NSManagedObjectContext
     private let user: User
     private let pageViewController: UIPageViewController
     private let viewControllers: [UIViewController]
     
     private var childCoordinators: [CoordinatorType]
     
-    init(with navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext, user: User) {
+    init(with navigationController: UINavigationController, user: User) {
         self.navigationController = navigationController
-        self.managedObjectContext = managedObjectContext
         self.user = user
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        self.viewControllers = [CountdownViewController(with: self.managedObjectContext, user: user), CountdownViewController(with: self.managedObjectContext, user: user)]
+        self.viewControllers = [CountdownViewController(with: user), CountdownViewController(with: user)]
         self.childCoordinators = []
         
         super.init()

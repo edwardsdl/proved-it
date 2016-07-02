@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var appCoordinator: AppCoordinator!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        navigationController = UINavigationController()
+        navigationController = createNavigationController()
         appCoordinator = createAppCoordinator(with: navigationController)
         window = createWindow(with: navigationController)
 
@@ -80,8 +80,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return managedObjectContext
     }
 
+    private func createNavigationController() -> UINavigationController {
+        let navigationController = UINavigationController()
+        navigationController.navigationBar.barStyle = .Black
+        navigationController.navigationBar.translucent = true
+        navigationController.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight)]
+        
+        return navigationController
+    }
+    
     private func createAppCoordinator(with navigationController: UINavigationController) -> AppCoordinator {
-        let appCoordinator = AppCoordinator(withNavigationController: navigationController)
+        let appCoordinator = AppCoordinator(with: navigationController)
 
         return appCoordinator
     }

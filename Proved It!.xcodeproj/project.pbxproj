@@ -36,6 +36,9 @@
 		BC77306A1D26C6DD008FE244 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730691D26C6DD008FE244 /* CountdownView.swift */; };
 		BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77306B1D26C6FB008FE244 /* CountdownViewController.swift */; };
 		BC77306E1D26C710008FE244 /* CountdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC77306D1D26C710008FE244 /* CountdownView.xib */; };
+		BC7730711D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77306F1D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift */; };
+		BC7730721D274BF1008FE244 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730701D274BF1008FE244 /* BaseEntity.swift */; };
+		BC7730741D2768E7008FE244 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730731D2768E7008FE244 /* NSManagedObjectContextExtensions.swift */; };
 		BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */; };
 		BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E71C6C532F00E4F569 /* Assets.xcassets */; };
 		BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */; };
@@ -122,6 +125,9 @@
 		BC7730691D26C6DD008FE244 /* CountdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		BC77306B1D26C6FB008FE244 /* CountdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownViewController.swift; sourceTree = "<group>"; };
 		BC77306D1D26C710008FE244 /* CountdownView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountdownView.xib; sourceTree = "<group>"; };
+		BC77306F1D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BC7730701D274BF1008FE244 /* BaseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
+		BC7730731D2768E7008FE244 /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
 		BC7855DA1C6C532F00E4F569 /* Proved It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proved It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7855E71C6C532F00E4F569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -279,6 +285,7 @@
 		BC3E8D3C1C7AD69400603814 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				BC7730701D274BF1008FE244 /* BaseEntity.swift */,
 				BCD0EBAE1CDAE267001F2A1F /* Configuration.swift */,
 				BCA58C201C83F5080080CDD6 /* Result.swift */,
 				BCA58C1C1C83F5080080CDD6 /* User.swift */,
@@ -446,6 +453,7 @@
 		BCA58C271C840FE60080CDD6 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				BC77306F1D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift */,
 				BCD0EBAD1CDAE267001F2A1F /* Configuration+CoreDataProperties.swift */,
 				BCD0EBAC1CDAE267001F2A1F /* Result+CoreDataProperties.swift */,
 				BCA58C1B1C83F5080080CDD6 /* User+CoreDataProperties.swift */,
@@ -516,6 +524,7 @@
 				BC3E8D4C1C7BB0B100603814 /* NSManagedObject+Init.swift */,
 				BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */,
 				BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */,
+				BC7730731D2768E7008FE244 /* NSManagedObjectContextExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -748,10 +757,12 @@
 				BC3E8D371C7AC0EE00603814 /* ProofApiClientType.swift in Sources */,
 				BC5F94301C718CC200E498BF /* UIColor+HexString.swift in Sources */,
 				BC11A1AE1C7297D500F21D74 /* ChooseTimeViewController.swift in Sources */,
+				BC7730721D274BF1008FE244 /* BaseEntity.swift in Sources */,
 				BC11A1B21C73DE8D00F21D74 /* Constants.swift in Sources */,
 				BC3E8CFB1C7A707A00603814 /* ConfigurationService.swift in Sources */,
 				BC841B2F1D233589004D21AD /* ErrorCoordinator.swift in Sources */,
 				BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */,
+				BC7730741D2768E7008FE244 /* NSManagedObjectContextExtensions.swift in Sources */,
 				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
 				BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */,
 				BCD0EBB11CDAE267001F2A1F /* Configuration+CoreDataProperties.swift in Sources */,
@@ -772,6 +783,7 @@
 				BCA58C261C83F5080080CDD6 /* Result.swift in Sources */,
 				BC3E8D351C7AC04600603814 /* ConfigurationApiClientType.swift in Sources */,
 				BCF9F9641C71709B008B9698 /* OnboardingCoordinator.swift in Sources */,
+				BC7730711D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift in Sources */,
 				BCF9F95B1C715005008B9698 /* IntroductionView.swift in Sources */,
 				BC3E8CEF1C7A449B00603814 /* UserService.swift in Sources */,
 				BCA58C211C83F5080080CDD6 /* User+CoreDataProperties.swift in Sources */,

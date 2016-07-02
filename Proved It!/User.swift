@@ -9,7 +9,7 @@
 import CoreData
 import SwiftyJSON
 
-final class User: NSManagedObject {
+final class User: BaseEntity {
 
 }
 
@@ -25,6 +25,27 @@ extension User: JSONConvertible {
         dictionary["name"] = name
 
         return dictionary
+    }
+}
+
+extension NSManagedObjectContext {
+    func fetchUser(with phoneNumber: String, completionHandler: (Either<User?, ErrorType>) -> Void) {
+        performBlock({ [unowned self] in
+            let predicate = NSPredicate(format: "phoneNumber = %@", phoneNumber)
+    
+            let fetchRequest = NSFetchRequest(entityName: String(User))
+            fetchRequest.predicate = predicate
+    
+            do {
+                let objects = try self.executeFetchRequest(fetchRequest)
+                let users = objects.flatMap({ $0 as? User })
+                let user = users.first
+                
+                completionHandler(.Left(user))
+            } catch {
+                completionHandler(.Right(error))
+            }
+        })
     }
 }
 

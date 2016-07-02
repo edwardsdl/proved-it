@@ -14,16 +14,13 @@ protocol ChooseTimeViewControllerDelegate: class {
 }
 
 final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
-    private let managedObjectContext: NSManagedObjectContext
+    weak var delegate: ChooseTimeViewControllerDelegate?
+    
     private let user: User
 
-    weak var delegate: ChooseTimeViewControllerDelegate?
-
-    init(withManagedObjectContext managedObjectContext: NSManagedObjectContext, user: User) {
-        self.managedObjectContext = managedObjectContext
-
+    init(with user: User) {
         self.user = user
-        self.user.configuration = Configuration(insertIntoManagedObjectContext: managedObjectContext)
+        self.user.configuration = Configuration(insertIntoManagedObjectContext: user.managedObjectContext!)
     }
 
     override func viewDidLoad() {
