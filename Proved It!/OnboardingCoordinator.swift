@@ -12,11 +12,14 @@ import UIKit
 final class OnboardingCoordinator: CoordinatorType {
     private let navigationController: UINavigationController
     private let managedObjectContext: NSManagedObjectContext
-    private var childCoordinators: [CoordinatorType] = []
+    
+    private var childCoordinators: [CoordinatorType]
+    private var user: User?
 
     init(withNavigationController navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) {
         self.navigationController = navigationController
         self.managedObjectContext = managedObjectContext
+        self.childCoordinators = []
     }
 
     func start() {
@@ -55,7 +58,6 @@ extension OnboardingCoordinator: EnterNameViewControllerDelegate {
     func enterNameViewController(enterNameViewController: EnterNameViewController, didEncounter error: ErrorType) {
         let errorCoordinator = ErrorCoordinator(with: navigationController)
         errorCoordinator.delegate = self
-        
         errorCoordinator.start(with: error)
     }
     
