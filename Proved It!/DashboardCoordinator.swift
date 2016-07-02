@@ -9,7 +9,13 @@
 import CoreData
 import UIKit
 
+protocol DashboardCoordinatorDelegate: class {
+
+}
+
 final class DashboardCoordinator: NSObject, CoordinatorType {
+    weak var delegate: DashboardCoordinatorDelegate?
+    
     private let navigationController: UINavigationController
     private let user: User
     private let pageViewController: UIPageViewController
@@ -29,6 +35,8 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
     
     func start() {
         guard let firstViewController = viewControllers.first else {
+            startErrorCoordinator(with: ApplicationError.FailedToUnwrapValue)
+            
             return
         }
         
@@ -38,6 +46,20 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
         self.pageViewController.setViewControllers([firstViewController], direction: .Forward, animated: true, completion: nil)
         
         self.navigationController.pushViewController(self.pageViewController, animated: true)
+    }
+    
+    private func startErrorCoordinator(with error: ErrorType) {
+        let errorCoordinator = ErrorCoordinator(with: navigationController)
+        errorCoordinator.delegate = self
+        errorCoordinator.start(with: error)
+        
+        childCoordinators.append(errorCoordinator)
+    }
+}
+
+extension DashboardCoordinator: ErrorCoordinatorDelegate {
+    func errorCoordinatorDidFinish(errorCoordinator: ErrorCoordinator) {
+        childCoordinators.remove({ $0 === errorCoordinator })
     }
 }
 

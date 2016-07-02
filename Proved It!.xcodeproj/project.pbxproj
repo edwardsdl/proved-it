@@ -39,6 +39,7 @@
 		BC7730711D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77306F1D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift */; };
 		BC7730721D274BF1008FE244 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730701D274BF1008FE244 /* BaseEntity.swift */; };
 		BC7730741D2768E7008FE244 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730731D2768E7008FE244 /* NSManagedObjectContextExtensions.swift */; };
+		BC7730761D2774CC008FE244 /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730751D2774CC008FE244 /* ApplicationError.swift */; };
 		BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */; };
 		BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E71C6C532F00E4F569 /* Assets.xcassets */; };
 		BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */; };
@@ -128,6 +129,7 @@
 		BC77306F1D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BC7730701D274BF1008FE244 /* BaseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
 		BC7730731D2768E7008FE244 /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
+		BC7730751D2774CC008FE244 /* ApplicationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
 		BC7855DA1C6C532F00E4F569 /* Proved It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proved It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7855E71C6C532F00E4F569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				BC5F94371C71AC7F00E498BF /* Fabric */,
 				BCF9F9531C7119F3008B9698 /* Launch Screen */,
 				BCF9F93C1C7083C5008B9698 /* Localization */,
+				BC5F943A1C71C26400E498BF /* Authentication */,
 				BCF9F9571C714FA4008B9698 /* Onboarding */,
 				BCF9F9521C7119DB008B9698 /* Resources */,
 				BC3E8CCF1C78D78E00603814 /* Services */,
@@ -429,6 +432,7 @@
 		BC841B2D1D233561004D21AD /* Error */ = {
 			isa = PBXGroup;
 			children = (
+				BC7730751D2774CC008FE244 /* ApplicationError.swift */,
 				BCF9F9271C7054DE008B9698 /* CoreDataError.swift */,
 				BC841B2E1D233589004D21AD /* ErrorCoordinator.swift */,
 				BC841B301D2337F7004D21AD /* ValidationError.swift */,
@@ -507,7 +511,6 @@
 			children = (
 				BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */,
 				BC5F94361C71A53F00E498BF /* Introduction */,
-				BC5F943A1C71C26400E498BF /* Authentication */,
 				BC5F943F1C727FFB00E498BF /* Enter Name */,
 				BC11A1A81C72973C00F21D74 /* Choose Time */,
 				BC8C4F801C8F20DF002A18FD /* Choose Significant Other */,
@@ -777,6 +780,7 @@
 				BCA58C151C82B2820080CDD6 /* CoreDataConfiguration.swift in Sources */,
 				BC8C4F8C1C8F2115002A18FD /* ChooseSignificantOtherView.swift in Sources */,
 				BCF9F9611C7167CC008B9698 /* BaseViewController.swift in Sources */,
+				BC7730761D2774CC008FE244 /* ApplicationError.swift in Sources */,
 				BC3E8D2E1C7AB97400603814 /* ResultApiClient.swift in Sources */,
 				BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */,
 				BCF9F9551C711A5B008B9698 /* AppCoordinator.swift in Sources */,

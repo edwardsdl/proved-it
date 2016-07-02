@@ -64,7 +64,7 @@ extension OnboardingCoordinator: ChooseTimeViewControllerDelegate {
 }
 
 extension OnboardingCoordinator: ChooseSignificantOtherViewControllerDelegate {
-    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWithUser user: User) {
+    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
         if let originalViewController = originalViewController {
             navigationController.popToViewController(originalViewController, animated: false)
         }

@@ -27,25 +27,15 @@ final class AppCoordinator: CoordinatorType {
     func start(with managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
         
-        let introductionViewController = createIntroductionViewController()
+        let introductionViewController = IntroductionViewController()
+        introductionViewController.delegate = self
         
-        configureNavigationController(with: introductionViewController)
+        navigationController.navigationBarHidden = true
+        navigationController.viewControllers = [introductionViewController]
     }
     
     func start(with error: ErrorType) {
         startErrorCoordinator(with: error)
-    }
-    
-    private func createIntroductionViewController() -> IntroductionViewController {
-        let introductionViewController = IntroductionViewController()
-        introductionViewController.delegate = self
-        
-        return introductionViewController
-    }
-    
-    private func configureNavigationController(with introductionViewController: IntroductionViewController) {
-        navigationController.navigationBarHidden = true
-        navigationController.viewControllers = [introductionViewController]
     }
     
     private func startErrorCoordinator(with error: ErrorType) {
@@ -60,9 +50,15 @@ final class AppCoordinator: CoordinatorType {
 extension AppCoordinator: IntroductionViewControllerDelegate {
     func introductionViewControllerDidTapProveItButton(introductionViewController: IntroductionViewController) {
         guard let managedObjectContext = managedObjectContext else {
+            startErrorCoordinator(with: ApplicationError.FailedToUnwrapValue)
+            
             return
         }
         
+        startAuthenticationCoordinator(with: navigationController, managedObjectContext: managedObjectContext)
+    }
+    
+    private func startAuthenticationCoordinator(with navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) {
         let authenticationCoordinator = AuthenticationCoordinator(with: navigationController, managedObjectContext: managedObjectContext)
         authenticationCoordinator.delegate = self
         authenticationCoordinator.start()
@@ -78,6 +74,8 @@ extension AppCoordinator: AuthenticationCoordinatorDelegate {
         } else {
             startDashboardCoordinator(with: user)
         }
+        
+        childCoordinators.remove({ $0 === authenticationCoordinator })
     }
     
     func authenticationCoordinator(authenticationCoordinator: AuthenticationCoordinator, didEncounter error: ErrorType) {
@@ -98,6 +96,7 @@ extension AppCoordinator: AuthenticationCoordinatorDelegate {
     
     private func startDashboardCoordinator(with user: User) {
         let dashboardCoordinator = DashboardCoordinator(with: navigationController, user: user)
+        dashboardCoordinator.delegate = self
         dashboardCoordinator.start()
         
         childCoordinators.append(dashboardCoordinator)
@@ -110,6 +109,10 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
         
         childCoordinators.remove({ $0 === onboardingCoordinator })
     }
+}
+
+extension AppCoordinator: DashboardCoordinatorDelegate {
+    
 }
 
 extension AppCoordinator: ErrorCoordinatorDelegate {

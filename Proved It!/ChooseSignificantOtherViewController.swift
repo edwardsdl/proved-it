@@ -10,7 +10,7 @@ import Contacts
 import UIKit
 
 protocol ChooseSignificantOtherViewControllerDelegate: class {
-    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWithUser user: User)
+    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWith user: User)
 }
 
 final class ChooseSignificantOtherViewController: BaseViewController<ChooseSignificantOtherView> {
@@ -54,6 +54,6 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
     }
 
     private func selectionHandler(contact: CNContact) {
-        delegate?.chooseSignificantOtherViewController(self, didFinishWithUser: user)
+        delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
     }
 }
