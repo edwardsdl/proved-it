@@ -27,7 +27,7 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
         self.navigationController = navigationController
         self.user = user
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        self.viewControllers = [CountdownViewController(with: user), CountdownViewController(with: user)]
+        self.viewControllers = [CountdownViewController(with: user)]
         self.childCoordinators = []
         
         super.init()
@@ -42,9 +42,11 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
         
         self.pageViewController.dataSource = self
         self.pageViewController.delegate = self
+        self.pageViewController.navigationItem.hidesBackButton = true
         self.pageViewController.title = firstViewController.title
         self.pageViewController.setViewControllers([firstViewController], direction: .Forward, animated: true, completion: nil)
         
+        self.navigationController.navigationBarHidden = false
         self.navigationController.pushViewController(self.pageViewController, animated: true)
     }
     
