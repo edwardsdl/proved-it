@@ -10,8 +10,6 @@ import Foundation
 import CoreData
 
 
-class Configuration: NSManagedObject {
-
-// Insert code here to add functionality to your managed object subclass
+final class Configuration: BaseEntity {
 
 }

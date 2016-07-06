@@ -17,12 +17,10 @@ protocol EnterNameViewControllerDelegate: class {
 final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFieldDelegate {
     weak var delegate: EnterNameViewControllerDelegate?
 
-    private let managedObjectContext: NSManagedObjectContext
     private let user: User
 
-    init(withManagedObjectContext managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
-        self.user = User(insertIntoManagedObjectContext: managedObjectContext)
+    init(with user: User) {
+        self.user = user
     }
 
     override func viewDidLoad() {
@@ -36,21 +34,14 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        guard user.name?.characters.count > 0 else {
-            delegate?.enterNameViewController(self, didEncounter: ValidationError.Required(field: "Name"))
-            
-            return true
-        }
-        
-        guard let _ = try? managedObjectContext.save() else {
-            delegate?.enterNameViewController(self, didEncounter: CoreDataError.FailedToSave(entity: String(user.dynamicType)))
-            
-            return true
-        }
-        
-        delegate?.enterNameViewController(self, didFinishWithUser: user)
-
-        textField.resignFirstResponder()
+        user.managedObjectContext?.save({ [unowned self] either in
+            switch either {
+            case .Left:
+                self.delegate?.enterNameViewController(self, didFinishWithUser: self.user)
+            case .Right(let error):
+                self.delegate?.enterNameViewController(self, didEncounter: error)
+            }
+        })
 
         return true
     }

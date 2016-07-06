@@ -9,45 +9,31 @@
 import CoreData
 import UIKit
 
-final class OnboardingCoordinator: CoordinatorType {
-    private let navigationController: UINavigationController
-    private let managedObjectContext: NSManagedObjectContext
-    private var childCoordinators: [CoordinatorType] = []
+protocol OnboardingCoordinatorDelegate: class {
+    func onboardingCoordinator(onboardingCoordinator: OnboardingCoordinator, didFinishWith user: User)
+}
 
-    init(withNavigationController navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) {
+final class OnboardingCoordinator: CoordinatorType {
+    weak var delegate: OnboardingCoordinatorDelegate?
+    
+    private let navigationController: UINavigationController
+    private let user: User
+    private let originalViewController: UIViewController?
+    
+    private var childCoordinators: [CoordinatorType]
+
+    init(with navigationController: UINavigationController, user: User) {
         self.navigationController = navigationController
-        self.managedObjectContext = managedObjectContext
+        self.user = user
+        self.originalViewController = navigationController.topViewController
+        self.childCoordinators = []
     }
 
     func start() {
-        let introductionViewController = IntroductionViewController()
-        introductionViewController.delegate = self
-
-        navigationController.navigationBarHidden = true
-        navigationController.viewControllers = [introductionViewController]
-    }
-}
-
-extension OnboardingCoordinator: IntroductionViewControllerDelegate {
-    func introductionViewControllerDidTapProveItButton(introductionViewController: IntroductionViewController) {
-        let authenticationCoordinator = AuthenticationCoordinator(withNavigationController: navigationController)
-        authenticationCoordinator.delegate = self
-        authenticationCoordinator.start()
-
-        childCoordinators.append(authenticationCoordinator)
-    }
-}
-
-extension OnboardingCoordinator: AuthenticationCoordinatorDelegate {
-    func authenticationCoordinatorDidPassAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
-        let enterNameViewController = EnterNameViewController(withManagedObjectContext: managedObjectContext)
+        let enterNameViewController = EnterNameViewController(with: user)
         enterNameViewController.delegate = self
-
+        
         navigationController.pushViewController(enterNameViewController, animated: true)
-    }
-
-    func authenticationCoordinatorDidFailAuthentication(authenticationCoordinator: AuthenticationCoordinator) {
-
     }
 }
 
@@ -55,12 +41,11 @@ extension OnboardingCoordinator: EnterNameViewControllerDelegate {
     func enterNameViewController(enterNameViewController: EnterNameViewController, didEncounter error: ErrorType) {
         let errorCoordinator = ErrorCoordinator(with: navigationController)
         errorCoordinator.delegate = self
-        
         errorCoordinator.start(with: error)
     }
     
     func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWithUser user: User) {
-        let chooseTimeViewController = ChooseTimeViewController(withManagedObjectContext: managedObjectContext, user: user)
+        let chooseTimeViewController = ChooseTimeViewController(with: user)
         chooseTimeViewController.delegate = self
 
         navigationController.pushViewController(chooseTimeViewController, animated: true)
@@ -69,16 +54,22 @@ extension OnboardingCoordinator: EnterNameViewControllerDelegate {
 
 extension OnboardingCoordinator: ChooseTimeViewControllerDelegate {
     func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWithUser user: User) {
-        let chooseSignificantOtherViewController = ChooseSignificantOtherViewController()
-        chooseTimeViewController.delegate = self
+        delegate?.onboardingCoordinator(self, didFinishWith: user)
         
-        navigationController.pushViewController(chooseSignificantOtherViewController, animated: true)
+//        let chooseSignificantOtherViewController = ChooseSignificantOtherViewController(with: user)
+//        chooseTimeViewController.delegate = self
+//        
+//        navigationController.pushViewController(chooseSignificantOtherViewController, animated: true)
     }
 }
 
 extension OnboardingCoordinator: ChooseSignificantOtherViewControllerDelegate {
-    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWithUser user: User) {
+    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
+        if let originalViewController = originalViewController {
+            navigationController.popToViewController(originalViewController, animated: false)
+        }
         
+        delegate?.onboardingCoordinator(self, didFinishWith: user)
     }
 }
 

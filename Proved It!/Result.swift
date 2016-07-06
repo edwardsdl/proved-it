@@ -9,7 +9,7 @@
 import CoreData
 import SwiftyJSON
 
-final class Result: NSManagedObject {
+final class Result: BaseEntity {
 
 }
 

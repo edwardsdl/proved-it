@@ -24,6 +24,8 @@ final class ErrorCoordinator: CoordinatorType {
     
     func start(with error: ErrorType) {
         switch error {
+        case let error as ApplicationError:
+            handle(error)
         case let error as CoreDataError:
             handle(error)
         case let error as ValidationError:
@@ -35,6 +37,10 @@ final class ErrorCoordinator: CoordinatorType {
 }
 
 private extension ErrorCoordinator {
+    private func handle(error: ApplicationError) {
+        displayAlert(with: error.message)
+    }
+    
     private func handle(error: CoreDataError) {
         displayAlert(with: error.message)
     }
