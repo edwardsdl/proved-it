@@ -30,6 +30,7 @@ final class CountdownViewController: BaseViewController<CountdownView> {
         super.viewDidLoad()
         
         customView.delegate = self
+        customView.configure(with: user)
     }
 }
 
