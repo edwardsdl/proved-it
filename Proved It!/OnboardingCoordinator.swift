@@ -35,13 +35,17 @@ final class OnboardingCoordinator: CoordinatorType {
         
         navigationController.pushViewController(enterNameViewController, animated: true)
     }
+    
+    private func startErrorCoordinator(with error: ErrorType) {
+        let errorCoordinator = ErrorCoordinator(with: navigationController)
+        errorCoordinator.delegate = self
+        errorCoordinator.start(with: error)
+    }
 }
 
 extension OnboardingCoordinator: EnterNameViewControllerDelegate {
     func enterNameViewController(enterNameViewController: EnterNameViewController, didEncounter error: ErrorType) {
-        let errorCoordinator = ErrorCoordinator(with: navigationController)
-        errorCoordinator.delegate = self
-        errorCoordinator.start(with: error)
+        startErrorCoordinator(with: error)
     }
     
     func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWithUser user: User) {
@@ -60,6 +64,10 @@ extension OnboardingCoordinator: ChooseTimeViewControllerDelegate {
 //        chooseTimeViewController.delegate = self
 //        
 //        navigationController.pushViewController(chooseSignificantOtherViewController, animated: true)
+    }
+    
+    func chooseTimeNameViewController(chooseTimeViewController: ChooseTimeViewController, didEncounter error: ErrorType) {
+        startErrorCoordinator(with: error)
     }
 }
 

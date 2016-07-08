@@ -11,6 +11,7 @@ import UIKit
 
 protocol ChooseTimeViewControllerDelegate: class {
     func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWithUser user: User)
+    func chooseTimeNameViewController(chooseTimeViewController: ChooseTimeViewController, didEncounter error: ErrorType)
 }
 
 final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
@@ -32,6 +33,13 @@ extension ChooseTimeViewController: ChooseTimeViewDelegate {
     func chooseTimeView(chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: NSTimeInterval) {
         user.configuration?.time = timeInterval
 
-        delegate?.chooseTimeViewController(self, didFinishWithUser: user)
+        user.managedObjectContext?.save({ [unowned self] either in
+            switch either {
+            case .Left:
+                self.delegate?.chooseTimeViewController(self, didFinishWithUser: self.user)
+            case .Right(let error):
+                self.delegate?.chooseTimeNameViewController(self, didEncounter: error)
+            }
+        })
     }
 }
