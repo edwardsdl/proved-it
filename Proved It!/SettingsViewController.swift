@@ -18,4 +18,11 @@ final class SettingsViewController: BaseViewController<SettingsView> {
         
         title = "Settings"
     }
+    
+    override func viewDidLoad() {
+        let settingsDataSource = SettingsDataSource()
+        let settingsDelegate = SettingsDelegate(selectionHandler: { _ in })
+        
+        customView.configure(with: settingsDataSource, settingsDelegate: settingsDelegate)
+    }
 }

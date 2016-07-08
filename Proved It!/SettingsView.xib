@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -18,13 +18,39 @@
                         <constraint firstAttribute="height" constant="2" id="AUu-6J-S9y"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1h-Jl-S2G">
+                    <rect key="frame" x="37" y="496" width="526" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="NEZ-Zq-1bc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Sign Out">
+                        <color key="titleColor" red="0.96078431369999995" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NUk-F7-fQz">
+                    <rect key="frame" x="0.0" y="82" width="600" height="350"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="42" minY="0.0" maxX="42" maxY="0.0"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="NUk-F7-fQz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0Ye-5R-T2s"/>
+                <constraint firstItem="NUk-F7-fQz" firstAttribute="top" secondItem="g6k-hU-Xbh" secondAttribute="bottom" constant="16" id="9Dy-gg-5Yz"/>
+                <constraint firstItem="I1h-Jl-S2G" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="-37" id="9Tc-6N-5z9"/>
+                <constraint firstItem="NUk-F7-fQz" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="GUS-os-FfC"/>
+                <constraint firstItem="I1h-Jl-S2G" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="37" id="JyX-ie-bu2"/>
+                <constraint firstItem="I1h-Jl-S2G" firstAttribute="top" secondItem="NUk-F7-fQz" secondAttribute="bottom" constant="64" id="MAc-8E-7Td"/>
+                <constraint firstItem="I1h-Jl-S2G" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-60" id="Qtb-W6-A47"/>
                 <constraint firstItem="g6k-hU-Xbh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RAk-Aa-IpR"/>
                 <constraint firstItem="g6k-hU-Xbh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="jmY-Nh-Dse"/>
                 <constraint firstItem="g6k-hU-Xbh" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="ujw-b5-DZh"/>
             </constraints>
+            <connections>
+                <outlet property="signOutButton" destination="I1h-Jl-S2G" id="XDV-ZV-lIP"/>
+                <outlet property="tableView" destination="NUk-F7-fQz" id="gSv-Ey-r2c"/>
+            </connections>
         </view>
     </objects>
 </document>
