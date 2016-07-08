@@ -28,14 +28,6 @@ final class CountdownView: BaseView {
         configureProveItButton()
     }
     
-    override func willMoveToWindow(newWindow: UIWindow?) {
-        super.willMoveToWindow(newWindow)
-        
-        if newWindow == nil {
-            timer?.invalidate()
-        }
-    }
-    
     func configure(with user: User) {
         guard timer == nil else {
             return

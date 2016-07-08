@@ -27,7 +27,7 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
         self.navigationController = navigationController
         self.user = user
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        self.viewControllers = [CountdownViewController(with: user)]
+        self.viewControllers = [CountdownViewController(with: user), HistoryViewController(with: user), SettingsViewController(with: user)]
         self.childCoordinators = []
         
         super.init()

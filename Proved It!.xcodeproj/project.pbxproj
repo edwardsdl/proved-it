@@ -40,6 +40,12 @@
 		BC7730721D274BF1008FE244 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730701D274BF1008FE244 /* BaseEntity.swift */; };
 		BC7730741D2768E7008FE244 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730731D2768E7008FE244 /* NSManagedObjectContextExtensions.swift */; };
 		BC7730761D2774CC008FE244 /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730751D2774CC008FE244 /* ApplicationError.swift */; };
+		BC7730881D2F2DB8008FE244 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730871D2F2DB8008FE244 /* HistoryView.swift */; };
+		BC77308A1D2F2DC1008FE244 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730891D2F2DC1008FE244 /* HistoryViewController.swift */; };
+		BC77308E1D2F2DFF008FE244 /* HistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC77308D1D2F2DFF008FE244 /* HistoryView.xib */; };
+		BC7730911D2F3870008FE244 /* SettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC7730901D2F3870008FE244 /* SettingsView.xib */; };
+		BC7730931D2F3E61008FE244 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730921D2F3E61008FE244 /* SettingsView.swift */; };
+		BC7730951D2F3E69008FE244 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730941D2F3E69008FE244 /* SettingsViewController.swift */; };
 		BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */; };
 		BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E71C6C532F00E4F569 /* Assets.xcassets */; };
 		BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */; };
@@ -130,6 +136,12 @@
 		BC7730701D274BF1008FE244 /* BaseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
 		BC7730731D2768E7008FE244 /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
 		BC7730751D2774CC008FE244 /* ApplicationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
+		BC7730871D2F2DB8008FE244 /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		BC7730891D2F2DC1008FE244 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		BC77308D1D2F2DFF008FE244 /* HistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryView.xib; sourceTree = "<group>"; };
+		BC7730901D2F3870008FE244 /* SettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsView.xib; sourceTree = "<group>"; };
+		BC7730921D2F3E61008FE244 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BC7730941D2F3E69008FE244 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BC7855DA1C6C532F00E4F569 /* Proved It!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proved It!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC7855E71C6C532F00E4F569 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -298,14 +310,6 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
-		BC5F94351C719E2700E498BF /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-				BC5F94311C718F1B00E498BF /* RadialGradientView.swift */,
-			);
-			name = "Custom Views";
-			sourceTree = "<group>";
-		};
 		BC5F94361C71A53F00E498BF /* Introduction */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +351,8 @@
 			children = (
 				BC7730651D26C3A4008FE244 /* DashboardCoordinator.swift */,
 				BC7730671D26C643008FE244 /* Countdown */,
+				BC7730851D2F2D95008FE244 /* History */,
+				BC77308F1D2F3859008FE244 /* Settings */,
 			);
 			name = Dashboard;
 			sourceTree = "<group>";
@@ -359,6 +365,61 @@
 				BC77306D1D26C710008FE244 /* CountdownView.xib */,
 			);
 			name = Countdown;
+			sourceTree = "<group>";
+		};
+		BC7730851D2F2D95008FE244 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				BC7730871D2F2DB8008FE244 /* HistoryView.swift */,
+				BC7730891D2F2DC1008FE244 /* HistoryViewController.swift */,
+				BC77308D1D2F2DFF008FE244 /* HistoryView.xib */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
+		BC77308F1D2F3859008FE244 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BC7730921D2F3E61008FE244 /* SettingsView.swift */,
+				BC7730941D2F3E69008FE244 /* SettingsViewController.swift */,
+				BC7730901D2F3870008FE244 /* SettingsView.xib */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		BC77309C1D2F45E6008FE244 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BC77309D1D2F45EB008FE244 /* Views */,
+				BC77309E1D2F45F0008FE244 /* View Controllers */,
+				BC77309F1D2F4641008FE244 /* Other */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		BC77309D1D2F45EB008FE244 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC5F94311C718F1B00E498BF /* RadialGradientView.swift */,
+				BC5F942D1C7189F300E498BF /* BaseView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		BC77309E1D2F45F0008FE244 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BCF9F9601C7167CC008B9698 /* BaseViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BC77309F1D2F4641008FE244 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				BC8696E21D1FA5D20025D022 /* Either.swift */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 		BC7855D11C6C532F00E4F569 = {
@@ -388,15 +449,12 @@
 			children = (
 				BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */,
 				BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */,
-				BC5F942D1C7189F300E498BF /* BaseView.swift */,
-				BCF9F9601C7167CC008B9698 /* BaseViewController.swift */,
 				BC11A1B11C73DE8D00F21D74 /* Constants.swift */,
 				BCA58C141C82B2820080CDD6 /* CoreDataConfiguration.swift */,
-				BC8696E21D1FA5D20025D022 /* Either.swift */,
 				BC3E8D221C7AA45A00603814 /* API Clients */,
 				BC5F943A1C71C26400E498BF /* Authentication */,
+				BC77309C1D2F45E6008FE244 /* Common */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
-				BC5F94351C719E2700E498BF /* Custom Views */,
 				BC7730641D26C340008FE244 /* Dashboard */,
 				BC3E8D3C1C7AD69400603814 /* Entities */,
 				BC841B2D1D233561004D21AD /* Error */,
@@ -649,11 +707,13 @@
 			files = (
 				BC11A1AA1C72978400F21D74 /* ChooseTimeView.xib in Resources */,
 				BC77306E1D26C710008FE244 /* CountdownView.xib in Resources */,
+				BC7730911D2F3870008FE244 /* SettingsView.xib in Resources */,
 				BC7855EB1C6C532F00E4F569 /* LaunchScreen.storyboard in Resources */,
 				BC8C4F891C8F2115002A18FD /* ChooseSignificantOtherCell.xib in Resources */,
 				BCF9F9471C70871F008B9698 /* Localizable.strings in Resources */,
 				BC8C4F8D1C8F2115002A18FD /* ChooseSignificantOtherView.xib in Resources */,
 				BCF9F95D1C715041008B9698 /* IntroductionView.xib in Resources */,
+				BC77308E1D2F2DFF008FE244 /* HistoryView.xib in Resources */,
 				BC5F94451C7283B400E498BF /* EnterNameView.xib in Resources */,
 				BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */,
 			);
@@ -764,14 +824,17 @@
 				BC11A1B21C73DE8D00F21D74 /* Constants.swift in Sources */,
 				BC3E8CFB1C7A707A00603814 /* ConfigurationService.swift in Sources */,
 				BC841B2F1D233589004D21AD /* ErrorCoordinator.swift in Sources */,
+				BC7730951D2F3E69008FE244 /* SettingsViewController.swift in Sources */,
 				BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */,
 				BC7730741D2768E7008FE244 /* NSManagedObjectContextExtensions.swift in Sources */,
 				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
 				BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */,
 				BCD0EBB11CDAE267001F2A1F /* Configuration+CoreDataProperties.swift in Sources */,
 				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
+				BC77308A1D2F2DC1008FE244 /* HistoryViewController.swift in Sources */,
 				BC8C4F881C8F2115002A18FD /* ChooseSignificantOtherCell.swift in Sources */,
 				BC5F942E1C7189F300E498BF /* BaseView.swift in Sources */,
+				BC7730881D2F2DB8008FE244 /* HistoryView.swift in Sources */,
 				BC3E8D331C7ABF7E00603814 /* UserApiClientType.swift in Sources */,
 				BCF9F93B1C707FF2008B9698 /* ProvedIt.xcdatamodeld in Sources */,
 				BCF9F9281C7054DE008B9698 /* CoreDataError.swift in Sources */,
@@ -781,6 +844,7 @@
 				BC8C4F8C1C8F2115002A18FD /* ChooseSignificantOtherView.swift in Sources */,
 				BCF9F9611C7167CC008B9698 /* BaseViewController.swift in Sources */,
 				BC7730761D2774CC008FE244 /* ApplicationError.swift in Sources */,
+				BC7730931D2F3E61008FE244 /* SettingsView.swift in Sources */,
 				BC3E8D2E1C7AB97400603814 /* ResultApiClient.swift in Sources */,
 				BC7855DE1C6C532F00E4F569 /* AppDelegate.swift in Sources */,
 				BCF9F9551C711A5B008B9698 /* AppCoordinator.swift in Sources */,

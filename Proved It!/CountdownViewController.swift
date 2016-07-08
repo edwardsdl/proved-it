@@ -23,7 +23,7 @@ final class CountdownViewController: BaseViewController<CountdownView> {
         
         super.init()
         
-        title = "Countdown"
+        title = "Time Remaining"
     }
     
     override func viewDidLoad() {

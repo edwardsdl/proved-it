@@ -9,6 +9,10 @@
 import UIKit
 
 extension UIColor {
+    static func provedItBlueColor() -> UIColor {
+        return UIColor.colorWithHexString("#4A90E2")
+    }
+    
     static func provedItDarkGrayColor() -> UIColor {
         return UIColor.colorWithHexString("#292929")
     }
