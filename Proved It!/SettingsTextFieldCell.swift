@@ -10,10 +10,14 @@ import UIKit
 
 final class SettingsTextFieldCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var textField: UILabel!
+    @IBOutlet var detailTextField: UITextField!
+    
+    override func awakeFromNib() {
+        backgroundColor = UIColor.clearColor()
+    }
     
     func configure(with title: String, detail: String) {
         titleLabel.text = title.uppercaseString
-        textField.text = detail
+        detailTextField.text = detail
     }
 }

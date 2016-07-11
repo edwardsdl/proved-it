@@ -12,6 +12,10 @@ final class SettingsCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
     
+    override func awakeFromNib() {
+        backgroundColor = UIColor.clearColor()
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

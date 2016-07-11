@@ -14,14 +14,21 @@ final class SettingsDelegate: NSObject, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        
+        switch cell {
+        case let cell as SettingsTextFieldCell where indexPath.row == 0:
+            cell.configure(with: "Name", detail: "Dallas Edwards")
+        case let cell as SettingsCell where indexPath.row == 1:
+            cell.configure(with: "Phone Number", detail: "+18049285174")
+        case let cell as SettingsCell where indexPath.row == 2:
+            cell.configure(with: "Time", detail: "16:53")
+        case let cell as SettingsCell where indexPath.row == 3:
+            cell.configure(with: "Significant Other", detail: "Cierra Edwards")
+        default:
+            break
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        guard indexPath.row < contacts.count else {
-//            return
-//        }
-//        
-//        selectionHandler(contacts[indexPath.row])
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }

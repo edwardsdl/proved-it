@@ -35,6 +35,7 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" red="0.96078431372549022" green="0.65098039215686276" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="NUk-F7-fQz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0Ye-5R-T2s"/>
                 <constraint firstItem="NUk-F7-fQz" firstAttribute="top" secondItem="g6k-hU-Xbh" secondAttribute="bottom" constant="16" id="9Dy-gg-5Yz"/>
