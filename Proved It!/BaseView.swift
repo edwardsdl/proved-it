@@ -39,7 +39,6 @@ class BaseView: UIView {
     private func commonInit() {
         addSubview(radialGradientView)
         sendSubviewToBack(radialGradientView)
-
     }
 
     override func updateConstraints() {
