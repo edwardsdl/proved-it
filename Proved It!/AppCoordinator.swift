@@ -112,7 +112,9 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
 }
 
 extension AppCoordinator: DashboardCoordinatorDelegate {
-    
+    func dashboardCoordinatorDidTapSignOut(dashboardCoordinator: DashboardCoordinator) {
+        
+    }
 }
 
 extension AppCoordinator: ErrorCoordinatorDelegate {

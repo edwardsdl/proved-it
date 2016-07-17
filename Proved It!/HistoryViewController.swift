@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol HistoryViewControllerDelegate: class {
+    
+}
+
 final class HistoryViewController: BaseViewController<HistoryView> {
+    weak var delegate: HistoryViewControllerDelegate?
+    
     private let user: User
     
     init(with user: User) {
@@ -18,11 +24,4 @@ final class HistoryViewController: BaseViewController<HistoryView> {
         
         title = "History"
     }
-    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        customView.delegate = self
-//        customView.configure(with: user)
-//    }
 }

@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 protocol DashboardCoordinatorDelegate: class {
-
+    func dashboardCoordinatorDidTapSignOut(dashboardCoordinator: DashboardCoordinator)
 }
 
 final class DashboardCoordinator: NSObject, CoordinatorType {
@@ -24,13 +24,21 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
     private var childCoordinators: [CoordinatorType]
     
     init(with navigationController: UINavigationController, user: User) {
+        let countdownViewController = CountdownViewController(with: user)
+        let historyViewController = HistoryViewController(with: user)
+        let settingsViewController = SettingsViewController(with: user)
+        
         self.navigationController = navigationController
         self.user = user
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        self.viewControllers = [CountdownViewController(with: user), HistoryViewController(with: user), SettingsViewController(with: user)]
+        self.viewControllers = [countdownViewController, historyViewController, settingsViewController]
         self.childCoordinators = []
         
         super.init()
+        
+        countdownViewController.delegate = self
+        historyViewController.delegate = self
+        settingsViewController.delegate = self
     }
     
     func start() {
@@ -56,6 +64,40 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
         errorCoordinator.start(with: error)
         
         childCoordinators.append(errorCoordinator)
+    }
+}
+
+extension DashboardCoordinator: CountdownViewControllerDelegate {
+    func countdownViewController(countdownViewController: CountdownViewController, didReceive result: Result) {
+        
+    }
+}
+
+extension DashboardCoordinator: HistoryViewControllerDelegate {
+    
+}
+
+extension DashboardCoordinator: SettingsViewControllerDelegate {    
+    func settingsViewControllerDidSelectTime(settingsViewController: SettingsViewController) {
+        let chooseTimeViewController = ChooseTimeViewController(with: user)
+        chooseTimeViewController.delegate = self
+        
+        navigationController.pushViewController(chooseTimeViewController, animated: true)
+    }
+    
+    func settingsViewControllerDidSelectSignificantOther(settingsViewController: SettingsViewController) {
+        let chooseSignificantOtherViewController = ChooseSignificantOtherViewController(with: user)
+        chooseSignificantOtherViewController.delegate = self
+        
+        navigationController.pushViewController(chooseSignificantOtherViewController, animated: true)
+    }
+    
+    func settingsViewControllerDidTapSignOut(settingsViewController: SettingsViewController) {
+        delegate?.dashboardCoordinatorDidTapSignOut(self)
+    }
+    
+    func settingsViewController(settingsViewController: SettingsViewController, didEncounter error: ErrorType) {
+        startErrorCoordinator(with: error)
     }
 }
 
@@ -126,5 +168,21 @@ extension DashboardCoordinator: UIPageViewControllerDataSource {
         }
         
         return currentIndex
+    }
+}
+
+extension DashboardCoordinator: ChooseTimeViewControllerDelegate {
+    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWithUser user: User) {
+        
+    }
+    
+    func chooseTimeNameViewController(chooseTimeViewController: ChooseTimeViewController, didEncounter error: ErrorType) {
+        startErrorCoordinator(with: error)
+    }
+}
+
+extension DashboardCoordinator: ChooseSignificantOtherViewControllerDelegate {
+    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
+        
     }
 }
