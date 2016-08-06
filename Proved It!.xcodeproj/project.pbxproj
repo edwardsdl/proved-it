@@ -332,14 +332,6 @@
 			name = Fabric;
 			sourceTree = "<group>";
 		};
-		BC5F943A1C71C26400E498BF /* Authentication */ = {
-			isa = PBXGroup;
-			children = (
-				BC5F943B1C71C38500E498BF /* AuthenticationCoordinator.swift */,
-			);
-			name = Authentication;
-			sourceTree = "<group>";
-		};
 		BC5F943F1C727FFB00E498BF /* Enter Name */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,7 +440,6 @@
 				BC11A1B11C73DE8D00F21D74 /* Constants.swift */,
 				BCA58C141C82B2820080CDD6 /* CoreDataConfiguration.swift */,
 				BC3E8D221C7AA45A00603814 /* API Clients */,
-				BC5F943A1C71C26400E498BF /* Authentication */,
 				BC8C4F801C8F20DF002A18FD /* Choose Significant Other */,
 				BC11A1A81C72973C00F21D74 /* Choose Time */,
 				BC77309C1D2F45E6008FE244 /* Common */,
@@ -533,6 +524,7 @@
 		BCBEE0211D56A36100F8A513 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				BC5F943B1C71C38500E498BF /* AuthenticationCoordinator.swift */,
 				BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */,
 				BC7730651D26C3A4008FE244 /* DashboardCoordinator.swift */,
 				BC841B2E1D233589004D21AD /* ErrorCoordinator.swift */,
