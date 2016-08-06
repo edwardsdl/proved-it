@@ -72,12 +72,38 @@ extension OnboardingCoordinator: ChooseTimeViewControllerDelegate {
 }
 
 extension OnboardingCoordinator: ChooseSignificantOtherViewControllerDelegate {
-    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
-        if let originalViewController = originalViewController {
-            navigationController.popToViewController(originalViewController, animated: false)
-        }
+//    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
+//        if let originalViewController = originalViewController {
+//            navigationController.popToViewController(originalViewController, animated: false)
+//        }
+//        
+//        delegate?.onboardingCoordinator(self, didFinishWith: user)
+//    }
+//    
+//    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: ErrorType) {
+//        startErrorCoordinator(with: error)
+//    }
+    
+    func chooseSignificantOtherViewControllerDidSelectSignificantOther(chooseSignificantOtherViewController: ChooseSignificantOtherViewController) {
+        // Return
+    }
+    
+    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didSelectSignificantOtherWith name: String, phoneNumbers: [String]) {
+        let alertController = UIAlertController(title: "Choose a phone number for \(name)", message: nil, preferredStyle: .ActionSheet)
         
-        delegate?.onboardingCoordinator(self, didFinishWith: user)
+        var alertActions = phoneNumbers.map({ UIAlertAction(title: "\($0)", style: .Default, handler: handleAlertAction) })
+        alertActions.append(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertActions.forEach({ alertController.addAction($0) })
+        
+        chooseSignificantOtherViewController.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: ErrorType) {
+        startErrorCoordinator(with: error)
+    }
+    
+    private func handleAlertAction(alertAction: UIAlertAction) {
+        
     }
 }
 

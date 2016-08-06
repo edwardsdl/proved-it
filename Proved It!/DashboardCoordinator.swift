@@ -182,7 +182,25 @@ extension DashboardCoordinator: ChooseTimeViewControllerDelegate {
 }
 
 extension DashboardCoordinator: ChooseSignificantOtherViewControllerDelegate {
-    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
+    func chooseSignificantOtherViewControllerDidSelectSignificantOther(chooseSignificantOtherViewController: ChooseSignificantOtherViewController) {
+        // Return
+    }
+    
+    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didSelectSignificantOtherWith name: String, phoneNumbers: [String]) {
+        let alertController = UIAlertController(title: "Choose a phone number for \(name)", message: nil, preferredStyle: .ActionSheet)
         
+        var alertActions = phoneNumbers.map({ UIAlertAction(title: "\($0)", style: .Default, handler: handleAlertAction) })
+        alertActions.append(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertActions.forEach({ alertController.addAction($0) })
+        
+        chooseSignificantOtherViewController.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: ErrorType) {
+        startErrorCoordinator(with: error)
+    }
+    
+    private func handleAlertAction(alertAction: UIAlertAction) {
+        print(alertAction)
     }
 }
