@@ -8,9 +8,12 @@
 
 enum ApplicationError: ErrorType {
     case FailedToUnwrapValue
+    case Other(message: String)
     
     var message: String {
         switch self {
+        case .Other(let message):
+            return message
         default:
             return "An unrecoverable error occurred"
         }
