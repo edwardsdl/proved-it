@@ -350,17 +350,6 @@
 			name = "Enter Name";
 			sourceTree = "<group>";
 		};
-		BC7730641D26C340008FE244 /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				BC7730651D26C3A4008FE244 /* DashboardCoordinator.swift */,
-				BC7730671D26C643008FE244 /* Countdown */,
-				BC7730851D2F2D95008FE244 /* History */,
-				BC77308F1D2F3859008FE244 /* Settings */,
-			);
-			name = Dashboard;
-			sourceTree = "<group>";
-		};
 		BC7730671D26C643008FE244 /* Countdown */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,24 +444,29 @@
 		BC7855DC1C6C532F00E4F569 /* Proved It! */ = {
 			isa = PBXGroup;
 			children = (
-				BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */,
 				BC7855DD1C6C532F00E4F569 /* AppDelegate.swift */,
 				BC11A1B11C73DE8D00F21D74 /* Constants.swift */,
 				BCA58C141C82B2820080CDD6 /* CoreDataConfiguration.swift */,
 				BC3E8D221C7AA45A00603814 /* API Clients */,
 				BC5F943A1C71C26400E498BF /* Authentication */,
+				BC8C4F801C8F20DF002A18FD /* Choose Significant Other */,
+				BC11A1A81C72973C00F21D74 /* Choose Time */,
 				BC77309C1D2F45E6008FE244 /* Common */,
 				BCF9F9511C7119B1008B9698 /* Configuration Files */,
-				BC7730641D26C340008FE244 /* Dashboard */,
+				BCBEE0211D56A36100F8A513 /* Coordinators */,
+				BC7730671D26C643008FE244 /* Countdown */,
+				BC5F943F1C727FFB00E498BF /* Enter Name */,
 				BC3E8D3C1C7AD69400603814 /* Entities */,
 				BC841B2D1D233561004D21AD /* Error */,
 				BCF9F9621C716CB9008B9698 /* Extensions */,
 				BC5F94371C71AC7F00E498BF /* Fabric */,
+				BC7730851D2F2D95008FE244 /* History */,
+				BC5F94361C71A53F00E498BF /* Introduction */,
 				BCF9F9531C7119F3008B9698 /* Launch Screen */,
 				BCF9F93C1C7083C5008B9698 /* Localization */,
-				BCF9F9571C714FA4008B9698 /* Onboarding */,
 				BCF9F9521C7119DB008B9698 /* Resources */,
 				BC3E8CCF1C78D78E00603814 /* Services */,
+				BC77308F1D2F3859008FE244 /* Settings */,
 			);
 			path = "Proved It!";
 			sourceTree = "<group>";
@@ -500,7 +494,6 @@
 			children = (
 				BC7730751D2774CC008FE244 /* ApplicationError.swift */,
 				BCF9F9271C7054DE008B9698 /* CoreDataError.swift */,
-				BC841B2E1D233589004D21AD /* ErrorCoordinator.swift */,
 				BC841B301D2337F7004D21AD /* ValidationError.swift */,
 			);
 			name = Error;
@@ -537,6 +530,17 @@
 			name = Protocols;
 			sourceTree = "<group>";
 		};
+		BCBEE0211D56A36100F8A513 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				BCF9F9541C711A5B008B9698 /* AppCoordinator.swift */,
+				BC7730651D26C3A4008FE244 /* DashboardCoordinator.swift */,
+				BC841B2E1D233589004D21AD /* ErrorCoordinator.swift */,
+				BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */,
+			);
+			name = Coordinators;
+			sourceTree = "<group>";
+		};
 		BCF9F93C1C7083C5008B9698 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,18 +572,6 @@
 				BC7855E91C6C532F00E4F569 /* LaunchScreen.storyboard */,
 			);
 			name = "Launch Screen";
-			sourceTree = "<group>";
-		};
-		BCF9F9571C714FA4008B9698 /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */,
-				BC8C4F801C8F20DF002A18FD /* Choose Significant Other */,
-				BC11A1A81C72973C00F21D74 /* Choose Time */,
-				BC5F943F1C727FFB00E498BF /* Enter Name */,
-				BC5F94361C71A53F00E498BF /* Introduction */,
-			);
-			name = Onboarding;
 			sourceTree = "<group>";
 		};
 		BCF9F9621C716CB9008B9698 /* Extensions */ = {
