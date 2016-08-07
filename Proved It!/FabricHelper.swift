@@ -12,7 +12,6 @@ import Fabric
 
 final class FabricHelper {
     static func initializeFabric() {
-
         initializeDigits()
         setIncludedKits()
     }
