@@ -16,6 +16,7 @@ final class ErrorCoordinator: CoordinatorType {
     weak var delegate: ErrorCoordinatorDelegate?
     
     private let navigationController: UINavigationController
+    
     private var childCoordinators: [CoordinatorType] = []
     
     init(with navigationController: UINavigationController) {
@@ -34,9 +35,7 @@ final class ErrorCoordinator: CoordinatorType {
             handle(error)
         }
     }
-}
-
-private extension ErrorCoordinator {
+    
     private func handle(error: ApplicationError) {
         displayAlert(with: error.message)
     }
