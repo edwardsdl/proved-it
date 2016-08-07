@@ -2,11 +2,12 @@ platform :ios, "9.0"
 use_frameworks!
 inhibit_all_warnings!
 
-pod 'Alamofire'
-pod 'AWSCognito'
-pod 'Crashlytics'
-pod 'Digits'
-pod 'Fabric'
-pod 'Reveal-iOS-SDK', :configurations => ['Debug']
-pod 'SwiftyJSON'
-pod 'TwitterCore'
+target 'Proved It!' do
+    pod 'Alamofire'
+    pod 'Crashlytics'
+    pod 'Digits'
+    pod 'Fabric'
+    pod 'Reveal-iOS-SDK', :configurations => ['Debug']
+    pod 'SwiftyJSON'
+    pod 'TwitterCore'
+end
