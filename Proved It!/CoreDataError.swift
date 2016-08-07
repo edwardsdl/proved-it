@@ -9,6 +9,7 @@
 enum CoreDataError: ErrorType {
     case FailedToCreateManagedObjectModel
     case FailedToCreatePersistentStore
+    case FailedToFetchCurrentUser
     case Other(message: String)
     
     var message: String {
@@ -17,6 +18,8 @@ enum CoreDataError: ErrorType {
             return "Failed to create managed object model"
         case .FailedToCreatePersistentStore:
             return "Failed to create persistent store"
+        case .FailedToFetchCurrentUser:
+            return "Failed to fetch current user"
         case .Other(let message):
             return message
         }
