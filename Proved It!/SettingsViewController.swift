@@ -29,14 +29,29 @@ final class SettingsViewController: BaseViewController<SettingsView> {
     }
     
     override func viewDidLoad() {
-        customView.delegate = self
-        customView.configure(with: user)
+        super.viewDidLoad()
+        
+        self.customView.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.customView.configure(with: user)
     }
 }
 
 extension SettingsViewController: SettingsViewDelegate {
     func settingsView(settingsView: SettingsView, didChangeNameTo name: String) {
-        user.managedObjectContext?.save({ [unowned self] either in
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.settingsViewController(self, didEncounter: ApplicationError.FailedToUnwrapValue)
+            
+            return
+        }
+        
+        user.name = name
+        
+        managedObjectContext.save({ [unowned self] either in
             if case .Right(let error) = either {
                 self.delegate?.settingsViewController(self, didEncounter: error)
             }
@@ -52,6 +67,8 @@ extension SettingsViewController: SettingsViewDelegate {
     }
     
     func settingsViewDidTapSignOut(settingsView: SettingsView) {
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: Constants.UserDefaults.HasLoggedInKey)
+        
         delegate?.settingsViewControllerDidTapSignOut(self)
     }
 }

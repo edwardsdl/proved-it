@@ -10,8 +10,7 @@ import Contacts
 import UIKit
 
 protocol ChooseSignificantOtherViewControllerDelegate: class {
-    func chooseSignificantOtherViewControllerDidSelectSignificantOther(chooseSignificantOtherViewController: ChooseSignificantOtherViewController)
-    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didSelectSignificantOtherWith name: String, phoneNumbers: [String])
+    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User)
     func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: ErrorType)
 }
 
@@ -29,8 +28,10 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let contacts = loadContacts()
+        
         customView.delegate = self
-        customView.configure(using: loadContacts())
+        customView.configure(using: contacts)
     }
 
     private func loadContacts() -> [CNContact] {
@@ -60,11 +61,47 @@ extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelega
     func chooseSignificantOtherView(chooseSignificantOtherView: ChooseSignificantOtherView, didChooseContactWith name: String, phoneNumbers: [String]) {
         switch phoneNumbers.count {
         case 1:
-            delegate?.chooseSignificantOtherViewControllerDidSelectSignificantOther(self)
+            save(usingContactWith: name, phoneNumber: phoneNumbers[0])
         case let count where count > 1:
-            delegate?.chooseSignificantOtherViewController(self, didSelectSignificantOtherWith: name, phoneNumbers: Array(phoneNumbers.prefix(5)))
+            promptUserForPhoneNumber(forContactWith: name, phoneNumbers: phoneNumbers)
         default:
             delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.Other(message: "Received unexpected number of phone numbers"))
         }
+    }
+    
+    private func promptUserForPhoneNumber(forContactWith name: String, phoneNumbers: [String]) {
+        let alertController = UIAlertController(title: "Choose a phone number for \(name)", message: nil, preferredStyle: .ActionSheet)
+        
+        var alertActions = phoneNumbers.prefix(5).map({
+            UIAlertAction(title: "\($0)", style: .Default, handler: {
+                [weak self] in self?.save(usingContactWith: name, phoneNumber: $0.title ?? "")
+            })
+        })
+        alertActions.append(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertActions.forEach({ alertController.addAction($0) })
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    private func save(usingContactWith name: String, phoneNumber: String) {
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.FailedToUnwrapValue)
+            
+            return
+        }
+        
+        let significantOther = User(insertIntoManagedObjectContext: managedObjectContext)
+        significantOther.configuration = user.configuration
+        significantOther.name = name
+        significantOther.phoneNumber = phoneNumber
+        
+        managedObjectContext.save({ [unowned self] either in
+            switch either {
+            case .Left:
+                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: self.user)
+            case .Right(let error):
+                self.delegate?.chooseSignificantOtherViewController(self, didEncounter: error)
+            }
+        })
     }
 }

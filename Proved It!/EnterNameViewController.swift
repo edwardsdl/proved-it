@@ -10,8 +10,8 @@ import CoreData
 import UIKit
 
 protocol EnterNameViewControllerDelegate: class {
+    func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWith user: User)
     func enterNameViewController(enterNameViewController: EnterNameViewController, didEncounter error: ErrorType)
-    func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWithUser user: User)
 }
 
 final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFieldDelegate {
@@ -24,6 +24,7 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
     }
 
     override func viewDidLoad() {
+        // TODO: This should use the delegate pattern
         customView.nameTextField.addTarget(self, action: #selector(EnterNameViewController.nameTextFieldEditingChanged(_:)), forControlEvents: .EditingChanged)
         customView.nameTextField.becomeFirstResponder()
         customView.nameTextField.delegate = self
@@ -34,10 +35,16 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        user.managedObjectContext?.save({ [unowned self] either in
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.enterNameViewController(self, didEncounter: ApplicationError.FailedToUnwrapValue)
+            
+            return true
+        }
+        
+        managedObjectContext.save({ [unowned self] either in
             switch either {
             case .Left:
-                self.delegate?.enterNameViewController(self, didFinishWithUser: self.user)
+                self.delegate?.enterNameViewController(self, didFinishWith: self.user)
             case .Right(let error):
                 self.delegate?.enterNameViewController(self, didEncounter: error)
             }

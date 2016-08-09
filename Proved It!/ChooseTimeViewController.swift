@@ -10,7 +10,7 @@ import CoreData
 import UIKit
 
 protocol ChooseTimeViewControllerDelegate: class {
-    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWithUser user: User)
+    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWith user: User)
     func chooseTimeNameViewController(chooseTimeViewController: ChooseTimeViewController, didEncounter error: ErrorType)
 }
 
@@ -21,22 +21,32 @@ final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
 
     init(with user: User) {
         self.user = user
-        self.user.configuration = Configuration(insertIntoManagedObjectContext: user.managedObjectContext!)
+        
+        super.init()
     }
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         customView.delegate = self
     }
 }
 
 extension ChooseTimeViewController: ChooseTimeViewDelegate {
     func chooseTimeView(chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: NSTimeInterval) {
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.chooseTimeNameViewController(self, didEncounter: ApplicationError.FailedToUnwrapValue)
+
+            return
+        }
+        
+        user.configuration = user.configuration ?? Configuration(insertIntoManagedObjectContext: managedObjectContext)
         user.configuration?.time = timeInterval
 
-        user.managedObjectContext?.save({ [unowned self] either in
+        managedObjectContext.save({ [unowned self] either in
             switch either {
             case .Left:
-                self.delegate?.chooseTimeViewController(self, didFinishWithUser: self.user)
+                self.delegate?.chooseTimeViewController(self, didFinishWith: self.user)
             case .Right(let error):
                 self.delegate?.chooseTimeNameViewController(self, didEncounter: error)
             }

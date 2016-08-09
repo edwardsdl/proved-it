@@ -11,6 +11,7 @@ import UIKit
 
 protocol CountdownViewControllerDelegate: class {
     func countdownViewController(countdownViewController: CountdownViewController, didReceive result: Result)
+    func countdownViewController(countdownViewController: CountdownViewController, didEncounter error: ErrorType)
 }
 
 final class CountdownViewController: BaseViewController<CountdownView> {

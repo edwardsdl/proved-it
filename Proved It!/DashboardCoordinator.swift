@@ -71,6 +71,10 @@ extension DashboardCoordinator: CountdownViewControllerDelegate {
     func countdownViewController(countdownViewController: CountdownViewController, didReceive result: Result) {
         
     }
+    
+    func countdownViewController(countdownViewController: CountdownViewController, didEncounter error: ErrorType) {
+        startErrorCoordinator(with: error)
+    }
 }
 
 extension DashboardCoordinator: HistoryViewControllerDelegate {
@@ -172,8 +176,8 @@ extension DashboardCoordinator: UIPageViewControllerDataSource {
 }
 
 extension DashboardCoordinator: ChooseTimeViewControllerDelegate {
-    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWithUser user: User) {
-        
+    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWith user: User) {
+        navigationController.popViewControllerAnimated(true)
     }
     
     func chooseTimeNameViewController(chooseTimeViewController: ChooseTimeViewController, didEncounter error: ErrorType) {
@@ -182,25 +186,11 @@ extension DashboardCoordinator: ChooseTimeViewControllerDelegate {
 }
 
 extension DashboardCoordinator: ChooseSignificantOtherViewControllerDelegate {
-    func chooseSignificantOtherViewControllerDidSelectSignificantOther(chooseSignificantOtherViewController: ChooseSignificantOtherViewController) {
-        // Return
-    }
-    
-    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didSelectSignificantOtherWith name: String, phoneNumbers: [String]) {
-        let alertController = UIAlertController(title: "Choose a phone number for \(name)", message: nil, preferredStyle: .ActionSheet)
-        
-        var alertActions = phoneNumbers.map({ UIAlertAction(title: "\($0)", style: .Default, handler: handleAlertAction) })
-        alertActions.append(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        alertActions.forEach({ alertController.addAction($0) })
-        
-        chooseSignificantOtherViewController.presentViewController(alertController, animated: true, completion: nil)
+    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
+        navigationController.popViewControllerAnimated(true)
     }
     
     func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: ErrorType) {
         startErrorCoordinator(with: error)
-    }
-    
-    private func handleAlertAction(alertAction: UIAlertAction) {
-        print(alertAction)
     }
 }
