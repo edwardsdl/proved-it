@@ -49,8 +49,12 @@ private extension AuthenticationCoordinator {
     }
 
     private func startDigitsAuthentication(with authenticationConfiguration: DGTAuthenticationConfiguration) {
-        let digits = Digits.sharedInstance()
-        digits.authenticateWithViewController(nil, configuration: authenticationConfiguration, completion: digitsAuthenticationCompleted)
+        // Calling authenticateWithViewController too quickly after application:didFinishLaunchingWithOptions: causes
+        // Digits to behave in unexpected ways. Wrapping the call in dispatch_after appears to be an effective workaround.
+        dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), { [unowned self] in
+            let digits = Digits.sharedInstance()
+            digits.authenticateWithViewController(nil, configuration: authenticationConfiguration, completion: self.digitsAuthenticationCompleted)
+        })
     }
 
     private func digitsAuthenticationCompleted(session: DGTSession!, error: NSError!) {
