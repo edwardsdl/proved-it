@@ -6,6 +6,7 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import DigitsKit
 import UIKit
 
 protocol SettingsViewControllerDelegate: class {
@@ -67,6 +68,8 @@ extension SettingsViewController: SettingsViewDelegate {
     }
     
     func settingsViewDidTapSignOut(settingsView: SettingsView) {
+        Digits.sharedInstance().logOut()
+        
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: Constants.UserDefaults.HasLoggedInKey)
         
         delegate?.settingsViewControllerDidTapSignOut(self)
