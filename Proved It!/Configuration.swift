@@ -11,5 +11,6 @@ import CoreData
 
 
 final class Configuration: BaseEntity {
-
+    @NSManaged var time: NSNumber?
+    @NSManaged var users: NSSet?
 }

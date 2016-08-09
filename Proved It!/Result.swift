@@ -10,7 +10,10 @@ import CoreData
 import SwiftyJSON
 
 final class Result: BaseEntity {
-
+    @NSManaged var date: NSDate?
+    @NSManaged var message: String?
+    @NSManaged var losingUser: User?
+    @NSManaged var winningUser: User?
 }
 
 extension Result: JSONConvertible {

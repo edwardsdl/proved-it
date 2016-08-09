@@ -10,7 +10,11 @@ import CoreData
 import SwiftyJSON
 
 final class User: BaseEntity {
-
+    @NSManaged var name: String?
+    @NSManaged var phoneNumber: String?
+    @NSManaged var configuration: Configuration?
+    @NSManaged var losses: NSSet?
+    @NSManaged var wins: NSSet?
 }
 
 extension User: JSONConvertible {

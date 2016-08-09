@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
     <entity name="BaseEntity" representedClassName=".BaseEntity" isAbstract="YES" syncable="YES">
         <attribute name="created" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="modified" attributeType="Date" syncable="YES"/>
     </entity>
     <entity name="Configuration" representedClassName=".Configuration" parentEntity="BaseEntity" syncable="YES">
@@ -23,9 +23,9 @@
         <relationship name="wins" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Result" inverseName="winningUser" inverseEntity="Result" syncable="YES"/>
     </entity>
     <elements>
+        <element name="BaseEntity" positionX="-315" positionY="153" width="128" height="90"/>
         <element name="Configuration" positionX="-173" positionY="18" width="128" height="75"/>
         <element name="Result" positionX="-270" positionY="162" width="128" height="105"/>
         <element name="User" positionX="-459" positionY="54" width="128" height="120"/>
-        <element name="BaseEntity" positionX="-315" positionY="153" width="128" height="90"/>
     </elements>
 </model>

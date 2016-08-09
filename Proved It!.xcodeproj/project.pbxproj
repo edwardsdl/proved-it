@@ -35,7 +35,6 @@
 		BC77306A1D26C6DD008FE244 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730691D26C6DD008FE244 /* CountdownView.swift */; };
 		BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77306B1D26C6FB008FE244 /* CountdownViewController.swift */; };
 		BC77306E1D26C710008FE244 /* CountdownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC77306D1D26C710008FE244 /* CountdownView.xib */; };
-		BC7730711D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC77306F1D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift */; };
 		BC7730721D274BF1008FE244 /* BaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730701D274BF1008FE244 /* BaseEntity.swift */; };
 		BC7730741D2768E7008FE244 /* NSManagedObjectContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730731D2768E7008FE244 /* NSManagedObjectContextExtensions.swift */; };
 		BC7730761D2774CC008FE244 /* ApplicationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7730751D2774CC008FE244 /* ApplicationError.swift */; };
@@ -64,14 +63,11 @@
 		BC8C4F8D1C8F2115002A18FD /* ChooseSignificantOtherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC8C4F861C8F2115002A18FD /* ChooseSignificantOtherView.xib */; };
 		BC8C4F8E1C8F2115002A18FD /* ChooseSignificantOtherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C4F871C8F2115002A18FD /* ChooseSignificantOtherViewController.swift */; };
 		BCA58C151C82B2820080CDD6 /* CoreDataConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA58C141C82B2820080CDD6 /* CoreDataConfiguration.swift */; };
-		BCA58C211C83F5080080CDD6 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA58C1B1C83F5080080CDD6 /* User+CoreDataProperties.swift */; };
 		BCA58C221C83F5080080CDD6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA58C1C1C83F5080080CDD6 /* User.swift */; };
 		BCA58C261C83F5080080CDD6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA58C201C83F5080080CDD6 /* Result.swift */; };
 		BCBEE0241D58FE0300F8A513 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBEE0231D58FE0300F8A513 /* LoadingViewController.swift */; };
 		BCBEE0261D58FE1100F8A513 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBEE0251D58FE1100F8A513 /* LoadingView.swift */; };
 		BCBEE0281D58FE2100F8A513 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCBEE0271D58FE2100F8A513 /* LoadingView.xib */; };
-		BCD0EBB01CDAE267001F2A1F /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD0EBAC1CDAE267001F2A1F /* Result+CoreDataProperties.swift */; };
-		BCD0EBB11CDAE267001F2A1F /* Configuration+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD0EBAD1CDAE267001F2A1F /* Configuration+CoreDataProperties.swift */; };
 		BCD0EBB21CDAE267001F2A1F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD0EBAE1CDAE267001F2A1F /* Configuration.swift */; };
 		BCD0EBB51CDAE948001F2A1F /* NSDateFormatter+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD0EBB41CDAE948001F2A1F /* NSDateFormatter+String.swift */; };
 		BCF9F9281C7054DE008B9698 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9F9271C7054DE008B9698 /* CoreDataError.swift */; };
@@ -137,7 +133,6 @@
 		BC7730691D26C6DD008FE244 /* CountdownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownView.swift; sourceTree = "<group>"; };
 		BC77306B1D26C6FB008FE244 /* CountdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownViewController.swift; sourceTree = "<group>"; };
 		BC77306D1D26C710008FE244 /* CountdownView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountdownView.xib; sourceTree = "<group>"; };
-		BC77306F1D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BC7730701D274BF1008FE244 /* BaseEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseEntity.swift; sourceTree = "<group>"; };
 		BC7730731D2768E7008FE244 /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
 		BC7730751D2774CC008FE244 /* ApplicationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationError.swift; sourceTree = "<group>"; };
@@ -172,14 +167,11 @@
 		BC8C4F861C8F2115002A18FD /* ChooseSignificantOtherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseSignificantOtherView.xib; sourceTree = "<group>"; };
 		BC8C4F871C8F2115002A18FD /* ChooseSignificantOtherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSignificantOtherViewController.swift; sourceTree = "<group>"; };
 		BCA58C141C82B2820080CDD6 /* CoreDataConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataConfiguration.swift; sourceTree = "<group>"; };
-		BCA58C1B1C83F5080080CDD6 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BCA58C1C1C83F5080080CDD6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BCA58C201C83F5080080CDD6 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		BCBEE0231D58FE0300F8A513 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		BCBEE0251D58FE1100F8A513 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BCBEE0271D58FE2100F8A513 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
-		BCD0EBAC1CDAE267001F2A1F /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BCD0EBAD1CDAE267001F2A1F /* Configuration+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configuration+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BCD0EBAE1CDAE267001F2A1F /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		BCD0EBB41CDAE948001F2A1F /* NSDateFormatter+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDateFormatter+String.swift"; sourceTree = "<group>"; };
 		BCF9F9271C7054DE008B9698 /* CoreDataError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
@@ -306,7 +298,6 @@
 				BCD0EBAE1CDAE267001F2A1F /* Configuration.swift */,
 				BCA58C201C83F5080080CDD6 /* Result.swift */,
 				BCA58C1C1C83F5080080CDD6 /* User.swift */,
-				BCA58C271C840FE60080CDD6 /* Generated */,
 				BCA58C281C8410150080CDD6 /* Protocols */,
 				BCF9F9391C707FF2008B9698 /* ProvedIt.xcdatamodeld */,
 			);
@@ -500,17 +491,6 @@
 				BC8C4F861C8F2115002A18FD /* ChooseSignificantOtherView.xib */,
 			);
 			name = "Choose Significant Other";
-			sourceTree = "<group>";
-		};
-		BCA58C271C840FE60080CDD6 /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				BC77306F1D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift */,
-				BCD0EBAD1CDAE267001F2A1F /* Configuration+CoreDataProperties.swift */,
-				BCD0EBAC1CDAE267001F2A1F /* Result+CoreDataProperties.swift */,
-				BCA58C1B1C83F5080080CDD6 /* User+CoreDataProperties.swift */,
-			);
-			name = Generated;
 			sourceTree = "<group>";
 		};
 		BCA58C281C8410150080CDD6 /* Protocols */ = {
@@ -815,7 +795,6 @@
 			files = (
 				BC7730AB1D2F659D008FE244 /* SettingsTextFieldCell.swift in Sources */,
 				BC5F94411C72839800E498BF /* EnterNameViewController.swift in Sources */,
-				BCD0EBB01CDAE267001F2A1F /* Result+CoreDataProperties.swift in Sources */,
 				BCF9F95F1C716372008B9698 /* NSBundle+LoadView.swift in Sources */,
 				BC3E8D4D1C7BB0B100603814 /* NSManagedObject+Init.swift in Sources */,
 				BC841B311D2337F7004D21AD /* ValidationError.swift in Sources */,
@@ -843,7 +822,6 @@
 				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
 				BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */,
 				BCBEE0261D58FE1100F8A513 /* LoadingView.swift in Sources */,
-				BCD0EBB11CDAE267001F2A1F /* Configuration+CoreDataProperties.swift in Sources */,
 				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
 				BC77308A1D2F2DC1008FE244 /* HistoryViewController.swift in Sources */,
 				BC8C4F881C8F2115002A18FD /* ChooseSignificantOtherCell.swift in Sources */,
@@ -864,10 +842,8 @@
 				BCA58C261C83F5080080CDD6 /* Result.swift in Sources */,
 				BC3E8D351C7AC04600603814 /* ConfigurationApiClientType.swift in Sources */,
 				BCF9F9641C71709B008B9698 /* OnboardingCoordinator.swift in Sources */,
-				BC7730711D274BF1008FE244 /* BaseEntity+CoreDataProperties.swift in Sources */,
 				BCF9F95B1C715005008B9698 /* IntroductionView.swift in Sources */,
 				BC3E8CEF1C7A449B00603814 /* UserService.swift in Sources */,
-				BCA58C211C83F5080080CDD6 /* User+CoreDataProperties.swift in Sources */,
 				BC5F94321C718F1B00E498BF /* RadialGradientView.swift in Sources */,
 				BC8C4F8E1C8F2115002A18FD /* ChooseSignificantOtherViewController.swift in Sources */,
 				BCF9F9591C714FFB008B9698 /* IntroductionViewController.swift in Sources */,
