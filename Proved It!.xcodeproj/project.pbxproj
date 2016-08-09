@@ -67,6 +67,9 @@
 		BCA58C211C83F5080080CDD6 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA58C1B1C83F5080080CDD6 /* User+CoreDataProperties.swift */; };
 		BCA58C221C83F5080080CDD6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA58C1C1C83F5080080CDD6 /* User.swift */; };
 		BCA58C261C83F5080080CDD6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA58C201C83F5080080CDD6 /* Result.swift */; };
+		BCBEE0241D58FE0300F8A513 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBEE0231D58FE0300F8A513 /* LoadingViewController.swift */; };
+		BCBEE0261D58FE1100F8A513 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBEE0251D58FE1100F8A513 /* LoadingView.swift */; };
+		BCBEE0281D58FE2100F8A513 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCBEE0271D58FE2100F8A513 /* LoadingView.xib */; };
 		BCD0EBB01CDAE267001F2A1F /* Result+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD0EBAC1CDAE267001F2A1F /* Result+CoreDataProperties.swift */; };
 		BCD0EBB11CDAE267001F2A1F /* Configuration+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD0EBAD1CDAE267001F2A1F /* Configuration+CoreDataProperties.swift */; };
 		BCD0EBB21CDAE267001F2A1F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD0EBAE1CDAE267001F2A1F /* Configuration.swift */; };
@@ -172,6 +175,9 @@
 		BCA58C1B1C83F5080080CDD6 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BCA58C1C1C83F5080080CDD6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BCA58C201C83F5080080CDD6 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		BCBEE0231D58FE0300F8A513 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		BCBEE0251D58FE1100F8A513 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		BCBEE0271D58FE2100F8A513 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
 		BCD0EBAC1CDAE267001F2A1F /* Result+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BCD0EBAD1CDAE267001F2A1F /* Configuration+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Configuration+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BCD0EBAE1CDAE267001F2A1F /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
@@ -447,6 +453,7 @@
 				BC7730851D2F2D95008FE244 /* History */,
 				BC5F94361C71A53F00E498BF /* Introduction */,
 				BCF9F9531C7119F3008B9698 /* Launch Screen */,
+				BCBEE0221D58FDEA00F8A513 /* Loading */,
 				BCF9F93C1C7083C5008B9698 /* Localization */,
 				BCF9F9521C7119DB008B9698 /* Resources */,
 				BC3E8CCF1C78D78E00603814 /* Services */,
@@ -524,6 +531,16 @@
 				BCF9F9631C71709B008B9698 /* OnboardingCoordinator.swift */,
 			);
 			name = Coordinators;
+			sourceTree = "<group>";
+		};
+		BCBEE0221D58FDEA00F8A513 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				BCBEE0251D58FE1100F8A513 /* LoadingView.swift */,
+				BCBEE0231D58FE0300F8A513 /* LoadingViewController.swift */,
+				BCBEE0271D58FE2100F8A513 /* LoadingView.xib */,
+			);
+			name = Loading;
 			sourceTree = "<group>";
 		};
 		BCF9F93C1C7083C5008B9698 /* Localization */ = {
@@ -708,6 +725,7 @@
 				BCF9F95D1C715041008B9698 /* IntroductionView.xib in Resources */,
 				BC7730B11D2F65D5008FE244 /* SettingsTextFieldCell.xib in Resources */,
 				BC77308E1D2F2DFF008FE244 /* HistoryView.xib in Resources */,
+				BCBEE0281D58FE2100F8A513 /* LoadingView.xib in Resources */,
 				BC5F94451C7283B400E498BF /* EnterNameView.xib in Resources */,
 				BC7855E81C6C532F00E4F569 /* Assets.xcassets in Resources */,
 			);
@@ -811,6 +829,7 @@
 				BC3E8D1B1C7A9B0E00603814 /* JSONConvertible.swift in Sources */,
 				BCD0EBB21CDAE267001F2A1F /* Configuration.swift in Sources */,
 				BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */,
+				BCBEE0241D58FE0300F8A513 /* LoadingViewController.swift in Sources */,
 				BC3E8D371C7AC0EE00603814 /* ProofApiClientType.swift in Sources */,
 				BC5F94301C718CC200E498BF /* UIColor+HexString.swift in Sources */,
 				BC11A1AE1C7297D500F21D74 /* ChooseTimeViewController.swift in Sources */,
@@ -823,6 +842,7 @@
 				BC7730741D2768E7008FE244 /* NSManagedObjectContextExtensions.swift in Sources */,
 				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
 				BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */,
+				BCBEE0261D58FE1100F8A513 /* LoadingView.swift in Sources */,
 				BCD0EBB11CDAE267001F2A1F /* Configuration+CoreDataProperties.swift in Sources */,
 				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
 				BC77308A1D2F2DC1008FE244 /* HistoryViewController.swift in Sources */,
