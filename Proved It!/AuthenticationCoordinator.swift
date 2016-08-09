@@ -66,6 +66,8 @@ private extension AuthenticationCoordinator {
                 let user = user ?? User(insertIntoManagedObjectContext: self.managedObjectContext)
                 user.phoneNumber = session.phoneNumber
                 
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.UserDefaults.HasLoggedInKey)
+                
                 self.delegate?.authenticationCoordinator(self, didFinishWith: user)
             case .Right(let error):
                 self.delegate?.authenticationCoordinator(self, didEncounter: error)
