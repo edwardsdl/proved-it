@@ -13,6 +13,7 @@ protocol SettingsViewDelegate: class {
     func settingsViewDidSelectTime(settingsView: SettingsView)
     func settingsViewDidSelectSignificantOther(settingsView: SettingsView)
     func settingsViewDidTapSignOut(settingsView: SettingsView)
+    func settingsView(settingsView: SettingsView, didEncounter error: ErrorType)
 }
 
 final class SettingsView: BaseView {

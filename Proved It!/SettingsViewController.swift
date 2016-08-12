@@ -74,4 +74,8 @@ extension SettingsViewController: SettingsViewDelegate {
         
         delegate?.settingsViewControllerDidTapSignOut(self)
     }
+    
+    func settingsView(settingsView: SettingsView, didEncounter error: ErrorType) {
+        delegate?.settingsViewController(self, didEncounter: error)
+    }
 }
