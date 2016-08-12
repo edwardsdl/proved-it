@@ -17,7 +17,7 @@ final class Result: BaseEntity {
 }
 
 extension Result: JSONConvertible {
-    convenience init(withJSON json: JSON, insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext) {
+    convenience init(with json: JSON, insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext) {
         self.init(insertIntoManagedObjectContext: managedObjectContext)
 
         date = NSDateFormatter.dateFromUtcString(json["date"].string ?? "")

@@ -18,7 +18,7 @@ final class User: BaseEntity {
 }
 
 extension User: JSONConvertible {
-    convenience init(withJSON json: JSON, insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext) {
+    convenience init(with json: JSON, insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext) {
         self.init(insertIntoManagedObjectContext: managedObjectContext)
 
         name = json["name"].string
