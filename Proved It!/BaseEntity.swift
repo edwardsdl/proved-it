@@ -6,7 +6,6 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
 class BaseEntity: NSManagedObject {

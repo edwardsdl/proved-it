@@ -6,9 +6,7 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
-import Foundation
 import CoreData
-
 
 final class Configuration: BaseEntity {
     @NSManaged var time: NSNumber?
