@@ -67,7 +67,7 @@ private extension AuthenticationCoordinator {
         managedObjectContext.fetchUser(with: session.phoneNumber, completionHandler: { [unowned self] either in
             switch either {
             case .Left(let user):
-                let user = user ?? User(insertIntoManagedObjectContext: self.managedObjectContext)
+                let user = user ?? User(insertedInto: self.managedObjectContext)
                 user.phoneNumber = session.phoneNumber
                 
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.UserDefaults.HasLoggedInKey)

@@ -90,7 +90,7 @@ extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelega
             return
         }
         
-        user.significantOther = User(insertIntoManagedObjectContext: managedObjectContext)
+        user.significantOther = User(insertedInto: managedObjectContext)
         user.significantOther?.name = name
         user.significantOther?.phoneNumber = phoneNumber
         

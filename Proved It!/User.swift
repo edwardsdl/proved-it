@@ -33,10 +33,10 @@ final class User: BaseEntity {
 
 extension User: JSONConvertible {
     convenience init(with json: JSON, insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext) {
-        self.init(insertIntoManagedObjectContext: managedObjectContext)
+        self.init(insertedInto: managedObjectContext)
 
         name = json["name"].string ?? ""
-        configuration = Configuration(insertIntoManagedObjectContext: managedObjectContext)
+        configuration = Configuration(insertedInto: managedObjectContext)
     }
 
     func toDictionary() -> [String: AnyObject] {
