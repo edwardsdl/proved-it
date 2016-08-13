@@ -39,8 +39,7 @@ extension ChooseTimeViewController: ChooseTimeViewDelegate {
 
             return
         }
-        
-        user.configuration = user.configuration ?? Configuration(insertIntoManagedObjectContext: managedObjectContext)
+
         user.configuration?.time = timeInterval
 
         managedObjectContext.save({ [unowned self] either in

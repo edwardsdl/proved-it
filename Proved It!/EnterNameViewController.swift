@@ -31,7 +31,7 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
     }
 
     func nameTextFieldEditingChanged(sender: UITextField) {
-        user.name = sender.text
+        user.name = sender.text ?? ""
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {

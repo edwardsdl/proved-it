@@ -90,13 +90,19 @@ extension SettingsView: UITableViewDataSource {
 
 extension SettingsView: UITableViewDelegate {
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        guard let user = user else {
+            delegate?.settingsView(self, didEncounter: ApplicationError.FailedToUnwrapValue)
+            
+            return
+        }
+        
         switch cell {
         case let cell as SettingsTextFieldCell where indexPath.row == 0:
-            cell.configure(with: "Name", detail: user?.name ?? "")
+            cell.configure(with: "Name", detail: user.name ?? "")
         case let cell as SettingsCell where indexPath.row == 1:
-            cell.configure(with: "Time", detail: user?.configuration?.time?.stringValue ?? "")
+            cell.configure(with: "Time", detail: user.configuration?.formattedTime ?? "")
         case let cell as SettingsCell where indexPath.row == 2:
-            cell.configure(with: "Significant Other", detail: user?.configuration?.users?.allObjects.last?.name ?? "")
+            cell.configure(with: "Significant Other", detail: user.significantOther?.name ?? "")
         default:
             break
         }

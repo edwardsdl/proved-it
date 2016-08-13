@@ -49,7 +49,7 @@ final class CountdownView: BaseView {
     }
     
     @objc private func updateCountdown() {
-        guard let timeInterval = user?.configuration?.time?.doubleValue else {
+        guard let timeInterval = user?.configuration?.time else {
             return
         }
         

@@ -90,10 +90,9 @@ extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelega
             return
         }
         
-        let significantOther = User(insertIntoManagedObjectContext: managedObjectContext)
-        significantOther.configuration = user.configuration
-        significantOther.name = name
-        significantOther.phoneNumber = phoneNumber
+        user.significantOther = User(insertIntoManagedObjectContext: managedObjectContext)
+        user.significantOther?.name = name
+        user.significantOther?.phoneNumber = phoneNumber
         
         managedObjectContext.save({ [unowned self] either in
             switch either {

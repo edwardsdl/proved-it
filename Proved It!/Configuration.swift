@@ -9,6 +9,15 @@
 import CoreData
 
 final class Configuration: BaseEntity {
-    @NSManaged var time: NSNumber?
-    @NSManaged var users: NSSet?
+    @NSManaged var time: Double
+    @NSManaged var users: Set<User>
+    
+    var formattedTime: String {
+        let calendar = NSCalendar.currentCalendar()
+        let startOfDay = calendar.startOfDayForDate(NSDate())
+        let date = startOfDay.dateByAddingTimeInterval(time)
+        let formattedTime = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle)
+        
+        return formattedTime
+    }
 }
