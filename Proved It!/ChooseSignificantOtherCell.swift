@@ -22,13 +22,6 @@ final class ChooseSignificantOtherCell: UITableViewCell {
         backgroundColor = UIColor.clearColor()
     }
     
-    override func prepareForReuse() {
-        name = nil
-        phoneNumbers = nil
-        titleLabel.text = nil
-        detailLabel.text = nil
-    }
-    
     func configure(using contact: CNContact) {
         configureName(using: contact)
         configurePhoneNumbers(using: contact)
