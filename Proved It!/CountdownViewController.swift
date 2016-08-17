@@ -33,6 +33,18 @@ final class CountdownViewController: BaseViewController<CountdownView> {
         customView.delegate = self
         customView.configure(with: user)
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UIApplication.sharedApplication().idleTimerDisabled = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIApplication.sharedApplication().idleTimerDisabled = false
+    }
 }
 
 extension CountdownViewController: CountdownViewDelegate {
