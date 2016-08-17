@@ -32,13 +32,13 @@ final class SettingsViewController: BaseViewController<SettingsView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.customView.delegate = self
+        customView.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.customView.configure(with: user)
+        customView.configure(with: user)
     }
 }
 
