@@ -1,5 +1,5 @@
 //
-//  Array+Remove.swift
+//  Array.swift
 //  Proved It!
 //
 //  Created by Dallas Edwards on 6/28/16.
@@ -7,11 +7,17 @@
 //
 
 extension Array {
-    mutating func remove(@noescape predicate: (Generator.Element) throws -> Bool) rethrows {
+    mutating func remove(@noescape predicate: (Element) throws -> Bool) rethrows {
         guard let index = try indexOf(predicate) else {
             return
         }
         
         removeAtIndex(index)
+    }
+}
+
+extension Array where Element: Hashable {
+    @warn_unused_result func distinct() -> [Element] {
+        return Array(Set(self))
     }
 }
