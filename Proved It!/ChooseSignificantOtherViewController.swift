@@ -73,8 +73,8 @@ extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelega
         let alertController = UIAlertController(title: "Choose a phone number for \(name)", message: nil, preferredStyle: .ActionSheet)
         
         var alertActions = phoneNumbers.prefix(5).map({
-            UIAlertAction(title: "\($0)", style: .Default, handler: {
-                [weak self] in self?.save(usingContactWith: name, phoneNumber: $0.title ?? "")
+            UIAlertAction(title: "\($0)", style: .Default, handler: { [weak self] in
+                self?.save(usingContactWith: name, phoneNumber: $0.title ?? "")
             })
         })
         alertActions.append(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
