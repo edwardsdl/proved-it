@@ -13,7 +13,7 @@ final class SettingsCell: UITableViewCell {
     @IBOutlet var detailLabel: UILabel!
     
     override func awakeFromNib() {
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
     }
     
     override func layoutSubviews() {
@@ -23,11 +23,11 @@ final class SettingsCell: UITableViewCell {
     }
     
     func configure(with title: String, detail: String) {
-        titleLabel.text = title.uppercaseString
+        titleLabel.text = title.uppercased()
         detailLabel.text = detail
     }
     
-    private func configureDisclosureIndicator() {
+    fileprivate func configureDisclosureIndicator() {
         guard let disclosureIndicator = subviews.flatMap({ $0 as? UIButton }).last else {
             return
         }

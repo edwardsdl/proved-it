@@ -23,7 +23,7 @@ final class CoreDataStoreTests: XCTestCase {
         XCTAssertEqual(userEntity.objectID, fetchedUserEntity?.objectID)
     }
 
-    private func insertUserModel(userModel: UserModel, withCoreDataStore coreDataStore: CoreDataStoreType) -> UserEntity {
+    fileprivate func insertUserModel(_ userModel: UserModel, withCoreDataStore coreDataStore: CoreDataStoreType) -> UserEntity {
         let userEntity = userModel.toManagedObject(insertIntoManagedObjectContext: coreDataStore.managedObjectContext)
 
         coreDataStore.managedObjectContext.insertObject(userEntity)
@@ -32,7 +32,7 @@ final class CoreDataStoreTests: XCTestCase {
         return userEntity
     }
 
-    private func fetchUserEntity(userEntity: UserEntity, withCoreDataStore coreDataStore: CoreDataStoreType) -> UserEntity? {
+    fileprivate func fetchUserEntity(_ userEntity: UserEntity, withCoreDataStore coreDataStore: CoreDataStoreType) -> UserEntity? {
         let predicate = NSPredicate(format: "SELF == %@", userEntity)
 
         let fetchRequest = NSFetchRequest(entityName: String(UserEntity))

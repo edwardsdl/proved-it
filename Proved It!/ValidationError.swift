@@ -8,21 +8,21 @@
 
 import Foundation
 
-enum ValidationError: ErrorType {
-    case Other(message: String)
-    case Required(field: String)
-    case TooLong(field: String, maximumLength: Int)
-    case TooShort(field: String, minimumLength: Int)
+enum ValidationError: Error {
+    case other(message: String)
+    case required(field: String)
+    case tooLong(field: String, maximumLength: Int)
+    case tooShort(field: String, minimumLength: Int)
     
     var message: String {
         switch self {
-        case .Other(let message):
+        case .other(let message):
             return message
-        case .Required(let field):
+        case .required(let field):
             return "\(field) is required"
-        case .TooShort(let field, let minimumLength):
+        case .tooShort(let field, let minimumLength):
             return "\(field) must be at least \(minimumLength) characters"
-        case .TooLong(let field, let maximumLength):
+        case .tooLong(let field, let maximumLength):
             return "\(field) must be fewer than \(maximumLength) characters"
         }
     }

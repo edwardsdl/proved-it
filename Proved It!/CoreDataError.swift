@@ -6,21 +6,21 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
-enum CoreDataError: ErrorType {
-    case FailedToCreateManagedObjectModel
-    case FailedToCreatePersistentStore
-    case FailedToFetchCurrentUser
-    case Other(message: String)
+enum CoreDataError: Error {
+    case failedToCreateManagedObjectModel
+    case failedToCreatePersistentStore
+    case failedToFetchCurrentUser
+    case other(message: String)
     
     var message: String {
         switch self {
-        case .FailedToCreateManagedObjectModel:
+        case .failedToCreateManagedObjectModel:
             return "Failed to create managed object model"
-        case .FailedToCreatePersistentStore:
+        case .failedToCreatePersistentStore:
             return "Failed to create persistent store"
-        case .FailedToFetchCurrentUser:
+        case .failedToFetchCurrentUser:
             return "Failed to fetch current user"
-        case .Other(let message):
+        case .other(let message):
             return message
         }
     }

@@ -10,17 +10,17 @@ import DigitsKit
 import UIKit
 
 protocol AuthenticationCoordinatorDelegate: class {
-    func authenticationCoordinator(authenticationCoordinator: AuthenticationCoordinator, didFinishWith user: User)
-    func authenticationCoordinator(authenticationCoordinator: AuthenticationCoordinator, didEncounter error: ErrorType)
+    func authenticationCoordinator(_ authenticationCoordinator: AuthenticationCoordinator, didFinishWith user: User)
+    func authenticationCoordinator(_ authenticationCoordinator: AuthenticationCoordinator, didEncounter error: Error)
 }
 
 final class AuthenticationCoordinator: CoordinatorType {
     weak var delegate: AuthenticationCoordinatorDelegate?
 
-    private let navigationController: UINavigationController
-    private let managedObjectContext: NSManagedObjectContext
+    fileprivate let navigationController: UINavigationController
+    fileprivate let managedObjectContext: NSManagedObjectContext
     
-    private var childCoordinators: [CoordinatorType]
+    fileprivate var childCoordinators: [CoordinatorType]
 
     init(with navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) {
         self.navigationController = navigationController
@@ -37,43 +37,45 @@ final class AuthenticationCoordinator: CoordinatorType {
 }
 
 private extension AuthenticationCoordinator {
-    private func createAppearance() -> DGTAppearance {
+    func createAppearance() -> DGTAppearance {
         return DGTAppearance()
     }
 
-    private func createAuthenticationConfiguration(with appearance: DGTAppearance) -> DGTAuthenticationConfiguration {
-        let authenticationConfiguration = DGTAuthenticationConfiguration(accountFields: .DefaultOptionMask)
-        authenticationConfiguration.appearance = appearance
+    func createAuthenticationConfiguration(with appearance: DGTAppearance) -> DGTAuthenticationConfiguration {
+        let authenticationConfiguration = DGTAuthenticationConfiguration(accountFields: .defaultOptionMask)
+        authenticationConfiguration?.appearance = appearance
 
-        return authenticationConfiguration
+        return authenticationConfiguration!
     }
 
-    private func startDigitsAuthentication(with authenticationConfiguration: DGTAuthenticationConfiguration) {
+    func startDigitsAuthentication(with authenticationConfiguration: DGTAuthenticationConfiguration) {
         // Calling authenticateWithViewController too quickly after application:didFinishLaunchingWithOptions: causes
         // Digits to behave in unexpected ways. Wrapping the call in dispatch_after appears to be an effective workaround.
-        dispatch_after(DISPATCH_TIME_NOW, dispatch_get_main_queue(), { [unowned self] in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: { [unowned self] in
             let digits = Digits.sharedInstance()
-            digits.authenticateWithViewController(nil, configuration: authenticationConfiguration, completion: self.digitsAuthenticationCompleted)
+//            digits.authenticate(with: nil, configuration: authenticationConfiguration, completion: self.digitsAuthenticationCompleted)
+            
+            digits.authenticate(completion: self.digitsAuthenticationCompleted)
         })
     }
 
-    private func digitsAuthenticationCompleted(session: DGTSession!, error: NSError!) {
-        guard session != nil else {
-            delegate?.authenticationCoordinator(self, didEncounter: error)
+    func digitsAuthenticationCompleted(session: DGTSession?, error: Error?) {
+        guard let session = session else {
+            delegate?.authenticationCoordinator(self, didEncounter: error!)
             
             return
         }
         
         managedObjectContext.fetchUser(with: session.phoneNumber, completionHandler: { [unowned self] either in
             switch either {
-            case .Left(let user):
+            case .left(let user):
                 let user = user ?? User(insertedInto: self.managedObjectContext)
                 user.phoneNumber = session.phoneNumber
                 
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: Constants.UserDefaults.HasLoggedInKey)
+                UserDefaults.standard.set(true, forKey: Constants.UserDefaults.HasLoggedInKey)
                 
                 self.delegate?.authenticationCoordinator(self, didFinishWith: user)
-            case .Right(let error):
+            case .right(let error):
                 self.delegate?.authenticationCoordinator(self, didEncounter: error)
             }
         })

@@ -9,7 +9,7 @@
 import Alamofire
 
 final class ResultApiClient: ResultApiClientType {
-    func delete(result: Result) {
+    func delete(_ result: Result) {
 
     }
 
@@ -21,18 +21,11 @@ final class ResultApiClient: ResultApiClientType {
 
     }
 
-    func post(result: Result) {
+    func post(_ result: Result) {
 
     }
 
-    func put(result: Result) {
+    func put(_ result: Result) {
 
-    }
-}
-
-private enum ResultRouter: URLRequestConvertible {
-    var URLRequest: NSMutableURLRequest {
-        return NSMutableURLRequest()
     }
 }
-

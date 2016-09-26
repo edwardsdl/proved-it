@@ -13,10 +13,10 @@ final class Configuration: BaseEntity {
     @NSManaged var users: Set<User>
     
     var formattedTime: String {
-        let calendar = NSCalendar.currentCalendar()
-        let startOfDay = calendar.startOfDayForDate(NSDate())
-        let date = startOfDay.dateByAddingTimeInterval(time)
-        let formattedTime = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .ShortStyle)
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: Date())
+        let date = startOfDay.addingTimeInterval(time)
+        let formattedTime = DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .short)
         
         return formattedTime
     }

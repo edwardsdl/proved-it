@@ -9,13 +9,13 @@
 import CoreData
 
 class BaseEntity: NSManagedObject {
-    @NSManaged var created: NSDate
-    @NSManaged var modified: NSDate
+    @NSManaged var created: Date
+    @NSManaged var modified: Date
     @NSManaged var id: Int32
     
     override func awakeFromInsert() {
-        created = NSDate()
-        modified = NSDate()
+        created = Date()
+        modified = Date()
     }
     
     override func willSave() {
@@ -23,15 +23,15 @@ class BaseEntity: NSManagedObject {
             return
         }
         
-        modified = NSDate()
+        modified = Date()
     }
     
-    private func isApproximatelyNow(date: NSDate?) -> Bool {
+    fileprivate func isApproximatelyNow(_ date: Date?) -> Bool {
         guard let date = date else {
             return false
         }
         
-        let timeInterval = date.timeIntervalSinceDate(NSDate())
+        let timeInterval = date.timeIntervalSince(Date())
         
         return timeInterval <= 30
     }

@@ -10,16 +10,16 @@ import CoreData
 import UIKit
 
 protocol OnboardingCoordinatorDelegate: class {
-    func onboardingCoordinator(onboardingCoordinator: OnboardingCoordinator, didFinishWith user: User)
+    func onboardingCoordinator(_ onboardingCoordinator: OnboardingCoordinator, didFinishWith user: User)
 }
 
 final class OnboardingCoordinator: CoordinatorType {
     weak var delegate: OnboardingCoordinatorDelegate?
     
-    private let navigationController: UINavigationController
-    private let managedObjectContext: NSManagedObjectContext
+    fileprivate let navigationController: UINavigationController
+    fileprivate let managedObjectContext: NSManagedObjectContext
     
-    private var childCoordinators: [CoordinatorType]
+    fileprivate var childCoordinators: [CoordinatorType]
 
     init(with navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) {
         self.navigationController = navigationController
@@ -31,11 +31,11 @@ final class OnboardingCoordinator: CoordinatorType {
         let introductionViewController = IntroductionViewController()
         introductionViewController.delegate = self
         
-        navigationController.navigationBarHidden = true
+        navigationController.isNavigationBarHidden = true
         navigationController.viewControllers = [introductionViewController]
     }
     
-    private func startAuthenticationCoordinator() {
+    fileprivate func startAuthenticationCoordinator() {
         let authenticationCoordinator = AuthenticationCoordinator(with: navigationController, managedObjectContext: managedObjectContext)
         authenticationCoordinator.delegate = self
         authenticationCoordinator.start()
@@ -43,7 +43,7 @@ final class OnboardingCoordinator: CoordinatorType {
         childCoordinators.append(authenticationCoordinator)
     }
     
-    private func startErrorCoordinator(with error: ErrorType) {
+    fileprivate func startErrorCoordinator(with error: Error) {
         let errorCoordinator = ErrorCoordinator(with: navigationController)
         errorCoordinator.delegate = self
         errorCoordinator.start(with: error)
@@ -51,67 +51,70 @@ final class OnboardingCoordinator: CoordinatorType {
 }
 
 extension OnboardingCoordinator: IntroductionViewControllerDelegate {
-    func introductionViewControllerDidTapProveItButton(introductionViewController: IntroductionViewController) {
+    func introductionViewControllerDidTapProveItButton(_ introductionViewController: IntroductionViewController) {
         startAuthenticationCoordinator()
     }
 }
 
 extension OnboardingCoordinator: AuthenticationCoordinatorDelegate {
-    func authenticationCoordinator(authenticationCoordinator: AuthenticationCoordinator, didFinishWith user: User) {
-        let enterNameViewController = EnterNameViewController(with: user)
+    func authenticationCoordinator(_ authenticationCoordinator: AuthenticationCoordinator, didFinishWith user: User) {
+        let enterNameViewController = EnterNameViewController()
         enterNameViewController.delegate = self
+        enterNameViewController.configure(with: user)
         
         navigationController.pushViewController(enterNameViewController, animated: true)
         
-        childCoordinators.remove({ $0 === authenticationCoordinator })
+        childCoordinators.remove(predicate: { $0 === authenticationCoordinator })
     }
     
-    func authenticationCoordinator(authenticationCoordinator: AuthenticationCoordinator, didEncounter error: ErrorType) {
+    func authenticationCoordinator(_ authenticationCoordinator: AuthenticationCoordinator, didEncounter error: Error) {
         startErrorCoordinator(with: error)
     }
 }
 
 extension OnboardingCoordinator: EnterNameViewControllerDelegate {
-    func enterNameViewController(enterNameViewController: EnterNameViewController, didFinishWith user: User) {
-        let chooseTimeViewController = ChooseTimeViewController(with: user)
+    func enterNameViewController(_ enterNameViewController: EnterNameViewController, didFinishWith user: User) {
+        let chooseTimeViewController = ChooseTimeViewController()
         chooseTimeViewController.delegate = self
+        chooseTimeViewController.configure(with: user)
         
         navigationController.pushViewController(chooseTimeViewController, animated: true)
     }
     
-    func enterNameViewController(enterNameViewController: EnterNameViewController, didEncounter error: ErrorType) {
+    func enterNameViewController(_ enterNameViewController: EnterNameViewController, didEncounter error: Error) {
         startErrorCoordinator(with: error)
     }
 }
 
 extension OnboardingCoordinator: ChooseTimeViewControllerDelegate {
-    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWith user: User) {
-        let chooseSignificantOtherViewController = ChooseSignificantOtherViewController(with: user)
+    func chooseTimeViewController(_ chooseTimeViewController: ChooseTimeViewController, didFinishWith user: User) {
+        let chooseSignificantOtherViewController = ChooseSignificantOtherViewController()
         chooseSignificantOtherViewController.delegate = self
+        chooseSignificantOtherViewController.configure(with: user)
         
         navigationController.pushViewController(chooseSignificantOtherViewController, animated: true)
     }
     
-    func chooseTimeNameViewController(chooseTimeViewController: ChooseTimeViewController, didEncounter error: ErrorType) {
+    func chooseTimeViewController(_ chooseTimeViewController: ChooseTimeViewController, didEncounter error: Error) {
         startErrorCoordinator(with: error)
     }
 }
 
 extension OnboardingCoordinator: ChooseSignificantOtherViewControllerDelegate {
-    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
-        navigationController.navigationBarHidden = false
+    func chooseSignificantOtherViewController(_ chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
+        navigationController.isNavigationBarHidden = false
         navigationController.viewControllers = []
         
         delegate?.onboardingCoordinator(self, didFinishWith: user)
     }
     
-    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: ErrorType) {
+    func chooseSignificantOtherViewController(_ chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: Error) {
         startErrorCoordinator(with: error)
     }
 }
 
 extension OnboardingCoordinator: ErrorCoordinatorDelegate {
-    func errorCoordinatorDidFinish(errorCoordinator: ErrorCoordinator) {        
-        childCoordinators.remove({ $0 === errorCoordinator })
+    func errorCoordinatorDidFinish(_ errorCoordinator: ErrorCoordinator) {        
+        childCoordinators.remove(predicate: { $0 === errorCoordinator })
     }
 }

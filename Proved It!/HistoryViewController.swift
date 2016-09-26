@@ -15,13 +15,9 @@ protocol HistoryViewControllerDelegate: class {
 final class HistoryViewController: BaseViewController<HistoryView> {
     weak var delegate: HistoryViewControllerDelegate?
     
-    private let user: User
+    fileprivate var user: User?
     
-    init(with user: User) {
+    func configure(with user: User) {
         self.user = user
-        
-        super.init()
-        
-        title = "History"
     }
 }

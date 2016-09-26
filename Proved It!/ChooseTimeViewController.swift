@@ -10,32 +10,33 @@ import CoreData
 import UIKit
 
 protocol ChooseTimeViewControllerDelegate: class {
-    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWith user: User)
-    func chooseTimeNameViewController(chooseTimeViewController: ChooseTimeViewController, didEncounter error: ErrorType)
+    func chooseTimeViewController(_ chooseTimeViewController: ChooseTimeViewController, didFinishWith user: User)
+    func chooseTimeViewController(_ chooseTimeViewController: ChooseTimeViewController, didEncounter error: Error)
 }
 
 final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
     weak var delegate: ChooseTimeViewControllerDelegate?
     
-    private let user: User
+    fileprivate var user: User?
 
-    init(with user: User) {
-        self.user = user
-        
-        super.init()
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func configure(with user: User) {
         customView.delegate = self
+//        customView.configure(with: user)
+        
+        self.user = user
     }
 }
 
 extension ChooseTimeViewController: ChooseTimeViewDelegate {
-    func chooseTimeView(chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: NSTimeInterval) {
+    func chooseTimeView(_ chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: TimeInterval) {
+        guard let user = user else {
+            delegate?.chooseTimeViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
         guard let managedObjectContext = user.managedObjectContext else {
-            delegate?.chooseTimeNameViewController(self, didEncounter: ApplicationError.FailedToUnwrapValue)
+            delegate?.chooseTimeViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
 
             return
         }
@@ -45,10 +46,10 @@ extension ChooseTimeViewController: ChooseTimeViewDelegate {
 
         managedObjectContext.save({ [unowned self] either in
             switch either {
-            case .Left:
-                self.delegate?.chooseTimeViewController(self, didFinishWith: self.user)
-            case .Right(let error):
-                self.delegate?.chooseTimeNameViewController(self, didEncounter: error)
+            case .left:
+                self.delegate?.chooseTimeViewController(self, didFinishWith: user)
+            case .right(let error):
+                self.delegate?.chooseTimeViewController(self, didEncounter: error)
             }
         })
     }

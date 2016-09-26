@@ -7,9 +7,9 @@
 //
 
 protocol ResultApiClientType {
-    func delete(result: Result)
+    func delete(_ result: Result)
     func get()
     func patch()
-    func post(result: Result)
-    func put(result: Result)
+    func post(_ result: Result)
+    func put(_ result: Result)
 }

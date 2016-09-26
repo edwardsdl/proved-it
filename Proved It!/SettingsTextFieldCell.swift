@@ -13,11 +13,11 @@ final class SettingsTextFieldCell: UITableViewCell {
     @IBOutlet var detailTextField: UITextField!
     
     override func awakeFromNib() {
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
     }
     
     func configure(with title: String, detail: String) {
-        titleLabel.text = title.uppercaseString
+        titleLabel.text = title.uppercased()
         detailTextField.text = detail
     }
 }

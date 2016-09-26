@@ -9,7 +9,7 @@
 import Alamofire
 
 final class ConfigurationApiClient: ConfigurationApiClientType {
-    func delete(configuration: Configuration) {
+    func delete(_ configuration: Configuration) {
 
     }
 
@@ -21,17 +21,11 @@ final class ConfigurationApiClient: ConfigurationApiClientType {
 
     }
 
-    func post(configuration: Configuration) {
+    func post(_ configuration: Configuration) {
 
     }
 
-    func put(configuration: Configuration) {
+    func put(_ configuration: Configuration) {
 
-    }
-}
-
-private enum ConfigurationRouter: URLRequestConvertible {
-    var URLRequest: NSMutableURLRequest {
-        return NSMutableURLRequest()
     }
 }

@@ -19,7 +19,7 @@ final class ChooseSignificantOtherCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
     }
     
     func configure(using contact: CNContact) {
@@ -29,23 +29,23 @@ final class ChooseSignificantOtherCell: UITableViewCell {
         configureDetailTextLabel()
     }
     
-    private func configureName(using contact: CNContact) {
-        name = CNContactFormatter.stringFromContact(contact, style: .FullName)
+    fileprivate func configureName(using contact: CNContact) {
+        name = CNContactFormatter.string(from: contact, style: .fullName)
     }
     
-    private func configurePhoneNumbers(using contact: CNContact) {
+    fileprivate func configurePhoneNumbers(using contact: CNContact) {
         phoneNumbers = contact.phoneNumbers
-            .sort({ $0.0.label == CNLabelPhoneNumberMobile })
-            .sort({ $0.0.label == CNLabelPhoneNumberiPhone })
-            .flatMap({ $0.value as? CNPhoneNumber })
+            .sorted(by: { $0.0.label == CNLabelPhoneNumberMobile })
+            .sorted(by: { $0.0.label == CNLabelPhoneNumberiPhone })
+            .flatMap({ $0.value })
             .map({ $0.stringValue })
     }
     
-    private func configureTextLabel() {
+    fileprivate func configureTextLabel() {
         textLabel?.text = name
     }
 
-    private func configureDetailTextLabel() {
+    fileprivate func configureDetailTextLabel() {
         guard let phoneNumbers = phoneNumbers else {
             return
         }

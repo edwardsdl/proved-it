@@ -1,21 +1,17 @@
 PODS:
-  - Alamofire (3.4.1)
-  - Charts (2.2.5):
-    - Charts/Core (= 2.2.5)
-  - Charts/Core (2.2.5)
-  - Crashlytics (3.7.2):
+  - Alamofire (4.0.1)
+  - Crashlytics (3.8.2):
     - Fabric (~> 1.6.3)
-  - Digits (2.3.0):
-    - TwitterCore (= 2.3.0)
-  - Fabric (1.6.7)
+  - Digits (2.4.0):
+    - TwitterCore (= 2.4.0)
+  - Fabric (1.6.8)
   - Reveal-iOS-SDK (1.6.2)
-  - SwiftyJSON (2.3.2)
-  - TwitterCore (2.3.0):
+  - SwiftyJSON (3.0.0)
+  - TwitterCore (2.4.0):
     - Fabric
 
 DEPENDENCIES:
   - Alamofire
-  - Charts
   - Crashlytics
   - Digits
   - Fabric
@@ -24,15 +20,14 @@ DEPENDENCIES:
   - TwitterCore
 
 SPEC CHECKSUMS:
-  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
-  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
-  Digits: af82d24ec38035cc555b60f55cca5abc68a76bed
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
+  Digits: 8173fa5420d64bf490bade840e6bc36b74537d6c
+  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  TwitterCore: 817eae3e291fa4125b47789e26a4f6f024115c1f
+  SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
+  TwitterCore: a139904c80805ad3dde9eef1100704f96f646d1d
 
-PODFILE CHECKSUM: d9b54d6c35a00a5896fa4af5f61328be8530e603
+PODFILE CHECKSUM: 0bbdc4ddaa261bfb34340bc3fc88a8b0f280f335
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.rc.2

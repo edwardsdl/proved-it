@@ -7,9 +7,9 @@
 //
 
 protocol ConfigurationApiClientType {
-    func delete(configuration: Configuration)
+    func delete(_ configuration: Configuration)
     func get()
     func patch()
-    func post(configuration: Configuration)
-    func put(configuration: Configuration)
+    func post(_ configuration: Configuration)
+    func put(_ configuration: Configuration)
 }

@@ -4,7 +4,7 @@ inhibit_all_warnings!
 
 target 'Proved It!' do
     pod 'Alamofire'
-    pod 'Charts'
+#    pod 'Charts'
     pod 'Crashlytics'
     pod 'Digits'
     pod 'Fabric'

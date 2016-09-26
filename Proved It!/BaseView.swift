@@ -9,9 +9,9 @@
 import UIKit
 
 class BaseView: UIView {
-    private var didSetupConstraints: Bool = false
+    fileprivate var didSetupConstraints: Bool = false
 
-    private lazy var radialGradientView: RadialGradientView = {
+    fileprivate lazy var radialGradientView: RadialGradientView = {
         let radialGradientView = RadialGradientView()
         radialGradientView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -19,7 +19,7 @@ class BaseView: UIView {
     }()
 
     convenience init() {
-        self.init(frame: CGRectZero)
+        self.init(frame: CGRect.zero)
 
         commonInit()
     }
@@ -36,9 +36,9 @@ class BaseView: UIView {
         commonInit()
     }
 
-    private func commonInit() {
+    fileprivate func commonInit() {
         addSubview(radialGradientView)
-        sendSubviewToBack(radialGradientView)
+        sendSubview(toBack: radialGradientView)
     }
 
     override func updateConstraints() {
@@ -50,9 +50,9 @@ class BaseView: UIView {
     }
 
     func setupConstraints() {
-        addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .Top, relatedBy: .Equal, toItem: self, attribute: .Top, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .Leading, relatedBy: .Equal, toItem: self, attribute: .Leading, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .Bottom, relatedBy: .Equal, toItem: self, attribute: .Bottom, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: 0))
     }
 }

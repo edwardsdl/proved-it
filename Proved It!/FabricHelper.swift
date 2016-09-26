@@ -16,11 +16,11 @@ final class FabricHelper {
         setIncludedKits()
     }
 
-    private static func initializeDigits() {
+    fileprivate static func initializeDigits() {
         
     }
 
-    private static func setIncludedKits() {
+    fileprivate static func setIncludedKits() {
         Fabric.with([Crashlytics.self, Digits.self])
     }
 }

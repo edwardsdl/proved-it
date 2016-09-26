@@ -7,9 +7,9 @@
 //
 
 protocol UserApiClientType {
-    func delete(userModel: User)
+    func delete(_ userModel: User)
     func get()
     func patch()
-    func post(model: User)
-    func put(model: User)
+    func post(_ model: User)
+    func put(_ model: User)
 }

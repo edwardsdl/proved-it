@@ -39,8 +39,8 @@ extension User: JSONConvertible {
         configuration = Configuration(insertedInto: managedObjectContext)
     }
 
-    func toDictionary() -> [String: AnyObject] {
-        var dictionary = [String: AnyObject]()
+    func toDictionary() -> [String: Any] {
+        var dictionary = [String: Any]()
         dictionary["name"] = name
 
         return dictionary
@@ -48,21 +48,21 @@ extension User: JSONConvertible {
 }
 
 extension NSManagedObjectContext {    
-    func fetchUser(with phoneNumber: String, completionHandler: (Either<User?, ErrorType>) -> Void) {
-        performBlock({ [unowned self] in
+    func fetchUser(with phoneNumber: String, completionHandler: @escaping (Either<User?, Error>) -> Void) {
+        perform({ [unowned self] in
             let predicate = NSPredicate(format: "phoneNumber = %@", phoneNumber)
     
-            let fetchRequest = NSFetchRequest(entityName: String(User))
+            let fetchRequest = NSFetchRequest<User>(entityName: String(describing: User.self))
             fetchRequest.predicate = predicate
     
             do {
-                let objects = try self.executeFetchRequest(fetchRequest)
-                let users = objects.flatMap({ $0 as? User })
+                let objects = try self.fetch(fetchRequest)
+                let users = objects.flatMap({ $0 })
                 let user = users.first
                 
-                completionHandler(.Left(user))
+                completionHandler(.left(user))
             } catch {
-                completionHandler(.Right(error))
+                completionHandler(.right(error))
             }
         })
     }

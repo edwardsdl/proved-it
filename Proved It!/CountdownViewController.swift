@@ -10,45 +10,37 @@ import CoreData
 import UIKit
 
 protocol CountdownViewControllerDelegate: class {
-    func countdownViewController(countdownViewController: CountdownViewController, didReceive result: Result)
-    func countdownViewController(countdownViewController: CountdownViewController, didEncounter error: ErrorType)
+    func countdownViewController(_ countdownViewController: CountdownViewController, didReceive result: Result)
+    func countdownViewController(_ countdownViewController: CountdownViewController, didEncounter error: Error)
 }
 
 final class CountdownViewController: BaseViewController<CountdownView> {
     weak var delegate: CountdownViewControllerDelegate?
     
-    private let user: User
+    fileprivate var user: User?
     
-    init(with user: User) {
-        self.user = user
-        
-        super.init()
-        
-        title = "Time Remaining"
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func configure(with user: User) {
         customView.delegate = self
         customView.configure(with: user)
+        
+        self.user = user
     }
-    
-    override func viewWillAppear(animated: Bool) {
+
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIApplication.sharedApplication().idleTimerDisabled = true
+        UIApplication.shared.isIdleTimerDisabled = true
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        UIApplication.sharedApplication().idleTimerDisabled = false
+        UIApplication.shared.isIdleTimerDisabled = false
     }
 }
 
 extension CountdownViewController: CountdownViewDelegate {
-    func countdownView(countdownView: CountdownView, didProveItOn date: NSDate) {
+    func countdownView(_ countdownView: CountdownView, didProveItOn date: Date) {
 
     }
 }

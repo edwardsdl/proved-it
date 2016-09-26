@@ -11,19 +11,15 @@ import UIKit
 class BaseViewController<T: UIView>: UIViewController {
     var customView: T {
         guard let customView = view as? T else {
-            preconditionFailure("Expected to find view of type \(String(T))")
+            preconditionFailure("Expected to find view of type \(String(describing: T.self))")
         }
 
         return customView
     }
 
-    init() {
-        super.init(nibName: nil, bundle: nil)
-    }
-
     override func loadView() {
-        let bundle = NSBundle.mainBundle()
-        let view = bundle.loadView(fromNibNamed: String(T), owner: self) as T
+        let bundle = Bundle.main
+        let view = bundle.loadView(fromNibNamed: String(describing: T.self), owner: self) as T
 
         self.view = view
     }

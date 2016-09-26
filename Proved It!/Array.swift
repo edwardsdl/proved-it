@@ -7,17 +7,17 @@
 //
 
 extension Array {
-    mutating func remove(@noescape predicate: (Element) throws -> Bool) rethrows {
-        guard let index = try indexOf(predicate) else {
+    mutating func remove(predicate: (Element) throws -> Bool) rethrows {
+        guard let index = try index(where: predicate) else {
             return
         }
         
-        removeAtIndex(index)
+        self.remove(at: index)
     }
 }
 
 extension Array where Element: Hashable {
-    @warn_unused_result func distinct() -> [Element] {
+    func distinct() -> [Element] {
         return Array(Set(self))
     }
 }

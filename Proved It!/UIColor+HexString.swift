@@ -9,12 +9,12 @@
 import UIKit
 
 extension UIColor {
-    static func colorWithHexString(hexString: String) -> UIColor {
+    static func colorWithHexString(_ hexString: String) -> UIColor {
         var result: UInt32 = 0
 
-        let scanner = NSScanner(string: hexString)
-        scanner.charactersToBeSkipped = NSCharacterSet(charactersInString: "#")
-        scanner.scanHexInt(&result)
+        let scanner = Scanner(string: hexString)
+        scanner.charactersToBeSkipped = CharacterSet(charactersIn: "#")
+        scanner.scanHexInt32(&result)
 
         let red = CGFloat((result >> 16) & 0xFF) / 255.0
         let green = CGFloat((result >> 8) & 0xFF) / 255.0

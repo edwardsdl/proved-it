@@ -10,72 +10,59 @@ import DigitsKit
 import UIKit
 
 protocol SettingsViewControllerDelegate: class {
-    func settingsViewControllerDidSelectTime(settingsViewController: SettingsViewController)
-    func settingsViewControllerDidSelectSignificantOther(settingsViewController: SettingsViewController)
-    func settingsViewControllerDidTapSignOut(settingsViewController: SettingsViewController)
-    func settingsViewController(settingsViewController: SettingsViewController, didEncounter error: ErrorType)
+    func settingsViewControllerDidSelectTime(_ settingsViewController: SettingsViewController)
+    func settingsViewControllerDidSelectSignificantOther(_ settingsViewController: SettingsViewController)
+    func settingsViewControllerDidTapSignOut(_ settingsViewController: SettingsViewController)
+    func settingsViewController(_ settingsViewController: SettingsViewController, didEncounter error: Error)
 }
 
 final class SettingsViewController: BaseViewController<SettingsView> {
     weak var delegate: SettingsViewControllerDelegate?
     
-    private let user: User
+    fileprivate var user: User?
     
-    init(with user: User) {
-        self.user = user
-        
-        super.init()
-        
-        title = "Settings"
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func configure(with user: User) {
         customView.delegate = self
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
         customView.configure(with: user)
+        
+        self.user = user
     }
 }
 
 extension SettingsViewController: SettingsViewDelegate {
-    func settingsView(settingsView: SettingsView, didChangeNameTo name: String) {
-        guard let managedObjectContext = user.managedObjectContext else {
-            delegate?.settingsViewController(self, didEncounter: ApplicationError.FailedToUnwrapValue)
+    func settingsView(_ settingsView: SettingsView, didChangeNameTo name: String) {
+        guard let managedObjectContext = user?.managedObjectContext else {
+            delegate?.settingsViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
             
             return
         }
         
-        user.name = name
+        user?.name = name
         
         managedObjectContext.save({ [unowned self] either in
-            if case .Right(let error) = either {
+            if case .right(let error) = either {
                 self.delegate?.settingsViewController(self, didEncounter: error)
             }
         })
     }
     
-    func settingsViewDidSelectTime(settingsView: SettingsView) {
+    func settingsViewDidSelectTime(_ settingsView: SettingsView) {
         delegate?.settingsViewControllerDidSelectTime(self)
     }
     
-    func settingsViewDidSelectSignificantOther(settingsView: SettingsView) {
+    func settingsViewDidSelectSignificantOther(_ settingsView: SettingsView) {
         delegate?.settingsViewControllerDidSelectSignificantOther(self)
     }
     
-    func settingsViewDidTapSignOut(settingsView: SettingsView) {
+    func settingsViewDidTapSignOut(_ settingsView: SettingsView) {
         Digits.sharedInstance().logOut()
         
-        NSUserDefaults.standardUserDefaults().setBool(false, forKey: Constants.UserDefaults.HasLoggedInKey)
+        UserDefaults.standard.set(false, forKey: Constants.UserDefaults.HasLoggedInKey)
         
         delegate?.settingsViewControllerDidTapSignOut(self)
     }
     
-    func settingsView(settingsView: SettingsView, didEncounter error: ErrorType) {
+    func settingsView(_ settingsView: SettingsView, didEncounter error: Error) {
         delegate?.settingsViewController(self, didEncounter: error)
     }
 }

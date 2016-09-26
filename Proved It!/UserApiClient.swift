@@ -9,7 +9,7 @@
 import Alamofire
 
 final class UserApiClient: UserApiClientType {
-    func delete(userModel: User) {
+    func delete(_ userModel: User) {
 
     }
 
@@ -21,17 +21,11 @@ final class UserApiClient: UserApiClientType {
 
     }
 
-    func post(model: User) {
+    func post(_ model: User) {
 
     }
 
-    func put(model: User) {
+    func put(_ model: User) {
 
-    }
-}
-
-private enum UserRouter: URLRequestConvertible {
-    var URLRequest: NSMutableURLRequest {
-        return NSMutableURLRequest()
     }
 }

@@ -7,6 +7,6 @@
 //
 
 enum Either<T, U> {
-    case Left(T)
-    case Right(U)
+    case left(T)
+    case right(U)
 }

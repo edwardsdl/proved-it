@@ -9,28 +9,28 @@
 import CoreData
 
 enum CoreDataConfiguration {
-    case Default
-    case UnitTest
+    case `default`
+    case unitTest
     
-    var managedObjectModelUrl: NSURL? {
-        let mainBundle = NSBundle.mainBundle()
-        let managedObjectModelUrl = mainBundle.URLForResource("ProvedIt", withExtension: "momd")
+    var managedObjectModelUrl: URL? {
+        let mainBundle = Bundle.main
+        let managedObjectModelUrl = mainBundle.url(forResource: "ProvedIt", withExtension: "momd")
         
         return managedObjectModelUrl
     }
     
-    var persistentStoreUrl: NSURL? {
-        let fileManager = NSFileManager.defaultManager()
-        let urls = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    var persistentStoreUrl: URL? {
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
         let url = urls.last
     
         switch self {
-        case .Default:
-            let persistentStoreUrl = url?.URLByAppendingPathComponent("ProvedIt.sqlite")
+        case .default:
+            let persistentStoreUrl = url?.appendingPathComponent("ProvedIt.sqlite")
             
             return persistentStoreUrl
-        case .UnitTest:
-            let persistentStoreUrl =  url?.URLByAppendingPathComponent("ProvedItUnitTests.sqlite")
+        case .unitTest:
+            let persistentStoreUrl =  url?.appendingPathComponent("ProvedItUnitTests.sqlite")
             
             return persistentStoreUrl
         }
@@ -38,15 +38,15 @@ enum CoreDataConfiguration {
     
     var storeType: String {
         switch self {
-        case .Default:
+        case .default:
             return NSSQLiteStoreType
-        case .UnitTest:
+        case .unitTest:
             return NSInMemoryStoreType
         }
     }
     
-    var persistentStoreOptions: [String: AnyObject] {
-        var options = [String: AnyObject]()
+    var persistentStoreOptions: [String: Any] {
+        var options = [String: Any]()
         options[NSMigratePersistentStoresAutomaticallyOption] = true
         options[NSInferMappingModelAutomaticallyOption] = true
         options[NSSQLitePragmasOption] = ["journal_mode": "DELETE"]

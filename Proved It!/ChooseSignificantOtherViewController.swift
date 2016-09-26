@@ -10,19 +10,17 @@ import Contacts
 import UIKit
 
 protocol ChooseSignificantOtherViewControllerDelegate: class {
-    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User)
-    func chooseSignificantOtherViewController(chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: ErrorType)
+    func chooseSignificantOtherViewController(_ chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User)
+    func chooseSignificantOtherViewController(_ chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: Error)
 }
 
 final class ChooseSignificantOtherViewController: BaseViewController<ChooseSignificantOtherView> {
     weak var delegate: ChooseSignificantOtherViewControllerDelegate?
 
-    private let user: User
+    fileprivate var user: User?
 
-    init(with user: User) {
+    func configure(with user: User) {
         self.user = user
-        
-        super.init()
     }
     
     override func viewDidLoad() {
@@ -34,15 +32,15 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
         customView.configure(using: contacts)
     }
 
-    private func loadContacts() -> [CNContact] {
+    fileprivate func loadContacts() -> [CNContact] {
         var contacts = [CNContact]()
 
         do {
-            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactPhoneNumbersKey]
-            let contactFetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
+            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactPhoneNumbersKey] as [Any]
+            let contactFetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch as! [CNKeyDescriptor])
             
             let contactStore = CNContactStore()
-            try contactStore.enumerateContactsWithFetchRequest(contactFetchRequest, usingBlock: { (contact, stop) in
+            try contactStore.enumerateContacts(with: contactFetchRequest, usingBlock: { (contact, stop) in
                 guard contact.phoneNumbers.count > 0 else {
                     return
                 }
@@ -58,34 +56,42 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
 }
 
 extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelegate {
-    func chooseSignificantOtherView(chooseSignificantOtherView: ChooseSignificantOtherView, didChooseContactWith name: String, phoneNumbers: [String]) {
+    func chooseSignificantOtherView(_ chooseSignificantOtherView: ChooseSignificantOtherView, didChooseContactWith name: String, phoneNumbers: [String]) {
         switch phoneNumbers.count {
         case 1:
             save(usingContactWith: name, phoneNumber: phoneNumbers[0])
         case let count where count > 1:
             promptUserForPhoneNumber(forContactWith: name, phoneNumbers: phoneNumbers)
         default:
-            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.Other(message: "Received unexpected number of phone numbers"))
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.other(message: "Received unexpected number of phone numbers"))
         }
     }
     
-    private func promptUserForPhoneNumber(forContactWith name: String, phoneNumbers: [String]) {
-        let alertController = UIAlertController(title: "Choose a phone number for \(name)", message: nil, preferredStyle: .ActionSheet)
+    fileprivate func promptUserForPhoneNumber(forContactWith name: String, phoneNumbers: [String]) {
+        let phoneNumbers = phoneNumbers.prefix(5)
         
-        var alertActions = phoneNumbers.prefix(5).map({
-            UIAlertAction(title: "\($0)", style: .Default, handler: { [weak self] in
+        let alertController = UIAlertController(title: "Choose a phone number for \(name)", message: nil, preferredStyle: .actionSheet)
+        
+        var alertActions = phoneNumbers.map({
+            UIAlertAction(title: "\($0)", style: .default, handler: { [weak self] in
                 self?.save(usingContactWith: name, phoneNumber: $0.title ?? "")
             })
         })
-        alertActions.append(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertActions.append(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alertActions.forEach({ alertController.addAction($0) })
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
-    private func save(usingContactWith name: String, phoneNumber: String) {
+    fileprivate func save(usingContactWith name: String, phoneNumber: String) {
+        guard let user = user else {
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
         guard let managedObjectContext = user.managedObjectContext else {
-            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.FailedToUnwrapValue)
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
             
             return
         }
@@ -96,9 +102,9 @@ extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelega
         
         managedObjectContext.save({ [unowned self] either in
             switch either {
-            case .Left:
-                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: self.user)
-            case .Right(let error):
+            case .left:
+                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
+            case .right(let error):
                 self.delegate?.chooseSignificantOtherViewController(self, didEncounter: error)
             }
         })
