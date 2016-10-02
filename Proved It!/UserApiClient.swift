@@ -9,7 +9,7 @@
 import Alamofire
 
 final class UserApiClient: UserApiClientType {
-    func delete(_ userModel: User) {
+    func delete(user: User) {
 
     }
 
@@ -21,11 +21,11 @@ final class UserApiClient: UserApiClientType {
 
     }
 
-    func post(_ model: User) {
+    func post(user: User) {
 
     }
 
-    func put(_ model: User) {
+    func put(user: User) {
 
     }
 }

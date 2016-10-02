@@ -9,7 +9,7 @@
 import Alamofire
 
 final class ResultApiClient: ResultApiClientType {
-    func delete(_ result: Result) {
+    func delete(result: Result) {
 
     }
 
@@ -21,11 +21,11 @@ final class ResultApiClient: ResultApiClientType {
 
     }
 
-    func post(_ result: Result) {
+    func post(result: Result) {
 
     }
 
-    func put(_ result: Result) {
+    func put(result: Result) {
 
     }
 }

@@ -9,7 +9,7 @@
 import Alamofire
 
 final class ConfigurationApiClient: ConfigurationApiClientType {
-    func delete(_ configuration: Configuration) {
+    func delete(configuration: Configuration) {
 
     }
 
@@ -21,11 +21,11 @@ final class ConfigurationApiClient: ConfigurationApiClientType {
 
     }
 
-    func post(_ configuration: Configuration) {
+    func post(configuration: Configuration) {
 
     }
 
-    func put(_ configuration: Configuration) {
+    func put(configuration: Configuration) {
 
     }
 }
