@@ -16,11 +16,4 @@ class BaseViewController<T: UIView>: UIViewController {
 
         return customView
     }
-
-    override func loadView() {
-        let bundle = Bundle.main
-        let view = bundle.loadView(fromNibNamed: String(describing: T.self), owner: self) as T
-
-        self.view = view
-    }
 }
