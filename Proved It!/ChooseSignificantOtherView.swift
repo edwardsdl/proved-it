@@ -29,14 +29,14 @@ final class ChooseSignificantOtherView: BaseView {
         self.contacts = contacts
     }
 
-    fileprivate func configureRegisteredCells() {
+    private func configureRegisteredCells() {
         let cellName = String(describing: ChooseSignificantOtherCell.self)
         let nib = UINib(nibName: cellName, bundle: nil)
 
         tableView.register(nib, forCellReuseIdentifier: cellName)
     }
 
-    fileprivate func configureTableView() {
+    private func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorColor = UIColor.white.withAlphaComponent(0.2)

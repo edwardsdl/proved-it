@@ -18,10 +18,10 @@ final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
     weak var delegate: ChooseTimeViewControllerDelegate?
     
     fileprivate var user: User?
-
+    
     func configure(with user: User) {
         customView.delegate = self
-//        customView.configure(with: user)
+        customView.configure(with: user)
         
         self.user = user
     }

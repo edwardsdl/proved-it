@@ -29,11 +29,11 @@ final class ChooseSignificantOtherCell: UITableViewCell {
         configureDetailTextLabel()
     }
     
-    fileprivate func configureName(using contact: CNContact) {
+    private func configureName(using contact: CNContact) {
         name = CNContactFormatter.string(from: contact, style: .fullName)
     }
     
-    fileprivate func configurePhoneNumbers(using contact: CNContact) {
+    private func configurePhoneNumbers(using contact: CNContact) {
         phoneNumbers = contact.phoneNumbers
             .sorted(by: { $0.0.label == CNLabelPhoneNumberMobile })
             .sorted(by: { $0.0.label == CNLabelPhoneNumberiPhone })
@@ -41,11 +41,11 @@ final class ChooseSignificantOtherCell: UITableViewCell {
             .map({ $0.stringValue })
     }
     
-    fileprivate func configureTextLabel() {
+    private func configureTextLabel() {
         textLabel?.text = name
     }
 
-    fileprivate func configureDetailTextLabel() {
+    private func configureDetailTextLabel() {
         guard let phoneNumbers = phoneNumbers else {
             return
         }

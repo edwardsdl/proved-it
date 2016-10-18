@@ -17,11 +17,10 @@ protocol AuthenticationCoordinatorDelegate: class {
 final class AuthenticationCoordinator: CoordinatorType {
     weak var delegate: AuthenticationCoordinatorDelegate?
 
-    fileprivate let navigationController: UINavigationController
-    fileprivate let managedObjectContext: NSManagedObjectContext
+    private let navigationController: UINavigationController
+    private let managedObjectContext: NSManagedObjectContext
+    private var childCoordinators: [CoordinatorType]
     
-    fileprivate var childCoordinators: [CoordinatorType]
-
     init(with navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) {
         self.navigationController = navigationController
         self.managedObjectContext = managedObjectContext
@@ -34,32 +33,28 @@ final class AuthenticationCoordinator: CoordinatorType {
 
         startDigitsAuthentication(with: authenticationConfiguration)
     }
-}
 
-private extension AuthenticationCoordinator {
-    func createAppearance() -> DGTAppearance {
+    private func createAppearance() -> DGTAppearance {
         return DGTAppearance()
     }
 
-    func createAuthenticationConfiguration(with appearance: DGTAppearance) -> DGTAuthenticationConfiguration {
+    private func createAuthenticationConfiguration(with appearance: DGTAppearance) -> DGTAuthenticationConfiguration {
         let authenticationConfiguration = DGTAuthenticationConfiguration(accountFields: .defaultOptionMask)
         authenticationConfiguration?.appearance = appearance
 
         return authenticationConfiguration!
     }
 
-    func startDigitsAuthentication(with authenticationConfiguration: DGTAuthenticationConfiguration) {
+    private func startDigitsAuthentication(with authenticationConfiguration: DGTAuthenticationConfiguration) {
         // Calling authenticateWithViewController too quickly after application:didFinishLaunchingWithOptions: causes
         // Digits to behave in unexpected ways. Wrapping the call in dispatch_after appears to be an effective workaround.
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now(), execute: { [unowned self] in
             let digits = Digits.sharedInstance()
-//            digits.authenticate(with: nil, configuration: authenticationConfiguration, completion: self.digitsAuthenticationCompleted)
-            
             digits.authenticate(completion: self.digitsAuthenticationCompleted)
         })
     }
 
-    func digitsAuthenticationCompleted(session: DGTSession?, error: Error?) {
+    private func digitsAuthenticationCompleted(session: DGTSession?, error: Error?) {
         guard let session = session else {
             delegate?.authenticationCoordinator(self, didEncounter: error!)
             

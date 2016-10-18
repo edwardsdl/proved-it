@@ -26,7 +26,7 @@ class BaseEntity: NSManagedObject {
         modified = Date()
     }
     
-    fileprivate func isApproximatelyNow(_ date: Date?) -> Bool {
+    private func isApproximatelyNow(_ date: Date?) -> Bool {
         guard let date = date else {
             return false
         }

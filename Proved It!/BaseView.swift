@@ -9,9 +9,9 @@
 import UIKit
 
 class BaseView: UIView {
-    fileprivate var didSetupConstraints: Bool = false
+    private var didSetupConstraints: Bool = false
 
-    fileprivate lazy var radialGradientView: RadialGradientView = {
+    private lazy var radialGradientView: RadialGradientView = {
         let radialGradientView = RadialGradientView()
         radialGradientView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -36,11 +36,6 @@ class BaseView: UIView {
         commonInit()
     }
 
-    fileprivate func commonInit() {
-        addSubview(radialGradientView)
-        sendSubview(toBack: radialGradientView)
-    }
-
     override func updateConstraints() {
         if !didSetupConstraints {
             setupConstraints()
@@ -54,5 +49,10 @@ class BaseView: UIView {
         addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: radialGradientView, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1, constant: 0))
+    }
+    
+    private func commonInit() {
+        addSubview(radialGradientView)
+        sendSubview(toBack: radialGradientView)
     }
 }

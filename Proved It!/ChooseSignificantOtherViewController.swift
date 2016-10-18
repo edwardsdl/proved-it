@@ -18,10 +18,6 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
     weak var delegate: ChooseSignificantOtherViewControllerDelegate?
 
     fileprivate var user: User?
-
-    func configure(with user: User) {
-        self.user = user
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +27,12 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
         customView.delegate = self
         customView.configure(using: contacts)
     }
+    
+    func configure(with user: User) {
+        self.user = user
+    }
 
-    fileprivate func loadContacts() -> [CNContact] {
+    private func loadContacts() -> [CNContact] {
         var contacts = [CNContact]()
 
         do {
@@ -67,7 +67,7 @@ extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelega
         }
     }
     
-    fileprivate func promptUserForPhoneNumber(forContactWith name: String, phoneNumbers: [String]) {
+    private func promptUserForPhoneNumber(forContactWith name: String, phoneNumbers: [String]) {
         let phoneNumbers = phoneNumbers.prefix(5)
         
         let alertController = UIAlertController(title: "Choose a phone number for \(name)", message: nil, preferredStyle: .actionSheet)
@@ -83,7 +83,7 @@ extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelega
         present(alertController, animated: true, completion: nil)
     }
     
-    fileprivate func save(usingContactWith name: String, phoneNumber: String) {
+    private func save(usingContactWith name: String, phoneNumber: String) {
         guard let user = user else {
             delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
             

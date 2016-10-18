@@ -1,5 +1,5 @@
 //
-//  ProofApiClientType.swift
+//  ResultApiClientType.swift
 //  Proved It!
 //
 //  Created by Dallas Edwards on 2/21/16.
