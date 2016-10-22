@@ -23,7 +23,7 @@
                         <constraint firstAttribute="height" constant="2" id="lKO-Ir-ZkN"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-aO-K74" userLabel="Prove Time Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-aO-K74" userLabel="Prove It Button">
                     <constraints>
                         <constraint firstAttribute="width" secondItem="TNv-aO-K74" secondAttribute="height" multiplier="1:1" id="xaA-jH-nof"/>
                         <constraint firstAttribute="width" constant="220" id="xfC-TB-emb"/>
@@ -33,7 +33,7 @@
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="proveItButtonTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="3fD-gv-coD"/>
+                        <action selector="proveItButtonTapped" destination="-1" eventType="touchUpInside" id="c6S-51-LZi"/>
                     </connections>
                 </button>
             </subviews>

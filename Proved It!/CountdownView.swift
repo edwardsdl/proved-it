@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CountdownViewDelegate: class {
-    func countdownView(_ countdownView: CountdownView, didProveItOn date: Date)
+    func countdownView(_ countdownView: CountdownView, didEncounter error: Error)
 }
 
 final class CountdownView: BaseView {
@@ -17,38 +17,21 @@ final class CountdownView: BaseView {
     
     weak var delegate: CountdownViewDelegate?
     
-    fileprivate var user: User?
-    fileprivate var timer: Timer?
-    
-    @IBAction func proveItButtonTouchUpInside(_ sender: UIButton) {
-        delegate?.countdownView(self, didProveItOn: Date())
-    }
-    
-    override func awakeFromNib() {
-        configureProveItButton()
-    }
+    private var user: User?
+    private var timer: Timer?
     
     func configure(with user: User) {
         guard timer == nil else {
             return
         }
+
+        configureProveItButton()
+        configureTimer()
         
         self.user = user
-        self.timer = createTimer()
     }
     
-    fileprivate func createTimer() -> Timer {
-        let timer = Timer.scheduledTimer(timeInterval: 0.5,
-                                                           target: self,
-                                                           selector: #selector(CountdownView.updateCountdown),
-                                                           userInfo: nil,
-                                                           repeats: true)
-        timer.fire()
-        
-        return timer
-    }
-    
-    @objc fileprivate func updateCountdown() {
+    @objc private func updateCountdown() {
         guard let timeInterval = user?.configuration?.time else {
             return
         }
@@ -65,16 +48,25 @@ final class CountdownView: BaseView {
         
         proveItButton.setTitle(timeRemaining, for: UIControlState())
     }
-}
-
-private extension CountdownView {
-    func configureProveItButton() {
+    
+    private func configureTimer() {
+        let timer = Timer.scheduledTimer(timeInterval: 0.5,
+                                         target: self,
+                                         selector: #selector(updateCountdown),
+                                         userInfo: nil,
+                                         repeats: true)
+        timer.fire()
+        
+        self.timer = timer
+    }
+    
+    private func configureProveItButton() {
         proveItButton.layer.borderColor = UIColor.provedItGreenColor().cgColor
         proveItButton.layer.borderWidth = 2
         proveItButton.layer.cornerRadius = proveItButton.bounds.width / 2
     }
     
-    func timeStringFromDate(_ date: Date) -> String {
+    private func timeString(from date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short

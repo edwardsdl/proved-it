@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import MessageUI
 import UIKit
 
 protocol DashboardCoordinatorDelegate: class {
@@ -73,12 +74,29 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
 }
 
 extension DashboardCoordinator: CountdownViewControllerDelegate {
-    func countdownViewController(_ countdownViewController: CountdownViewController, didReceive result: Result) {
+    func countdownViewControllerDidTapProveItButton(_ countdownViewController: CountdownViewController) {
+        guard MFMessageComposeViewController.canSendText() else {
+            startErrorCoordinator(with: ApplicationError.other(message: "Failed to display composition interface"))
+            
+            return
+        }
         
+        let messageComposeViewController = MFMessageComposeViewController()
+        messageComposeViewController.body = "I already proved it!"
+        messageComposeViewController.messageComposeDelegate = self
+        messageComposeViewController.recipients = [user.significantOther?.phoneNumber ?? ""]
+
+        navigationController.present(messageComposeViewController, animated: true, completion: nil)
     }
     
     func countdownViewController(_ countdownViewController: CountdownViewController, didEncounter error: Error) {
         startErrorCoordinator(with: error)
+    }
+}
+
+extension DashboardCoordinator: MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        navigationController.dismiss(animated: true, completion: nil)
     }
 }
 
