@@ -15,6 +15,8 @@ final class User: BaseEntity {
     @NSManaged var configuration: Configuration?
     @NSManaged var losses: Set<Result>
     @NSManaged var wins: Set<Result>
+    @NSManaged var isCurrentUser: Bool
+    @NSManaged var isLoggedIn: Bool
     
     var significantOther: User? {
         get {
@@ -47,7 +49,25 @@ extension User: JSONConvertible {
     }
 }
 
-extension NSManagedObjectContext {    
+extension NSManagedObjectContext {
+    func fetchCurrentUser() -> User? {
+        var user: User?
+        performAndWait({ [unowned self] in
+            let predicate = NSPredicate(format: "isCurrentUser = YES")
+            
+            let fetchRequest = User.fetchRequest()
+            fetchRequest.predicate = predicate
+            
+            do {
+                user = try self.fetch(fetchRequest).first as? User
+            } catch {
+                user = nil
+            }
+        })
+        
+        return user
+    }
+    
     func fetchUser(with phoneNumber: String, completionHandler: @escaping (Either<User?, Error>) -> Void) {
         perform({ [unowned self] in
             let predicate = NSPredicate(format: "phoneNumber = %@", phoneNumber)

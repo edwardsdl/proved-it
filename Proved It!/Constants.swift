@@ -9,7 +9,5 @@
 import Foundation
 
 struct Constants {
-    struct UserDefaults {
-        static let HasLoggedInKey = "hasLoggedIn"
-    }
+
 }

@@ -26,7 +26,6 @@
 		BC5F94301C718CC200E498BF /* UIColor+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */; };
 		BC5F94321C718F1B00E498BF /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94311C718F1B00E498BF /* RadialGradientView.swift */; };
 		BC5F94341C719CE400E498BF /* UIColor+ProvedIt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */; };
-		BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94381C71AC9C00E498BF /* FabricHelper.swift */; };
 		BC5F943C1C71C38500E498BF /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F943B1C71C38500E498BF /* AuthenticationCoordinator.swift */; };
 		BC5F94411C72839800E498BF /* EnterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94401C72839800E498BF /* EnterNameViewController.swift */; };
 		BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5F94421C7283A700E498BF /* EnterNameView.swift */; };
@@ -124,7 +123,6 @@
 		BC5F942F1C718CC200E498BF /* UIColor+HexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+HexString.swift"; sourceTree = "<group>"; };
 		BC5F94311C718F1B00E498BF /* RadialGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		BC5F94331C719CE400E498BF /* UIColor+ProvedIt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+ProvedIt.swift"; sourceTree = "<group>"; };
-		BC5F94381C71AC9C00E498BF /* FabricHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FabricHelper.swift; sourceTree = "<group>"; };
 		BC5F943B1C71C38500E498BF /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		BC5F94401C72839800E498BF /* EnterNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNameViewController.swift; sourceTree = "<group>"; };
 		BC5F94421C7283A700E498BF /* EnterNameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNameView.swift; sourceTree = "<group>"; };
@@ -315,14 +313,6 @@
 			name = Introduction;
 			sourceTree = "<group>";
 		};
-		BC5F94371C71AC7F00E498BF /* Fabric */ = {
-			isa = PBXGroup;
-			children = (
-				BC5F94381C71AC9C00E498BF /* FabricHelper.swift */,
-			);
-			name = Fabric;
-			sourceTree = "<group>";
-		};
 		BC5F943F1C727FFB00E498BF /* Enter Name */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,7 +431,6 @@
 				BC3E8D3C1C7AD69400603814 /* Entities */,
 				BC841B2D1D233561004D21AD /* Error */,
 				BCF9F9621C716CB9008B9698 /* Extensions */,
-				BC5F94371C71AC7F00E498BF /* Fabric */,
 				BC7730851D2F2D95008FE244 /* History */,
 				BC5F94361C71A53F00E498BF /* Introduction */,
 				BCF9F9531C7119F3008B9698 /* Launch Screen */,
@@ -822,7 +811,6 @@
 				BC7730951D2F3E69008FE244 /* SettingsViewController.swift in Sources */,
 				BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */,
 				BC7730741D2768E7008FE244 /* NSManagedObjectContextExtensions.swift in Sources */,
-				BC5F94391C71AC9C00E498BF /* FabricHelper.swift in Sources */,
 				BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */,
 				BCBEE0261D58FE1100F8A513 /* LoadingView.swift in Sources */,
 				BCF9F93E1C7083D7008B9698 /* NSLocalizedString.swift in Sources */,
@@ -1015,6 +1003,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Proved It!/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.angrysquirrelsoftware.ProvedIt;
 				PRODUCT_MODULE_NAME = ProvedIt;
@@ -1032,6 +1021,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Proved It!/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.angrysquirrelsoftware.ProvedIt;
 				PRODUCT_MODULE_NAME = ProvedIt;

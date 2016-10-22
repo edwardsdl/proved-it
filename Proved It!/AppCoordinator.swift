@@ -15,7 +15,6 @@ protocol CoordinatorType: class {
 
 final class AppCoordinator: CoordinatorType {
     fileprivate let navigationController: UINavigationController
-    
     fileprivate var childCoordinators: [CoordinatorType]
     fileprivate var managedObjectContext: NSManagedObjectContext?
 
@@ -30,8 +29,13 @@ final class AppCoordinator: CoordinatorType {
         navigationController.isNavigationBarHidden = true
         navigationController.viewControllers = [LoadingViewController()]
         
-        if shouldStartAuthenticationCoordinator() {
-            startAuthenticationCoordinator()
+        
+        if let user = managedObjectContext.fetchCurrentUser() {
+            if shouldStartDashboardCoordinator(for: user) {
+                startDashboardCoordinator(with: user)
+            } else {
+                startAuthenticationCoordinator()
+            }
         } else {
             startOnboardingCoordinator()
         }
@@ -41,11 +45,11 @@ final class AppCoordinator: CoordinatorType {
         startErrorCoordinator(with: error)
     }
     
-    fileprivate func shouldStartAuthenticationCoordinator() -> Bool {
-        return UserDefaults.standard.bool(forKey: Constants.UserDefaults.HasLoggedInKey)
+    private func shouldStartDashboardCoordinator(for user: User) -> Bool {
+        return user.isLoggedIn
     }
 
-    fileprivate func startAuthenticationCoordinator() {
+    private func startAuthenticationCoordinator() {
         guard let managedObjectContext = managedObjectContext else {
             startErrorCoordinator(with: ApplicationError.failedToUnwrapValue)
             

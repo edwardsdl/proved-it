@@ -7,6 +7,9 @@
 //
 
 import CoreData
+import Crashlytics
+import DigitsKit
+import Fabric
 import UIKit
 
 @UIApplicationMain
@@ -36,13 +39,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appCoordinator.start(with: error)
         }
         
-        appCoordinator.start(with: managedObjectContext)
+        configureFabric()
         
-        FabricHelper.initializeFabric()
+        appCoordinator.start(with: managedObjectContext)
         
         return true
     }
-    
+
     private func createManagedObjectModel(with coreDataConfiguration: CoreDataConfiguration) throws -> NSManagedObjectModel {
         guard let managedObjectModelUrl = coreDataConfiguration.managedObjectModelUrl else {
             throw CoreDataError.failedToCreateManagedObjectModel
@@ -102,5 +105,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
 
         return window
+    }
+    
+    private func configureFabric() {
+        Fabric.with([Crashlytics.self, Digits.self])
+        
+        Digits.sharedInstance().sessionUpdateDelegate = self
+    }
+}
+
+extension AppDelegate: DGTSessionUpdateDelegate {
+    func digitsSessionHasChanged(_ newSession: DGTSession!) {
+//        print("Session Changed")
+    }
+    
+    
+    func digitsSessionExpired(forUserID userID: String!) {
+//        UserDefaults.standard.set(false, forKey: Constants.UserDefaults.IsLoggedInKey)
     }
 }

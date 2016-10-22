@@ -65,9 +65,9 @@ final class AuthenticationCoordinator: CoordinatorType {
             switch either {
             case .left(let user):
                 let user = user ?? User(insertedInto: self.managedObjectContext)
+                user.isCurrentUser = true
+                user.isLoggedIn = true
                 user.phoneNumber = session.phoneNumber
-                
-                UserDefaults.standard.set(true, forKey: Constants.UserDefaults.HasLoggedInKey)
                 
                 self.delegate?.authenticationCoordinator(self, didFinishWith: user)
             case .right(let error):

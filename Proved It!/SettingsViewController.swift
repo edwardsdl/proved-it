@@ -57,8 +57,6 @@ extension SettingsViewController: SettingsViewDelegate {
     func settingsViewDidTapSignOut(_ settingsView: SettingsView) {
         Digits.sharedInstance().logOut()
         
-        UserDefaults.standard.set(false, forKey: Constants.UserDefaults.HasLoggedInKey)
-        
         delegate?.settingsViewControllerDidTapSignOut(self)
     }
     
