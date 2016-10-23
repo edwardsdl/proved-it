@@ -13,7 +13,7 @@ protocol ChooseTimeViewDelegate: class {
 }
 
 final class ChooseTimeView: BaseView {
-    @IBOutlet weak var chooseTimeButton: UIButton!
+    @IBOutlet weak var chooseTimeDatePicker: ChooseTimeDatePicker!
 
     weak var delegate: ChooseTimeViewDelegate?
 
@@ -28,6 +28,6 @@ final class ChooseTimeView: BaseView {
     }
     
     func configure(with user: User) {
-        
+        chooseTimeDatePicker.configure()
     }
 }

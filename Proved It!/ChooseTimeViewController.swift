@@ -19,10 +19,18 @@ final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
     
     fileprivate var user: User?
     
-    func configure(with user: User) {
+    override func viewDidLayoutSubviews() {
+        guard let user = user else {
+            delegate?.chooseTimeViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
         customView.delegate = self
         customView.configure(with: user)
-        
+    }
+    
+    func configure(with user: User) {
         self.user = user
     }
 }

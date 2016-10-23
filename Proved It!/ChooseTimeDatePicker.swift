@@ -8,26 +8,16 @@
 
 import UIKit
 
-final class ChooseTimeDatePicker: UIDatePicker {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        configure()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        configure()
-    }
-    
-    private func configure() {
+final class ChooseTimeDatePicker: UIDatePicker {    
+    func configure() {
         configureView()
         configureLayer()
     }
     
     private func configureView() {
         backgroundColor = UIColor.clear
+        datePickerMode = .time
+        subviews.first?.frame.origin.x += 5
         
         setValue(UIColor.white, forKey: "textColor")
     }
@@ -36,5 +26,6 @@ final class ChooseTimeDatePicker: UIDatePicker {
         layer.borderColor = UIColor.provedItOrangeColor().cgColor
         layer.borderWidth = 2
         layer.cornerRadius = bounds.width / 2
+        layer.masksToBounds = true
     }
 }

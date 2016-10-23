@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,10 +28,9 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="1Ng-NS-aXq" customClass="ChooseTimeDatePicker" customModule="ProvedIt" customModuleProvider="target">
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="1Ng-NS-aXq" customClass="ChooseTimeDatePicker" customModule="ProvedIt" customModuleProvider="target">
                     <constraints>
                         <constraint firstAttribute="width" secondItem="1Ng-NS-aXq" secondAttribute="height" multiplier="1:1" id="35W-Jx-QK4"/>
-                        <constraint firstAttribute="width" constant="220" id="xmp-Sc-O22"/>
                     </constraints>
                     <date key="date" timeIntervalSinceReferenceDate="497161414.67276901">
                         <!--2016-10-03 04:23:34 +0000-->
@@ -44,11 +44,16 @@
                 <constraint firstAttribute="trailing" secondItem="COU-F0-ol3" secondAttribute="trailing" constant="20" symbolic="YES" id="5th-Wt-4Nb"/>
                 <constraint firstItem="OOx-LC-PoD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="60" id="De2-4i-941"/>
                 <constraint firstItem="1Ng-NS-aXq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Tpj-rw-F6d"/>
+                <constraint firstItem="1Ng-NS-aXq" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="2/3" id="WZp-IA-Ala"/>
                 <constraint firstAttribute="trailing" secondItem="OOx-LC-PoD" secondAttribute="trailing" constant="20" symbolic="YES" id="b0a-uh-ZYi"/>
-                <constraint firstItem="1Ng-NS-aXq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bFN-FI-bqm"/>
                 <constraint firstItem="COU-F0-ol3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="cRS-XW-Uxf"/>
                 <constraint firstItem="OOx-LC-PoD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="qKK-aM-sut"/>
+                <constraint firstItem="1Ng-NS-aXq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="t1Q-sa-jJS"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+            <connections>
+                <outlet property="chooseTimeDatePicker" destination="1Ng-NS-aXq" id="BVf-3g-lHy"/>
+            </connections>
         </view>
     </objects>
 </document>
