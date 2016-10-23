@@ -8,7 +8,7 @@ target 'Proved It!' do
     pod 'Crashlytics'
     pod 'Digits'
     pod 'Fabric'
-    pod 'Reveal-iOS-SDK', :configurations => ['Debug']
+    pod 'Reveal-SDK', :configurations => ['Debug']
     pod 'SwiftyJSON'
     pod 'TwitterCore'
 end

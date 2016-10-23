@@ -5,7 +5,7 @@ PODS:
   - Digits (2.4.0):
     - TwitterCore (= 2.4.0)
   - Fabric (1.6.8)
-  - Reveal-iOS-SDK (1.6.2)
+  - Reveal-SDK (2)
   - SwiftyJSON (3.0.0)
   - TwitterCore (2.4.0):
     - Fabric
@@ -15,7 +15,7 @@ DEPENDENCIES:
   - Crashlytics
   - Digits
   - Fabric
-  - Reveal-iOS-SDK
+  - Reveal-SDK
   - SwiftyJSON
   - TwitterCore
 
@@ -24,10 +24,10 @@ SPEC CHECKSUMS:
   Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
   Digits: 8173fa5420d64bf490bade840e6bc36b74537d6c
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
-  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+  Reveal-SDK: 4d36a47c7091843eee525b72219e005b90bbac0b
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
   TwitterCore: a139904c80805ad3dde9eef1100704f96f646d1d
 
-PODFILE CHECKSUM: 0bbdc4ddaa261bfb34340bc3fc88a8b0f280f335
+PODFILE CHECKSUM: 98e83d35c14e407f30fb74a73cde6dba37d1227e
 
 COCOAPODS: 1.1.0.rc.2
