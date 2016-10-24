@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,30 +24,30 @@
                         <constraint firstAttribute="height" constant="2" id="lKO-Ir-ZkN"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-aO-K74" userLabel="Prove It Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-aO-K74" userLabel="Countdown Button" customClass="CountdownButton" customModule="ProvedIt" customModuleProvider="target">
                     <constraints>
                         <constraint firstAttribute="width" secondItem="TNv-aO-K74" secondAttribute="height" multiplier="1:1" id="xaA-jH-nof"/>
-                        <constraint firstAttribute="width" constant="220" id="xfC-TB-emb"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="29"/>
                     <state key="normal" title="--">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="proveItButtonTapped" destination="-1" eventType="touchUpInside" id="c6S-51-LZi"/>
+                        <action selector="countdownButtonTapped" destination="-1" eventType="touchUpInside" id="DnT-vj-b65"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="tqI-FB-eRk" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="3M9-4W-FWi"/>
+                <constraint firstItem="TNv-aO-K74" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="2/3" id="Afg-eB-3T0"/>
                 <constraint firstItem="TNv-aO-K74" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bIT-qE-zSw"/>
                 <constraint firstItem="tqI-FB-eRk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="emY-Rn-0qY"/>
                 <constraint firstItem="tqI-FB-eRk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rQF-wG-B4j"/>
                 <constraint firstItem="TNv-aO-K74" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rWl-Tu-vJi"/>
             </constraints>
             <connections>
-                <outlet property="proveItButton" destination="TNv-aO-K74" id="jqc-yM-raJ"/>
+                <outlet property="countdownButton" destination="TNv-aO-K74" id="TRc-iI-CV8"/>
             </connections>
         </view>
     </objects>

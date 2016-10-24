@@ -100,7 +100,7 @@ extension SettingsView: UITableViewDelegate {
         case let cell as SettingsTextFieldCell where (indexPath as NSIndexPath).row == 0:
             cell.configure(with: "Name", detail: user.name)
         case let cell as SettingsCell where (indexPath as NSIndexPath).row == 1:
-            cell.configure(with: "Time", detail: user.configuration?.formattedTime ?? "")
+            cell.configure(with: "Time", detail: user.configuration?.formattedTargetDate ?? "")
         case let cell as SettingsCell where (indexPath as NSIndexPath).row == 2:
             cell.configure(with: "Significant Other", detail: user.significantOther?.name ?? "")
         default:

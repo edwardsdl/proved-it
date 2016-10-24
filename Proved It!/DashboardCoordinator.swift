@@ -74,7 +74,7 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
 }
 
 extension DashboardCoordinator: CountdownViewControllerDelegate {
-    func countdownViewControllerDidTapProveItButton(_ countdownViewController: CountdownViewController) {
+    func countdownViewControllerDidTapCountdownButton(_ countdownViewController: CountdownViewController) {
         guard MFMessageComposeViewController.canSendText() else {
             startErrorCoordinator(with: ApplicationError.other(message: "Failed to display composition interface"))
             

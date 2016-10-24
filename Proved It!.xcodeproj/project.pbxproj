@@ -11,6 +11,7 @@
 		BC11A1AC1C72979C00F21D74 /* ChooseTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11A1AB1C72979C00F21D74 /* ChooseTimeView.swift */; };
 		BC11A1AE1C7297D500F21D74 /* ChooseTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11A1AD1C7297D500F21D74 /* ChooseTimeViewController.swift */; };
 		BC11A1B21C73DE8D00F21D74 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC11A1B11C73DE8D00F21D74 /* Constants.swift */; };
+		BC2548C41DBD261F005BC252 /* CountdownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2548C31DBD261F005BC252 /* CountdownButton.swift */; };
 		BC3E8CEF1C7A449B00603814 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CEE1C7A449B00603814 /* UserService.swift */; };
 		BC3E8CFB1C7A707A00603814 /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CFA1C7A707A00603814 /* ConfigurationService.swift */; };
 		BC3E8CFD1C7A70E500603814 /* ResultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3E8CFC1C7A70E500603814 /* ResultService.swift */; };
@@ -108,6 +109,7 @@
 		BC11A1AB1C72979C00F21D74 /* ChooseTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTimeView.swift; sourceTree = "<group>"; };
 		BC11A1AD1C7297D500F21D74 /* ChooseTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTimeViewController.swift; sourceTree = "<group>"; };
 		BC11A1B11C73DE8D00F21D74 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BC2548C31DBD261F005BC252 /* CountdownButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountdownButton.swift; sourceTree = "<group>"; };
 		BC3E8CEE1C7A449B00603814 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		BC3E8CFA1C7A707A00603814 /* ConfigurationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
 		BC3E8CFC1C7A70E500603814 /* ResultService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultService.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				BC7730691D26C6DD008FE244 /* CountdownView.swift */,
 				BC77306B1D26C6FB008FE244 /* CountdownViewController.swift */,
 				BC77306D1D26C710008FE244 /* CountdownViewController.xib */,
+				BC2548C31DBD261F005BC252 /* CountdownButton.swift */,
 			);
 			name = Countdown;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 				BC841B2F1D233589004D21AD /* ErrorCoordinator.swift in Sources */,
 				BC7730951D2F3E69008FE244 /* SettingsViewController.swift in Sources */,
 				BC5F94431C7283A700E498BF /* EnterNameView.swift in Sources */,
+				BC2548C41DBD261F005BC252 /* CountdownButton.swift in Sources */,
 				BC7730741D2768E7008FE244 /* NSManagedObjectContextExtensions.swift in Sources */,
 				BC77306C1D26C6FB008FE244 /* CountdownViewController.swift in Sources */,
 				BCBEE0261D58FE1100F8A513 /* LoadingView.swift in Sources */,
@@ -942,6 +946,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -983,6 +988,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -999,6 +1005,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BFFF31728CC926D0A09F71F2 /* Pods-Proved It!.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1017,6 +1024,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 550F0A24BEC414E0E0826529 /* Pods-Proved It!.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -10,11 +10,11 @@ import CoreData
 import UIKit
 
 protocol CountdownViewControllerDelegate: class {
-    func countdownViewControllerDidTapProveItButton(_ countdownViewController: CountdownViewController)
+    func countdownViewControllerDidTapCountdownButton(_ countdownViewController: CountdownViewController)
     func countdownViewController(_ countdownViewController: CountdownViewController, didEncounter error: Error)
 }
 
-final class CountdownViewController: BaseViewController<CountdownView> {
+final class CountdownViewController: BaseViewController<CountdownView> {    
     weak var delegate: CountdownViewControllerDelegate?
     
     private var user: User?
@@ -25,26 +25,24 @@ final class CountdownViewController: BaseViewController<CountdownView> {
         UIApplication.shared.isIdleTimerDisabled = true
     }
     
-    override func viewDidLayoutSubviews() {
-        guard let user = user else {
-            return
-        }
-        
-        customView.delegate = self
-        customView.configure(with: user)
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         UIApplication.shared.isIdleTimerDisabled = false
     }
 
-    @IBAction func proveItButtonTapped() {
-        delegate?.countdownViewControllerDidTapProveItButton(self)
+    @IBAction func countdownButtonTapped() {
+        guard let configuration = user?.configuration , !configuration.isTargetDateInFuture else {
+            return
+        }
+        
+        delegate?.countdownViewControllerDidTapCountdownButton(self)
     }
     
     func configure(with user: User) {
+        customView.delegate = self
+        customView.configure(with: user)
+        
         self.user = user
     }
 }
