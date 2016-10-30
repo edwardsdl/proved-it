@@ -10,6 +10,7 @@ import UIKit
 
 protocol ChooseTimeViewDelegate: class {
     func chooseTimeView(_ chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: TimeInterval)
+    func chooseTimeView(_ chooseTimeView: ChooseTimeView, didEncounter error: Error)
 }
 
 final class ChooseTimeView: BaseView {
@@ -17,14 +18,20 @@ final class ChooseTimeView: BaseView {
 
     weak var delegate: ChooseTimeViewDelegate?
 
-    private var date: Date = Date()
-
-    @IBAction func chooseTimeButtonTouchUpInside(_ sender: UIButton) {
-        let calendar = Calendar.current
-        let startOfDay = calendar.startOfDay(for: date)
-        let timeInterval = date.timeIntervalSince(startOfDay)
-
-        delegate?.chooseTimeView(self, didChooseTimeIntervalSinceStartOfDay: timeInterval)
+    @IBAction func chooseTimeDatePickerDidChangeValue() {
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        
+        let roundedDate = Calendar.current.nextDate(after: chooseTimeDatePicker.date,
+                                                    matching: DateComponents(second: 0, nanosecond: 0),
+                                                    matchingPolicy: .strict,
+                                                    repeatedTimePolicy: .first,
+                                                    direction: .backward)
+        
+        if let timeInterval = roundedDate?.timeIntervalSince(startOfDay) {
+            delegate?.chooseTimeView(self, didChooseTimeIntervalSinceStartOfDay: timeInterval)
+        } else {
+            delegate?.chooseTimeView(self, didEncounter: ApplicationError.failedToUnwrapValue)
+        }
     }
     
     func configure(with user: User) {

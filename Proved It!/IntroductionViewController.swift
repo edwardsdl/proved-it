@@ -18,6 +18,14 @@ final class IntroductionViewController: BaseViewController<IntroductionView> {
     override func viewDidLoad() {
         customView.proveItButton.addTarget(self, action: #selector(IntroductionViewController.proveItButtonTapped(_:)), for: .touchUpInside)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
 
     func proveItButtonTapped(_ sender: UIButton) {
         delegate?.introductionViewControllerDidTapProveItButton(self)

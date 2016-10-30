@@ -96,6 +96,8 @@ final class AppCoordinator: CoordinatorType {
 
 extension AppCoordinator: OnboardingCoordinatorDelegate {
     func onboardingCoordinator(_ onboardingCoordinator: OnboardingCoordinator, didFinishWith user: User) {
+        navigationController.viewControllers = []
+        
         startDashboardCoordinator(with: user)
         
         childCoordinators.remove(predicate: { $0 === onboardingCoordinator })

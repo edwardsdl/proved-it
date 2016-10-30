@@ -8,7 +8,13 @@
 
 import UIKit
 
-final class ChooseTimeDatePicker: UIDatePicker {    
+final class ChooseTimeDatePicker: UIDatePicker {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        configureLayer()
+    }
+    
     func configure() {
         configureView()
         configureLayer()
@@ -17,7 +23,7 @@ final class ChooseTimeDatePicker: UIDatePicker {
     private func configureView() {
         backgroundColor = UIColor.clear
         datePickerMode = .time
-        subviews.first?.frame.origin.x += 5
+        subviews.first?.frame.origin.x = 5
         
         setValue(UIColor.white, forKey: "textColor")
     }

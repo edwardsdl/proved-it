@@ -108,7 +108,7 @@ extension DashboardCoordinator: SettingsViewControllerDelegate {
     func settingsViewControllerDidSelectTime(_ settingsViewController: SettingsViewController) {
         let chooseTimeViewController = ChooseTimeViewController()
         chooseTimeViewController.delegate = self
-        chooseTimeViewController.configure(with: user)
+        chooseTimeViewController.configure(with: user, isOnboarding: false)
         
         navigationController.pushViewController(chooseTimeViewController, animated: true)
     }

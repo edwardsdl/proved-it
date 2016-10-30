@@ -19,19 +19,47 @@ final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
     
     fileprivate var user: User?
     
-    override func viewDidLayoutSubviews() {
+    func configure(with user: User, isOnboarding: Bool) {
+        configureCustomView(with: user)
+        configureNavigationItem(isOnboarding: isOnboarding)
+        
+        self.user = user
+    }
+    
+    private func configureCustomView(with user: User) {
+        customView.delegate = self
+        customView.configure(with: user)
+    }
+    
+    private func configureNavigationItem(isOnboarding: Bool) {
+        if isOnboarding {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(rightBarButtonItemTapped))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(rightBarButtonItemTapped))
+        }
+    }
+    
+    @objc private func rightBarButtonItemTapped() {
         guard let user = user else {
             delegate?.chooseTimeViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
             
             return
         }
         
-        customView.delegate = self
-        customView.configure(with: user)
-    }
-    
-    func configure(with user: User) {
-        self.user = user
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.chooseTimeViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        managedObjectContext.save({ [unowned self] either in
+            switch either {
+            case .left:
+                self.delegate?.chooseTimeViewController(self, didFinishWith: user)
+            case .right(let error):
+                self.delegate?.chooseTimeViewController(self, didEncounter: error)
+            }
+        })
     }
 }
 
@@ -51,14 +79,9 @@ extension ChooseTimeViewController: ChooseTimeViewDelegate {
         
         user.configuration = user.configuration ?? Configuration(insertedInto: managedObjectContext)
         user.configuration?.time = timeInterval
-
-        managedObjectContext.save({ [unowned self] either in
-            switch either {
-            case .left:
-                self.delegate?.chooseTimeViewController(self, didFinishWith: user)
-            case .right(let error):
-                self.delegate?.chooseTimeViewController(self, didEncounter: error)
-            }
-        })
+    }
+    
+    func chooseTimeView(_ chooseTimeView: ChooseTimeView, didEncounter error: Error) {
+        delegate?.chooseTimeViewController(self, didEncounter: error)
     }
 }

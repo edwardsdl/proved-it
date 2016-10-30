@@ -638,7 +638,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Angry Squirrel Software";
 				TargetAttributes = {
 					BC7855D91C6C532F00E4F569 = {

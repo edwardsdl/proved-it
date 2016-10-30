@@ -30,8 +30,7 @@ final class OnboardingCoordinator: CoordinatorType {
     func start() {
         let introductionViewController = IntroductionViewController()
         introductionViewController.delegate = self
-        
-        navigationController.isNavigationBarHidden = true
+
         navigationController.viewControllers = [introductionViewController]
     }
     
@@ -62,6 +61,7 @@ extension OnboardingCoordinator: AuthenticationCoordinatorDelegate {
         enterNameViewController.delegate = self
         enterNameViewController.configure(with: user)
         
+        navigationController.isNavigationBarHidden = false
         navigationController.pushViewController(enterNameViewController, animated: true)
         
         childCoordinators.remove(predicate: { $0 === authenticationCoordinator })
@@ -76,7 +76,7 @@ extension OnboardingCoordinator: EnterNameViewControllerDelegate {
     func enterNameViewController(_ enterNameViewController: EnterNameViewController, didFinishWith user: User) {
         let chooseTimeViewController = ChooseTimeViewController()
         chooseTimeViewController.delegate = self
-        chooseTimeViewController.configure(with: user)
+        chooseTimeViewController.configure(with: user, isOnboarding: true)
         
         navigationController.pushViewController(chooseTimeViewController, animated: true)
     }
@@ -102,9 +102,6 @@ extension OnboardingCoordinator: ChooseTimeViewControllerDelegate {
 
 extension OnboardingCoordinator: ChooseSignificantOtherViewControllerDelegate {
     func chooseSignificantOtherViewController(_ chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
-        navigationController.isNavigationBarHidden = false
-        navigationController.viewControllers = []
-        
         delegate?.onboardingCoordinator(self, didFinishWith: user)
     }
     

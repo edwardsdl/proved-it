@@ -31,6 +31,33 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
     func configure(with user: User) {
         self.user = user
     }
+    
+    private func configureNavigationItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(rightBarButtonItemTapped))
+    }
+    
+    @objc private func rightBarButtonItemTapped() {
+        guard let user = user else {
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        managedObjectContext.save({ [unowned self] either in
+            switch either {
+            case .left:
+                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
+            case .right(let error):
+                self.delegate?.chooseSignificantOtherViewController(self, didEncounter: error)
+            }
+        })
+    }
 
     private func loadContacts() -> [CNContact] {
         var contacts = [CNContact]()

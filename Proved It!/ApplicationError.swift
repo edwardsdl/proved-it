@@ -12,10 +12,10 @@ enum ApplicationError: Error {
     
     var message: String {
         switch self {
+        case .failedToUnwrapValue:
+            return "An unrecoverable error occurred"
         case .other(let message):
             return message
-        default:
-            return "An unrecoverable error occurred"
         }
     }
 }

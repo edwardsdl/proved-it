@@ -18,11 +18,7 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
     weak var delegate: EnterNameViewControllerDelegate?
 
     private var user: User!
-
-    func configure(with user: User) {
-        self.user = user
-    }
-
+    
     override func viewDidLoad() {
         // TODO: This should use the delegate pattern
         customView.nameTextField.addTarget(self, action: #selector(EnterNameViewController.nameTextFieldEditingChanged(_:)), for: .editingChanged)
@@ -51,5 +47,38 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
         })
 
         return true
+    }
+    
+    func configure(with user: User) {
+        configureNavigationItem()
+        
+        self.user = user
+    }
+    
+    private func configureNavigationItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(rightBarButtonItemTapped))
+    }
+    
+    @objc private func rightBarButtonItemTapped() {
+        guard let user = user else {
+            delegate?.enterNameViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.enterNameViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        managedObjectContext.save({ [unowned self] either in
+            switch either {
+            case .left:
+                self.delegate?.enterNameViewController(self, didFinishWith: user)
+            case .right(let error):
+                self.delegate?.enterNameViewController(self, didEncounter: error)
+            }
+        })
     }
 }
