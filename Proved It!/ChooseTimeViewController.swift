@@ -54,10 +54,10 @@ final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
         
         managedObjectContext.save({ [unowned self] either in
             switch either {
-            case .left:
-                self.delegate?.chooseTimeViewController(self, didFinishWith: user)
-            case .right(let error):
+            case .left(let error):
                 self.delegate?.chooseTimeViewController(self, didEncounter: error)
+            case .right:
+                self.delegate?.chooseTimeViewController(self, didFinishWith: user)
             }
         })
     }

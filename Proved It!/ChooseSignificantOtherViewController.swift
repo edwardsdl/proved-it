@@ -51,10 +51,10 @@ final class ChooseSignificantOtherViewController: BaseViewController<ChooseSigni
         
         managedObjectContext.save({ [unowned self] either in
             switch either {
-            case .left:
-                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
-            case .right(let error):
+            case .left(let error):
                 self.delegate?.chooseSignificantOtherViewController(self, didEncounter: error)
+            case .right:
+                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
             }
         })
     }
@@ -129,10 +129,10 @@ extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelega
         
         managedObjectContext.save({ [unowned self] either in
             switch either {
-            case .left:
-                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
-            case .right(let error):
+            case .left(let error):
                 self.delegate?.chooseSignificantOtherViewController(self, didEncounter: error)
+            case .right:
+                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
             }
         })
     }

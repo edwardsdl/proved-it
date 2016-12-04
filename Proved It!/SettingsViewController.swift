@@ -40,7 +40,7 @@ extension SettingsViewController: SettingsViewDelegate {
         user?.name = name
         
         managedObjectContext.save({ [unowned self] either in
-            if case .right(let error) = either {
+            if case .left(let error) = either {
                 self.delegate?.settingsViewController(self, didEncounter: error)
             }
         })

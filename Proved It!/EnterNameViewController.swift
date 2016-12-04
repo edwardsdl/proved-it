@@ -39,10 +39,10 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
         
         managedObjectContext.save({ [unowned self] either in
             switch either {
-            case .left:
-                self.delegate?.enterNameViewController(self, didFinishWith: self.user)
-            case .right(let error):
+            case .left(let error):
                 self.delegate?.enterNameViewController(self, didEncounter: error)
+            case .right:
+                self.delegate?.enterNameViewController(self, didFinishWith: self.user)
             }
         })
 
@@ -74,10 +74,10 @@ final class EnterNameViewController: BaseViewController<EnterNameView>, UITextFi
         
         managedObjectContext.save({ [unowned self] either in
             switch either {
-            case .left:
-                self.delegate?.enterNameViewController(self, didFinishWith: user)
-            case .right(let error):
+            case .left(let error):
                 self.delegate?.enterNameViewController(self, didEncounter: error)
+            case .right:
+                self.delegate?.enterNameViewController(self, didFinishWith: user)
             }
         })
     }
