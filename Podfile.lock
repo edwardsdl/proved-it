@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (4.0.1)
+  - Charts (3.0.0):
+    - Charts/Core (= 3.0.0)
+  - Charts/Core (3.0.0)
   - Crashlytics (3.8.2):
     - Fabric (~> 1.6.3)
   - Digits (2.4.0):
@@ -12,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - Charts
   - Crashlytics
   - Digits
   - Fabric
@@ -21,6 +25,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  Charts: beb341928d2135613b4325a6c6aff9f2f6de895e
   Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
   Digits: 8173fa5420d64bf490bade840e6bc36b74537d6c
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
@@ -28,6 +33,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
   TwitterCore: a139904c80805ad3dde9eef1100704f96f646d1d
 
-PODFILE CHECKSUM: 98e83d35c14e407f30fb74a73cde6dba37d1227e
+PODFILE CHECKSUM: 3d9e768f2e0a281ef99e2e3b48067c4c42f3d157
 
 COCOAPODS: 1.1.0.rc.2
