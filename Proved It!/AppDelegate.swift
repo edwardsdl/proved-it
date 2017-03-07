@@ -7,6 +7,9 @@
 //
 
 import CoreData
+import Crashlytics
+import DigitsKit
+import Fabric
 import UIKit
 
 @UIApplicationMain
@@ -21,13 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var navigationController: UINavigationController!
     private var appCoordinator: AppCoordinator!
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         navigationController = createNavigationController()
         appCoordinator = createAppCoordinator(with: navigationController)
         window = createWindow(with: navigationController)
 
         do {
-            coreDataConfiguration = CoreDataConfiguration.Default
+            coreDataConfiguration = CoreDataConfiguration.default
             managedObjectModel = try createManagedObjectModel(with: coreDataConfiguration)
             persistentStoreCoordinator = createPersistentStoreCoordinator(with: coreDataConfiguration, managedObjectModel: managedObjectModel)
             persistentStore = try createPersistentStore(with: coreDataConfiguration, persistentStoreCoordinator: persistentStoreCoordinator)
@@ -36,20 +39,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appCoordinator.start(with: error)
         }
         
-        appCoordinator.start(with: managedObjectContext)
+        configureFabric()
         
-        FabricHelper.initializeFabric()
+        appCoordinator.start(with: managedObjectContext)
         
         return true
     }
 
     private func createManagedObjectModel(with coreDataConfiguration: CoreDataConfiguration) throws -> NSManagedObjectModel {
         guard let managedObjectModelUrl = coreDataConfiguration.managedObjectModelUrl else {
-            throw CoreDataError.FailedToCreateManagedObjectModel
+            throw CoreDataError.failedToCreateManagedObjectModel
         }
         
-        guard let managedObjectModel = NSManagedObjectModel(contentsOfURL: managedObjectModelUrl) else {
-            throw CoreDataError.FailedToCreateManagedObjectModel
+        guard let managedObjectModel = NSManagedObjectModel(contentsOf: managedObjectModelUrl as URL) else {
+            throw CoreDataError.failedToCreateManagedObjectModel
         }
         
         return managedObjectModel
@@ -63,28 +66,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func createPersistentStore(with coreDataConfiguration: CoreDataConfiguration, persistentStoreCoordinator: NSPersistentStoreCoordinator) throws -> NSPersistentStore {
         guard let persistentStoreUrl = coreDataConfiguration.persistentStoreUrl else {
-            throw CoreDataError.FailedToCreatePersistentStore
+            throw CoreDataError.failedToCreatePersistentStore
         }
         
-        guard let persistentStore = try? persistentStoreCoordinator.addPersistentStoreWithType(coreDataConfiguration.storeType, configuration: nil, URL: persistentStoreUrl, options: coreDataConfiguration.persistentStoreOptions) else {
-            throw CoreDataError.FailedToCreatePersistentStore
+        guard let persistentStore = try? persistentStoreCoordinator.addPersistentStore(ofType: coreDataConfiguration.storeType, configurationName: nil, at: persistentStoreUrl as URL, options: coreDataConfiguration.persistentStoreOptions) else {
+            throw CoreDataError.failedToCreatePersistentStore
         }
         
         return persistentStore
     }
     
     private func createManagedObjectContext(with persistentStoreCoordinator: NSPersistentStoreCoordinator) -> NSManagedObjectContext {
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
         
         return managedObjectContext
     }
-
+    
     private func createNavigationController() -> UINavigationController {
         let navigationController = UINavigationController()
-        navigationController.navigationBar.barStyle = .Black
-        navigationController.navigationBar.translucent = true
-        navigationController.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFontOfSize(17, weight: UIFontWeightLight)]
+        navigationController.navigationBar.barStyle = .black
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.tintColor = UIColor.white
+        navigationController.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightLight)]
         
         return navigationController
     }
@@ -94,34 +98,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return appCoordinator
     }
-
+    
     private func createWindow(with navigationController: UINavigationController) -> UIWindow {
-        let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
 
         return window
     }
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    private func configureFabric() {
+        Fabric.with([Crashlytics.self, Digits.self])
+        
+        Digits.sharedInstance().sessionUpdateDelegate = self
     }
+}
 
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+extension AppDelegate: DGTSessionUpdateDelegate {
+    func digitsSessionHasChanged(_ newSession: DGTSession!) {
+//        print("Session Changed")
     }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    
+    func digitsSessionExpired(forUserID userID: String!) {
+//        UserDefaults.standard.set(false, forKey: Constants.UserDefaults.IsLoggedInKey)
     }
 }

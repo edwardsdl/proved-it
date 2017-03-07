@@ -9,20 +9,21 @@
 import UIKit
 
 protocol ErrorCoordinatorDelegate: class {
-    func errorCoordinatorDidFinish(errorCoordinator: ErrorCoordinator)
+    func errorCoordinatorDidFinish(_ errorCoordinator: ErrorCoordinator)
 }
 
 final class ErrorCoordinator: CoordinatorType {
     weak var delegate: ErrorCoordinatorDelegate?
     
-    private let navigationController: UINavigationController
-    private var childCoordinators: [CoordinatorType] = []
+    fileprivate let navigationController: UINavigationController
+    
+    fileprivate var childCoordinators: [CoordinatorType] = []
     
     init(with navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
-    func start(with error: ErrorType) {
+    func start(with error: Error) {
         switch error {
         case let error as ApplicationError:
             handle(error)
@@ -34,31 +35,29 @@ final class ErrorCoordinator: CoordinatorType {
             handle(error)
         }
     }
-}
-
-private extension ErrorCoordinator {
-    private func handle(error: ApplicationError) {
+    
+    fileprivate func handle(_ error: ApplicationError) {
         displayAlert(with: error.message)
     }
     
-    private func handle(error: CoreDataError) {
+    fileprivate func handle(_ error: CoreDataError) {
         displayAlert(with: error.message)
     }
     
-    private func handle(error: ValidationError) {
+    fileprivate func handle(_ error: ValidationError) {
         displayAlert(with: error.message)
     }
     
-    private func handle(error: ErrorType) {
+    fileprivate func handle(_ error: Error) {
         displayAlert(with: "An unknown error occurred")
     }
     
-    private func displayAlert(with message: String) {
-        let alertAction = UIAlertAction(title: "OK", style: .Default, handler: { _ in self.delegate?.errorCoordinatorDidFinish(self) })
+    fileprivate func displayAlert(with message: String) {
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: { _ in self.delegate?.errorCoordinatorDidFinish(self) })
         
-        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alertController.addAction(alertAction)
         
-        navigationController.presentViewController(alertController, animated: true, completion: nil)
+        navigationController.present(alertController, animated: true, completion: nil)
     }
 }

@@ -17,7 +17,7 @@ final class UserService {
         self.managedObjectContext = managedObjectContext
     }
 
-    func createUser(user: User) {
+    func createUser(_ user: User) {
 
     }
 }

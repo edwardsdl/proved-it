@@ -29,9 +29,3 @@ final class ConfigurationApiClient: ConfigurationApiClientType {
 
     }
 }
-
-private enum ConfigurationRouter: URLRequestConvertible {
-    var URLRequest: NSMutableURLRequest {
-        return NSMutableURLRequest()
-    }
-}

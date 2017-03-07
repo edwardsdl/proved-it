@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="BaseEntity" representedClassName=".BaseEntity" isAbstract="YES" syncable="YES">
-        <attribute name="created" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="modified" attributeType="Date" syncable="YES"/>
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="modified" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="Configuration" representedClassName=".Configuration" parentEntity="BaseEntity" syncable="YES">
-        <attribute name="time" attributeType="Double" minValueString="0" maxValueString="86400" syncable="YES"/>
-        <relationship name="users" optional="YES" toMany="YES" minCount="1" maxCount="2" deletionRule="Nullify" destinationEntity="User" inverseName="configuration" inverseEntity="User" syncable="YES"/>
+        <attribute name="time" attributeType="Double" minValueString="0" maxValueString="86399" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="users" toMany="YES" minCount="1" maxCount="2" deletionRule="Nullify" destinationEntity="User" inverseName="configuration" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Result" representedClassName=".Result" parentEntity="BaseEntity" syncable="YES">
-        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="message" attributeType="String" minValueString="0" syncable="YES"/>
         <relationship name="losingUser" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="losses" inverseEntity="User" syncable="YES"/>
         <relationship name="winningUser" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="wins" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" parentEntity="BaseEntity" syncable="YES">
+        <attribute name="isCurrentUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isLoggedIn" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" minValueString="1" syncable="YES"/>
-        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="configuration" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Configuration" inverseName="users" inverseEntity="Configuration" syncable="YES"/>
-        <relationship name="losses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Result" inverseName="losingUser" inverseEntity="Result" syncable="YES"/>
-        <relationship name="wins" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Result" inverseName="winningUser" inverseEntity="Result" syncable="YES"/>
+        <relationship name="losses" toMany="YES" deletionRule="Nullify" destinationEntity="Result" inverseName="losingUser" inverseEntity="Result" syncable="YES"/>
+        <relationship name="wins" toMany="YES" deletionRule="Nullify" destinationEntity="Result" inverseName="winningUser" inverseEntity="Result" syncable="YES"/>
     </entity>
     <elements>
+        <element name="BaseEntity" positionX="-315" positionY="153" width="128" height="90"/>
         <element name="Configuration" positionX="-173" positionY="18" width="128" height="75"/>
         <element name="Result" positionX="-270" positionY="162" width="128" height="105"/>
-        <element name="User" positionX="-459" positionY="54" width="128" height="120"/>
-        <element name="BaseEntity" positionX="-315" positionY="153" width="128" height="90"/>
+        <element name="User" positionX="-459" positionY="54" width="128" height="150"/>
     </elements>
 </model>

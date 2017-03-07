@@ -9,79 +9,32 @@
 import UIKit
 
 protocol ChooseTimeViewDelegate: class {
-    func chooseTimeView(chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: NSTimeInterval)
+    func chooseTimeView(_ chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: TimeInterval)
+    func chooseTimeView(_ chooseTimeView: ChooseTimeView, didEncounter error: Error)
 }
 
 final class ChooseTimeView: BaseView {
-    @IBOutlet weak var chooseTimeButton: UIButton!
+    @IBOutlet weak var chooseTimeDatePicker: ChooseTimeDatePicker!
 
     weak var delegate: ChooseTimeViewDelegate?
 
-    private var date: NSDate = NSDate()
-
-    override func awakeFromNib() {
-        configureChooseTimeButton()
-        configurePanGestureRecognizer()
-    }
-
-    private func configureChooseTimeButton() {
-        let timeString = timeStringFromDate(date)
-
-        chooseTimeButton.layer.borderColor = UIColor.provedItOrangeColor().CGColor
-        chooseTimeButton.layer.borderWidth = 2
-        chooseTimeButton.layer.cornerRadius = chooseTimeButton.bounds.width / 2
-        chooseTimeButton.setTitle(timeString, forState: .Normal)
-    }
-
-    private func timeStringFromDate(date: NSDate) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .NoStyle
-        dateFormatter.timeStyle = .ShortStyle
-
-        return dateFormatter.stringFromDate(date)
-    }
-
-    private func configurePanGestureRecognizer() {
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(ChooseTimeView.panGestureRecognizerValueChanged(_:)))
-
-        addGestureRecognizer(panGestureRecognizer)
-    }
-
-    func panGestureRecognizerValueChanged(sender: UIPanGestureRecognizer) {
-        switch sender.state {
-        case .Began, .Changed:
-            let changeInSeconds = calculateChangeInSeconds(withPanGestureRecognizer: sender)
-            let date = updateDateByAddingSeconds(changeInSeconds)
-            let timeString = timeStringFromDate(date)
-
-            chooseTimeButton.setTitle(timeString, forState: .Normal)
-        default:
-            break
+    @IBAction func chooseTimeDatePickerDidChangeValue() {
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        
+        let roundedDate = Calendar.current.nextDate(after: chooseTimeDatePicker.date,
+                                                    matching: DateComponents(second: 0, nanosecond: 0),
+                                                    matchingPolicy: .strict,
+                                                    repeatedTimePolicy: .first,
+                                                    direction: .backward)
+        
+        if let timeInterval = roundedDate?.timeIntervalSince(startOfDay) {
+            delegate?.chooseTimeView(self, didChooseTimeIntervalSinceStartOfDay: timeInterval)
+        } else {
+            delegate?.chooseTimeView(self, didEncounter: ApplicationError.failedToUnwrapValue)
         }
     }
-
-    private func calculateChangeInSeconds(withPanGestureRecognizer panGestureRecognizer: UIPanGestureRecognizer) -> Int {
-        let velocity = panGestureRecognizer.velocityInView(self)
-        let changeInTime = velocity.x * 0.20
-        let roundedChangeInTime = round(changeInTime)
-
-        return Int(roundedChangeInTime)
-    }
-
-    private func updateDateByAddingSeconds(seconds: Int) -> NSDate {
-        let currentCalendar = NSCalendar.currentCalendar()
-        let newDate = currentCalendar.dateByAddingUnit(.Second, value: seconds, toDate: date, options: .MatchNextTime)
-
-        date = newDate ?? NSDate()
-
-        return date
-    }
-
-    @IBAction func chooseTimeButtonTouchUpInside(sender: UIButton) {
-        let calendar = NSCalendar.currentCalendar()
-        let startOfDay = calendar.startOfDayForDate(date)
-        let timeInterval = date.timeIntervalSinceDate(startOfDay)
-
-        delegate?.chooseTimeView(self, didChooseTimeIntervalSinceStartOfDay: timeInterval)
+    
+    func configure(with user: User) {
+        chooseTimeDatePicker.configure()
     }
 }

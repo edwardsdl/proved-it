@@ -10,28 +10,78 @@ import CoreData
 import UIKit
 
 protocol ChooseTimeViewControllerDelegate: class {
-    func chooseTimeViewController(chooseTimeViewController: ChooseTimeViewController, didFinishWithUser user: User)
+    func chooseTimeViewController(_ chooseTimeViewController: ChooseTimeViewController, didFinishWith user: User)
+    func chooseTimeViewController(_ chooseTimeViewController: ChooseTimeViewController, didEncounter error: Error)
 }
 
 final class ChooseTimeViewController: BaseViewController<ChooseTimeView> {
     weak var delegate: ChooseTimeViewControllerDelegate?
     
-    private let user: User
-
-    init(with user: User) {
+    fileprivate var user: User?
+    
+    func configure(with user: User, isOnboarding: Bool) {
+        configureCustomView(with: user)
+        configureNavigationItem(isOnboarding: isOnboarding)
+        
         self.user = user
-        self.user.configuration = Configuration(insertIntoManagedObjectContext: user.managedObjectContext!)
     }
-
-    override func viewDidLoad() {
+    
+    private func configureCustomView(with user: User) {
         customView.delegate = self
+        customView.configure(with: user)
+    }
+    
+    private func configureNavigationItem(isOnboarding: Bool) {
+        if isOnboarding {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(rightBarButtonItemTapped))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(rightBarButtonItemTapped))
+        }
+    }
+    
+    @objc private func rightBarButtonItemTapped() {
+        guard let user = user else {
+            delegate?.chooseTimeViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.chooseTimeViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        managedObjectContext.save({ [unowned self] either in
+            switch either {
+            case .left(let error):
+                self.delegate?.chooseTimeViewController(self, didEncounter: error)
+            case .right:
+                self.delegate?.chooseTimeViewController(self, didFinishWith: user)
+            }
+        })
     }
 }
 
 extension ChooseTimeViewController: ChooseTimeViewDelegate {
-    func chooseTimeView(chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: NSTimeInterval) {
-        user.configuration?.time = timeInterval
+    func chooseTimeView(_ chooseTimeView: ChooseTimeView, didChooseTimeIntervalSinceStartOfDay timeInterval: TimeInterval) {
+        guard let user = user else {
+            delegate?.chooseTimeViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.chooseTimeViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
 
-        delegate?.chooseTimeViewController(self, didFinishWithUser: user)
+            return
+        }
+        
+        user.configuration = user.configuration ?? Configuration(insertedInto: managedObjectContext)
+        user.configuration?.time = timeInterval
+    }
+    
+    func chooseTimeView(_ chooseTimeView: ChooseTimeView, didEncounter error: Error) {
+        delegate?.chooseTimeViewController(self, didEncounter: error)
     }
 }

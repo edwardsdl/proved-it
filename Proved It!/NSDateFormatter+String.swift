@@ -8,23 +8,23 @@
 
 import Foundation
 
-extension NSDateFormatter {
-    static func dateFromUtcString(string: String) -> NSDate? {
-        let dateFormatter = NSDateFormatter()
+extension DateFormatter {
+    static func dateFromUtcString(_ string: String) -> Date? {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        dateFormatter.timeZone = NSTimeZone(name: "UTC")
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
         
-        let date = dateFormatter.dateFromString(string)
+        let date = dateFormatter.date(from: string)
         
         return date
     }
     
-    static func utcStringFromDate(date: NSDate) -> String? {
-        let dateFormatter = NSDateFormatter()
+    static func utcStringFromDate(_ date: Date) -> String? {
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        dateFormatter.timeZone = NSTimeZone(name: "UTC")
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
         
-        let utcString = dateFormatter.stringFromDate(date)
+        let utcString = dateFormatter.string(from: date)
         
         return utcString
     }

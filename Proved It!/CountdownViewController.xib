@@ -1,49 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CountdownViewController" customModule="ProvedIt" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="NLS-P4-jSK"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CountdownView" customModule="ProvedIt" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqI-FB-eRk" userLabel="Navigation Bar Divider">
-                    <rect key="frame" x="0.0" y="64" width="600" height="2"/>
-                    <color key="backgroundColor" red="0.49411764705882355" green="0.82745098039215681" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.49411764705882355" green="0.82745098039215681" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="2" id="lKO-Ir-ZkN"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-aO-K74" userLabel="Prove Time Button">
-                    <rect key="frame" x="190" y="190" width="220" height="220"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-aO-K74" userLabel="Countdown Button" customClass="CountdownButton" customModule="ProvedIt" customModuleProvider="target">
                     <constraints>
                         <constraint firstAttribute="width" secondItem="TNv-aO-K74" secondAttribute="height" multiplier="1:1" id="xaA-jH-nof"/>
-                        <constraint firstAttribute="width" constant="220" id="xfC-TB-emb"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="29"/>
                     <state key="normal" title="--">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="proveItButtonTouchUpInside:" destination="iN0-l3-epB" eventType="touchUpInside" id="3fD-gv-coD"/>
+                        <action selector="countdownButtonTapped" destination="-1" eventType="touchUpInside" id="DnT-vj-b65"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="tqI-FB-eRk" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="3M9-4W-FWi"/>
+                <constraint firstItem="TNv-aO-K74" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="2/3" id="Afg-eB-3T0"/>
                 <constraint firstItem="TNv-aO-K74" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bIT-qE-zSw"/>
                 <constraint firstItem="tqI-FB-eRk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="emY-Rn-0qY"/>
                 <constraint firstItem="tqI-FB-eRk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rQF-wG-B4j"/>
                 <constraint firstItem="TNv-aO-K74" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="rWl-Tu-vJi"/>
             </constraints>
             <connections>
-                <outlet property="proveItButton" destination="TNv-aO-K74" id="jqc-yM-raJ"/>
+                <outlet property="countdownButton" destination="TNv-aO-K74" id="TRc-iI-CV8"/>
             </connections>
         </view>
     </objects>

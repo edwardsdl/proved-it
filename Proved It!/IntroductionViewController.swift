@@ -9,17 +9,25 @@
 import UIKit
 
 protocol IntroductionViewControllerDelegate: class {
-    func introductionViewControllerDidTapProveItButton(introductionViewController: IntroductionViewController)
+    func introductionViewControllerDidTapProveItButton(_ introductionViewController: IntroductionViewController)
 }
 
 final class IntroductionViewController: BaseViewController<IntroductionView> {
     weak var delegate: IntroductionViewControllerDelegate?
 
     override func viewDidLoad() {
-        customView.proveItButton.addTarget(self, action: #selector(IntroductionViewController.proveItButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        customView.proveItButton.addTarget(self, action: #selector(IntroductionViewController.proveItButtonTapped(_:)), for: .touchUpInside)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
     }
 
-    func proveItButtonTapped(sender: UIButton) {
+    func proveItButtonTapped(_ sender: UIButton) {
         delegate?.introductionViewControllerDidTapProveItButton(self)
     }
 }

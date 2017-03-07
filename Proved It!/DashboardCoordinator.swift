@@ -7,35 +7,49 @@
 //
 
 import CoreData
+import MessageUI
 import UIKit
 
 protocol DashboardCoordinatorDelegate: class {
-
+    func dashboardCoordinatorDidTapSignOut(_ dashboardCoordinator: DashboardCoordinator)
 }
 
 final class DashboardCoordinator: NSObject, CoordinatorType {
     weak var delegate: DashboardCoordinatorDelegate?
     
-    private let navigationController: UINavigationController
-    private let user: User
-    private let pageViewController: UIPageViewController
-    private let viewControllers: [UIViewController]
+    fileprivate let navigationController: UINavigationController
+    fileprivate let user: User
+    fileprivate let pageViewController: UIPageViewController
+    fileprivate let viewControllers: [UIViewController]
     
-    private var childCoordinators: [CoordinatorType]
+    fileprivate var childCoordinators: [CoordinatorType]
     
     init(with navigationController: UINavigationController, user: User) {
+        let countdownViewController = CountdownViewController()
+        countdownViewController.configure(with: user)
+        
+        let historyViewController = HistoryViewController()
+        historyViewController.configure(with: user)
+        
+        let settingsViewController = SettingsViewController()
+        settingsViewController.configure(with: user)
+        
         self.navigationController = navigationController
         self.user = user
-        self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        self.viewControllers = [CountdownViewController(with: user)]
+        self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        self.viewControllers = [countdownViewController, historyViewController, settingsViewController]
         self.childCoordinators = []
         
         super.init()
+        
+        countdownViewController.delegate = self
+        historyViewController.delegate = self
+        settingsViewController.delegate = self
     }
     
     func start() {
         guard let firstViewController = viewControllers.first else {
-            startErrorCoordinator(with: ApplicationError.FailedToUnwrapValue)
+            startErrorCoordinator(with: ApplicationError.failedToUnwrapValue)
             
             return
         }
@@ -44,13 +58,13 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
         self.pageViewController.delegate = self
         self.pageViewController.navigationItem.hidesBackButton = true
         self.pageViewController.title = firstViewController.title
-        self.pageViewController.setViewControllers([firstViewController], direction: .Forward, animated: true, completion: nil)
+        self.pageViewController.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         
-        self.navigationController.navigationBarHidden = false
+        self.navigationController.isNavigationBarHidden = false
         self.navigationController.pushViewController(self.pageViewController, animated: true)
     }
     
-    private func startErrorCoordinator(with error: ErrorType) {
+    fileprivate func startErrorCoordinator(with error: Error) {
         let errorCoordinator = ErrorCoordinator(with: navigationController)
         errorCoordinator.delegate = self
         errorCoordinator.start(with: error)
@@ -59,14 +73,71 @@ final class DashboardCoordinator: NSObject, CoordinatorType {
     }
 }
 
+extension DashboardCoordinator: CountdownViewControllerDelegate {
+    func countdownViewControllerDidTapCountdownButton(_ countdownViewController: CountdownViewController) {
+        guard MFMessageComposeViewController.canSendText() else {
+            startErrorCoordinator(with: ApplicationError.other(message: "Failed to display composition interface"))
+            
+            return
+        }
+        
+        let messageComposeViewController = MFMessageComposeViewController()
+        messageComposeViewController.body = "I already proved it!"
+        messageComposeViewController.messageComposeDelegate = self
+        messageComposeViewController.recipients = [user.significantOther?.phoneNumber ?? ""]
+
+        navigationController.present(messageComposeViewController, animated: true, completion: nil)
+    }
+    
+    func countdownViewController(_ countdownViewController: CountdownViewController, didEncounter error: Error) {
+        startErrorCoordinator(with: error)
+    }
+}
+
+extension DashboardCoordinator: MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        navigationController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension DashboardCoordinator: HistoryViewControllerDelegate {
+    
+}
+
+extension DashboardCoordinator: SettingsViewControllerDelegate {    
+    func settingsViewControllerDidSelectTime(_ settingsViewController: SettingsViewController) {
+        let chooseTimeViewController = ChooseTimeViewController()
+        chooseTimeViewController.delegate = self
+        chooseTimeViewController.configure(with: user, isOnboarding: false)
+        
+        navigationController.pushViewController(chooseTimeViewController, animated: true)
+    }
+    
+    func settingsViewControllerDidSelectSignificantOther(_ settingsViewController: SettingsViewController) {
+        let chooseSignificantOtherViewController = ChooseSignificantOtherViewController()
+        chooseSignificantOtherViewController.delegate = self
+        chooseSignificantOtherViewController.configure(with: user)
+        
+        navigationController.pushViewController(chooseSignificantOtherViewController, animated: true)
+    }
+    
+    func settingsViewControllerDidTapSignOut(_ settingsViewController: SettingsViewController) {
+        delegate?.dashboardCoordinatorDidTapSignOut(self)
+    }
+    
+    func settingsViewController(_ settingsViewController: SettingsViewController, didEncounter error: Error) {
+        startErrorCoordinator(with: error)
+    }
+}
+
 extension DashboardCoordinator: ErrorCoordinatorDelegate {
-    func errorCoordinatorDidFinish(errorCoordinator: ErrorCoordinator) {
-        childCoordinators.remove({ $0 === errorCoordinator })
+    func errorCoordinatorDidFinish(_ errorCoordinator: ErrorCoordinator) {
+        childCoordinators.remove(predicate: { $0 === errorCoordinator })
     }
 }
 
 extension DashboardCoordinator: UIPageViewControllerDelegate {
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let currentViewController = pageViewController.viewControllers?.first else {
             return
         }
@@ -76,12 +147,12 @@ extension DashboardCoordinator: UIPageViewControllerDelegate {
 }
 
 extension DashboardCoordinator: UIPageViewControllerDataSource {
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentViewController = pageViewController.viewControllers?.first else {
             return nil
         }
         
-        guard let currentIndex = viewControllers.indexOf(currentViewController) else {
+        guard let currentIndex = viewControllers.index(of: currentViewController) else {
             return nil
         }
         
@@ -94,12 +165,12 @@ extension DashboardCoordinator: UIPageViewControllerDataSource {
         return viewControllers[previousViewControllerIndex]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let currentViewController = pageViewController.viewControllers?.first else {
             return nil
         }
         
-        guard let currentIndex = viewControllers.indexOf(currentViewController) else {
+        guard let currentIndex = viewControllers.index(of: currentViewController) else {
             return nil
         }
         
@@ -112,19 +183,39 @@ extension DashboardCoordinator: UIPageViewControllerDataSource {
         return viewControllers[nextViewControllerIndex]
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return viewControllers.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         guard let currentViewController = pageViewController.viewControllers?.first else {
             return 0
         }
         
-        guard let currentIndex = viewControllers.indexOf(currentViewController) else {
+        guard let currentIndex = viewControllers.index(of: currentViewController) else {
             return 0
         }
         
         return currentIndex
+    }
+}
+
+extension DashboardCoordinator: ChooseTimeViewControllerDelegate {
+    func chooseTimeViewController(_ chooseTimeViewController: ChooseTimeViewController, didFinishWith user: User) {
+        navigationController.popViewController(animated: true)
+    }
+    
+    func chooseTimeViewController(_ chooseTimeViewController: ChooseTimeViewController, didEncounter error: Error) {
+        startErrorCoordinator(with: error)
+    }
+}
+
+extension DashboardCoordinator: ChooseSignificantOtherViewControllerDelegate {
+    func chooseSignificantOtherViewController(_ chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User) {
+        navigationController.popViewController(animated: true)
+    }
+    
+    func chooseSignificantOtherViewController(_ chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: Error) {
+        startErrorCoordinator(with: error)
     }
 }

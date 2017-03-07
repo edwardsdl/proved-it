@@ -9,17 +9,17 @@
 import CoreData
 
 extension NSManagedObjectContext {
-    func save(completionHandler: (Either<Void, ErrorType>) -> Void) {
-        performBlock({ [unowned self] in
+    func save(_ completionHandler: @escaping (Either<Error, Void>) -> Void) {
+        perform({ [unowned self] in
             do {
                 try self.save()
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(.Left())
+                DispatchQueue.main.async(execute: {
+                    completionHandler(.right())
                 })
             } catch {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(.Right(error))
+                DispatchQueue.main.async(execute: {
+                    completionHandler(.left(error))
                 })
             }
         })

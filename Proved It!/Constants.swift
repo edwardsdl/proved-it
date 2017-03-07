@@ -9,5 +9,9 @@
 import Foundation
 
 struct Constants {
-
+    struct CountdownButton {
+        static var FlipAnimationDuration: Double {
+            return 0.6
+        }
+    }
 }

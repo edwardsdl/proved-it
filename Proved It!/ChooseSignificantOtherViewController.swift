@@ -10,50 +10,130 @@ import Contacts
 import UIKit
 
 protocol ChooseSignificantOtherViewControllerDelegate: class {
-    func chooseSignificantOtherViewController(chooseSignificantotherViewController: ChooseSignificantOtherViewController, didFinishWith user: User)
+    func chooseSignificantOtherViewController(_ chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didFinishWith user: User)
+    func chooseSignificantOtherViewController(_ chooseSignificantOtherViewController: ChooseSignificantOtherViewController, didEncounter error: Error)
 }
 
 final class ChooseSignificantOtherViewController: BaseViewController<ChooseSignificantOtherView> {
     weak var delegate: ChooseSignificantOtherViewControllerDelegate?
 
-    private let user: User
+    fileprivate var user: User?
     
-    private var chooseSignificantOtherDataSource: ChooseSignificantOtherDataSource?
-    private var chooseSignificantOtherDelegate: ChooseSignificantOtherDelegate?
-
-    init(with user: User) {
-        self.user = user
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        super.init()
+        let contacts = loadContacts()
+        
+        customView.delegate = self
+        customView.configure(using: contacts)
     }
     
-    override func loadView() {
-        super.loadView()
-
-        let contacts = loadContacts()
-        chooseSignificantOtherDataSource = ChooseSignificantOtherDataSource(withContacts: contacts)
-        chooseSignificantOtherDelegate = ChooseSignificantOtherDelegate(withContacts: contacts, selectionHandler: selectionHandler)
-
-        customView.tableView.dataSource = chooseSignificantOtherDataSource
-        customView.tableView.delegate = chooseSignificantOtherDelegate
+    func configure(with user: User) {
+        self.user = user
+    }
+    
+    private func configureNavigationItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(rightBarButtonItemTapped))
+    }
+    
+    @objc private func rightBarButtonItemTapped() {
+        guard let user = user else {
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        managedObjectContext.save({ [unowned self] either in
+            switch either {
+            case .left(let error):
+                self.delegate?.chooseSignificantOtherViewController(self, didEncounter: error)
+            case .right:
+                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
+            }
+        })
     }
 
     private func loadContacts() -> [CNContact] {
-        let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName), CNContactPhoneNumbersKey]
-        let contactFetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
-
-        let contactStore = CNContactStore()
-
         var contacts = [CNContact]()
 
-        _ = try? contactStore.enumerateContactsWithFetchRequest(contactFetchRequest, usingBlock: { (contact, stop) in
-            contacts.append(contact)
-        })
+        do {
+            let keysToFetch = [CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactPhoneNumbersKey] as [Any]
+            let contactFetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch as! [CNKeyDescriptor])
+            
+            let contactStore = CNContactStore()
+            try contactStore.enumerateContacts(with: contactFetchRequest, usingBlock: { (contact, stop) in
+                guard contact.phoneNumbers.count > 0 else {
+                    return
+                }
+                
+                contacts.append(contact)
+            })
+        } catch {
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: error)
+        }
 
         return contacts
     }
+}
 
-    private func selectionHandler(contact: CNContact) {
-        delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
+extension ChooseSignificantOtherViewController: ChooseSignificantOtherViewDelegate {
+    func chooseSignificantOtherView(_ chooseSignificantOtherView: ChooseSignificantOtherView, didChooseContactWith name: String, phoneNumbers: [String]) {
+        switch phoneNumbers.count {
+        case 1:
+            save(usingContactWith: name, phoneNumber: phoneNumbers[0])
+        case let count where count > 1:
+            promptUserForPhoneNumber(forContactWith: name, phoneNumbers: phoneNumbers)
+        default:
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.other(message: "Received unexpected number of phone numbers"))
+        }
+    }
+    
+    private func promptUserForPhoneNumber(forContactWith name: String, phoneNumbers: [String]) {
+        let phoneNumbers = phoneNumbers.prefix(5)
+        
+        let alertController = UIAlertController(title: "Choose a phone number for \(name)", message: nil, preferredStyle: .actionSheet)
+        
+        var alertActions = phoneNumbers.map({
+            UIAlertAction(title: "\($0)", style: .default, handler: { [weak self] in
+                self?.save(usingContactWith: name, phoneNumber: $0.title ?? "")
+            })
+        })
+        alertActions.append(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertActions.forEach({ alertController.addAction($0) })
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func save(usingContactWith name: String, phoneNumber: String) {
+        guard let user = user else {
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        guard let managedObjectContext = user.managedObjectContext else {
+            delegate?.chooseSignificantOtherViewController(self, didEncounter: ApplicationError.failedToUnwrapValue)
+            
+            return
+        }
+        
+        user.significantOther = User(insertedInto: managedObjectContext)
+        user.significantOther?.name = name
+        user.significantOther?.phoneNumber = phoneNumber
+        
+        managedObjectContext.save({ [unowned self] either in
+            switch either {
+            case .left(let error):
+                self.delegate?.chooseSignificantOtherViewController(self, didEncounter: error)
+            case .right:
+                self.delegate?.chooseSignificantOtherViewController(self, didFinishWith: user)
+            }
+        })
     }
 }

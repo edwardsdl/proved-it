@@ -9,9 +9,9 @@
 import CoreData
 
 extension NSManagedObject {
-    convenience init(insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext) {
-        let entityDescription = NSEntityDescription.entityForName(String(self.dynamicType), inManagedObjectContext: managedObjectContext)
+    convenience init(insertedInto managedObjectContext: NSManagedObjectContext) {
+        let entityDescription = NSEntityDescription.entity(forEntityName: String(describing: type(of: self)), in: managedObjectContext)
 
-        self.init(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+        self.init(entity: entityDescription!, insertInto: managedObjectContext)
     }
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" id="91w-Xg-zkI" customClass="SettingsCell" customModule="ProvedIt" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="91w-Xg-zkI" id="5si-iT-9rG">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvX-ab-wPf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.65098039215686276" blue="0.13725490196078433" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="translatesAutoresizingMaskIntoConstraints" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGG-xN-xY1">
+                        <rect key="frame" x="42" y="14" width="90" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="xYi-5W-HvO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.96078431372549022" green="0.65098039215686276" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beb-TD-5hb">
+                        <rect key="frame" x="148" y="12" width="159" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="iGG-xN-xY1" firstAttribute="leading" secondItem="5si-iT-9rG" secondAttribute="leading" constant="42" id="C9i-Zg-hVF"/>
+                    <constraint firstItem="iGG-xN-xY1" firstAttribute="centerY" secondItem="5si-iT-9rG" secondAttribute="centerY" id="dcg-z6-ibj"/>
+                    <constraint firstItem="beb-TD-5hb" firstAttribute="centerY" secondItem="5si-iT-9rG" secondAttribute="centerY" id="iw1-Ql-hBx"/>
+                    <constraint firstItem="beb-TD-5hb" firstAttribute="trailing" secondItem="5si-iT-9rG" secondAttribute="trailing" constant="20" symbolic="YES" id="pXT-TT-dIl"/>
+                    <constraint firstItem="beb-TD-5hb" firstAttribute="leading" secondItem="iGG-xN-xY1" secondAttribute="trailing" constant="16" id="qdk-ht-sfg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="zvX-ab-wPf" firstAttribute="top" secondItem="91w-Xg-zkI" secondAttribute="top" id="6Up-l0-AmL"/>
+                <constraint firstItem="zvX-ab-wPf" firstAttribute="leading" secondItem="91w-Xg-zkI" secondAttribute="leading" id="OPX-ZX-ZrO"/>
+                <constraint firstItem="zvX-ab-wPf" firstAttribute="trailing" secondItem="91w-Xg-zkI" secondAttribute="trailing" id="RxG-c0-Na4"/>
+                <constraint firstItem="zvX-ab-wPf" firstAttribute="bottom" secondItem="91w-Xg-zkI" secondAttribute="bottom" id="zH0-EA-Z34"/>
+            </constraints>
+            <connections>
+                <outlet property="detailLabel" destination="beb-TD-5hb" id="Z6V-rJ-XCR"/>
+                <outlet property="selectedBackgroundView" destination="zvX-ab-wPf" id="YQC-Tv-W5f"/>
+                <outlet property="titleLabel" destination="iGG-xN-xY1" id="3w1-4y-eSc"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

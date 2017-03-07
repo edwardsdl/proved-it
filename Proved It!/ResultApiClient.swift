@@ -29,10 +29,3 @@ final class ResultApiClient: ResultApiClientType {
 
     }
 }
-
-private enum ResultRouter: URLRequestConvertible {
-    var URLRequest: NSMutableURLRequest {
-        return NSMutableURLRequest()
-    }
-}
-

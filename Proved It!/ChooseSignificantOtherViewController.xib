@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChooseSignificantOtherViewController" customModule="ProvedIt" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="oQM-wu-HeK" id="hVp-d1-aSK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="oQM-wu-HeK" customClass="ChooseSignificantOtherView" customModule="ProvedIt" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your partner" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJz-pw-4vp">
+                    <rect key="frame" x="20" y="90" width="335" height="36"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The person you select will receive an invitation to join you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7y-Tq-Ahb">
+                    <rect key="frame" x="20" y="134" width="335" height="33.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e5Z-cA-wQX">
+                    <rect key="frame" x="0.0" y="217.5" width="375" height="449.5"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="RJz-pw-4vp" firstAttribute="leading" secondItem="oQM-wu-HeK" secondAttribute="leading" constant="20" symbolic="YES" id="0MJ-Om-47s"/>
+                <constraint firstItem="e5Z-cA-wQX" firstAttribute="top" secondItem="s7y-Tq-Ahb" secondAttribute="bottom" multiplier="1.25" constant="8" symbolic="YES" id="94k-ac-t2N"/>
+                <constraint firstItem="RJz-pw-4vp" firstAttribute="top" secondItem="oQM-wu-HeK" secondAttribute="top" constant="90" id="Bzz-0m-6VS"/>
+                <constraint firstItem="e5Z-cA-wQX" firstAttribute="leading" secondItem="oQM-wu-HeK" secondAttribute="leading" id="E1D-tc-hOr"/>
+                <constraint firstAttribute="bottom" secondItem="e5Z-cA-wQX" secondAttribute="bottom" id="QaT-jF-g8B"/>
+                <constraint firstAttribute="trailing" secondItem="e5Z-cA-wQX" secondAttribute="trailing" id="SM8-8i-U6A"/>
+                <constraint firstAttribute="trailing" secondItem="s7y-Tq-Ahb" secondAttribute="trailing" constant="20" symbolic="YES" id="TIz-Sw-LYL"/>
+                <constraint firstItem="s7y-Tq-Ahb" firstAttribute="top" secondItem="RJz-pw-4vp" secondAttribute="bottom" constant="8" symbolic="YES" id="aJy-Nb-vxc"/>
+                <constraint firstAttribute="trailing" secondItem="RJz-pw-4vp" secondAttribute="trailing" constant="20" symbolic="YES" id="eZQ-SF-BsV"/>
+                <constraint firstItem="s7y-Tq-Ahb" firstAttribute="leading" secondItem="oQM-wu-HeK" secondAttribute="leading" constant="20" symbolic="YES" id="xTh-Gl-bMF"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+            <connections>
+                <outlet property="tableView" destination="e5Z-cA-wQX" id="8Xv-3s-Spt"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -10,6 +10,6 @@ import CoreData
 import SwiftyJSON
 
 protocol JSONConvertible {
-    init(withJSON json: JSON, insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext)
-    func toDictionary() -> [String: AnyObject]
+    init(with json: JSON, insertIntoManagedObjectContext managedObjectContext: NSManagedObjectContext)
+    func toDictionary() -> [String: Any]
 }

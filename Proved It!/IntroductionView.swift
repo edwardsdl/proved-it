@@ -12,7 +12,7 @@ final class IntroductionView: BaseView {
     @IBOutlet weak var proveItButton: UIButton!
 
     override func awakeFromNib() {
-        proveItButton.layer.borderColor = UIColor.provedItGreenColor().CGColor
+        proveItButton.layer.borderColor = UIColor.provedItGreenColor().cgColor
         proveItButton.layer.borderWidth = 2
         proveItButton.layer.cornerRadius = proveItButton.bounds.width / 2
     }

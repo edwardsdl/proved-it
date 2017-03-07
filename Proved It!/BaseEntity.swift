@@ -6,14 +6,16 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
-import Foundation
 import CoreData
 
-
 class BaseEntity: NSManagedObject {
+    @NSManaged var created: Date
+    @NSManaged var modified: Date
+    @NSManaged var id: Int32
+    
     override func awakeFromInsert() {
-        created = NSDate()
-        modified = NSDate()
+        created = Date()
+        modified = Date()
     }
     
     override func willSave() {
@@ -21,17 +23,15 @@ class BaseEntity: NSManagedObject {
             return
         }
         
-        modified = NSDate()
+        modified = Date()
     }
-}
-
-private extension BaseEntity {
-    private func isApproximatelyNow(date: NSDate?) -> Bool {
+    
+    private func isApproximatelyNow(_ date: Date?) -> Bool {
         guard let date = date else {
             return false
         }
         
-        let timeInterval = date.timeIntervalSinceDate(NSDate())
+        let timeInterval = date.timeIntervalSince(Date())
         
         return timeInterval <= 30
     }

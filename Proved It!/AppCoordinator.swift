@@ -14,10 +14,9 @@ protocol CoordinatorType: class {
 }
 
 final class AppCoordinator: CoordinatorType {
-    private let navigationController: UINavigationController
-    
-    private var childCoordinators: [CoordinatorType]
-    private var managedObjectContext: NSManagedObjectContext?
+    fileprivate let navigationController: UINavigationController
+    fileprivate var childCoordinators: [CoordinatorType]
+    fileprivate var managedObjectContext: NSManagedObjectContext?
 
     init(with navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -27,74 +26,66 @@ final class AppCoordinator: CoordinatorType {
     func start(with managedObjectContext: NSManagedObjectContext) {
         self.managedObjectContext = managedObjectContext
         
-        let introductionViewController = IntroductionViewController()
-        introductionViewController.delegate = self
+        navigationController.isNavigationBarHidden = true
+        navigationController.viewControllers = [LoadingViewController()]
         
-        navigationController.navigationBarHidden = true
-        navigationController.viewControllers = [introductionViewController]
+        
+        if let user = managedObjectContext.fetchCurrentUser() {
+            if shouldStartDashboardCoordinator(for: user) {
+                startDashboardCoordinator(with: user)
+            } else {
+                startAuthenticationCoordinator()
+            }
+        } else {
+            startOnboardingCoordinator()
+        }
     }
     
-    func start(with error: ErrorType) {
+    func start(with error: Error) {
         startErrorCoordinator(with: error)
     }
     
-    private func startErrorCoordinator(with error: ErrorType) {
-        let errorCoordinator = ErrorCoordinator(with: navigationController)
-        errorCoordinator.delegate = self
-        errorCoordinator.start(with: error)
-        
-        childCoordinators.append(errorCoordinator)
+    private func shouldStartDashboardCoordinator(for user: User) -> Bool {
+        return user.isLoggedIn
     }
-}
 
-extension AppCoordinator: IntroductionViewControllerDelegate {
-    func introductionViewControllerDidTapProveItButton(introductionViewController: IntroductionViewController) {
+    private func startAuthenticationCoordinator() {
         guard let managedObjectContext = managedObjectContext else {
-            startErrorCoordinator(with: ApplicationError.FailedToUnwrapValue)
+            startErrorCoordinator(with: ApplicationError.failedToUnwrapValue)
             
             return
         }
         
-        startAuthenticationCoordinator(with: navigationController, managedObjectContext: managedObjectContext)
-    }
-    
-    private func startAuthenticationCoordinator(with navigationController: UINavigationController, managedObjectContext: NSManagedObjectContext) {
-        let authenticationCoordinator = AuthenticationCoordinator(with: navigationController, managedObjectContext: managedObjectContext)
+        let authenticationCoordinator = AuthenticationCoordinator(with: self.navigationController, managedObjectContext: managedObjectContext)
         authenticationCoordinator.delegate = self
         authenticationCoordinator.start()
         
         childCoordinators.append(authenticationCoordinator)
     }
-}
-
-extension AppCoordinator: AuthenticationCoordinatorDelegate {
-    func authenticationCoordinator(authenticationCoordinator: AuthenticationCoordinator, didFinishWith user: User) {
-        if shouldStartOnboardingCoordinator(with: user) {
-            startOnboardingCoordinator(with: user)
-        } else {
-            startDashboardCoordinator(with: user)
+    
+    fileprivate func startOnboardingCoordinator() {
+        guard let managedObjectContext = managedObjectContext else {
+            startErrorCoordinator(with: ApplicationError.failedToUnwrapValue)
+            
+            return
         }
         
-        childCoordinators.remove({ $0 === authenticationCoordinator })
-    }
-    
-    func authenticationCoordinator(authenticationCoordinator: AuthenticationCoordinator, didEncounter error: ErrorType) {
-        startErrorCoordinator(with: error)
-    }
-    
-    private func shouldStartOnboardingCoordinator(with user: User) -> Bool {
-        return user.name == nil
-    }
-    
-    private func startOnboardingCoordinator(with user: User) {
-        let onboardingCoordinator = OnboardingCoordinator(with: navigationController, user: user)
+        let onboardingCoordinator = OnboardingCoordinator(with: navigationController, managedObjectContext: managedObjectContext)
         onboardingCoordinator.delegate = self
         onboardingCoordinator.start()
         
         childCoordinators.append(onboardingCoordinator)
     }
     
-    private func startDashboardCoordinator(with user: User) {
+    fileprivate func startErrorCoordinator(with error: Error) {
+        let errorCoordinator = ErrorCoordinator(with: navigationController)
+        errorCoordinator.delegate = self
+        errorCoordinator.start(with: error)
+        
+        childCoordinators.append(errorCoordinator)
+    }
+    
+    fileprivate func startDashboardCoordinator(with user: User) {
         let dashboardCoordinator = DashboardCoordinator(with: navigationController, user: user)
         dashboardCoordinator.delegate = self
         dashboardCoordinator.start()
@@ -104,19 +95,39 @@ extension AppCoordinator: AuthenticationCoordinatorDelegate {
 }
 
 extension AppCoordinator: OnboardingCoordinatorDelegate {
-    func onboardingCoordinator(onboardingCoordinator: OnboardingCoordinator, didFinishWith user: User) {
+    func onboardingCoordinator(_ onboardingCoordinator: OnboardingCoordinator, didFinishWith user: User) {
+        navigationController.viewControllers = []
+        
         startDashboardCoordinator(with: user)
         
-        childCoordinators.remove({ $0 === onboardingCoordinator })
+        childCoordinators.remove(predicate: { $0 === onboardingCoordinator })
+    }
+}
+
+extension AppCoordinator: AuthenticationCoordinatorDelegate {
+    func authenticationCoordinator(_ authenticationCoordinator: AuthenticationCoordinator, didFinishWith user: User) {
+        startDashboardCoordinator(with: user)
+        
+        childCoordinators.remove(predicate: { $0 === authenticationCoordinator })
+    }
+    
+    func authenticationCoordinator(_ authenticationCoordinator: AuthenticationCoordinator, didEncounter error: Error) {
+        startErrorCoordinator(with: error)
     }
 }
 
 extension AppCoordinator: DashboardCoordinatorDelegate {
-    
+    func dashboardCoordinatorDidTapSignOut(_ dashboardCoordinator: DashboardCoordinator) {
+        navigationController.popViewController(animated: true)
+        
+        startOnboardingCoordinator()
+        
+        childCoordinators.remove(predicate: { $0 === dashboardCoordinator })
+    }
 }
 
 extension AppCoordinator: ErrorCoordinatorDelegate {
-    func errorCoordinatorDidFinish(errorCoordinator: ErrorCoordinator) {
-        childCoordinators.remove({ $0 === errorCoordinator })
+    func errorCoordinatorDidFinish(_ errorCoordinator: ErrorCoordinator) {
+        childCoordinators.remove(predicate: { $0 === errorCoordinator })
     }
 }
