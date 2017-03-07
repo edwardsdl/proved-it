@@ -6,6 +6,7 @@
 //  Copyright © 2016 Angry Squirrel Software. All rights reserved.
 //
 
+import Charts
 import UIKit
 
 final class HistoryView: BaseView {
